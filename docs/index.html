@@ -1,179 +1,545 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>澳门娱乐场模拟器 · 21 点台面与会员礼遇</title>
-<meta name="description" content="澳门娱乐场模拟器：按澳门法定规章复刻的六门 21 点台面，21 家娱乐场、六套会员体系与贵宾卡，积分可兑换六家公司官网公布的餐饮、住宿、演出与水疗礼遇。">
+<title>澳门娱乐场模拟器 · 21 点台面 · 六套会籍 · 二十一家场馆</title>
+<meta name="description" content="澳门娱乐场模拟器：按澳门现行《二十一点法定规章》复刻的六门台，二十一家娱乐场、七档厅房、六套官方会籍与五十余张会员卡面。台规、台面几何、基本策略表、赌权时间线、积分换算与庄家优势全部可查。">
+<meta name="theme-color" content="#0A0C0D">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <style>
 :root{
-  --ink:#0A0C0D; --ink-2:#121516; --ink-3:#1A1E1F;
-  --cream:#F3EEE4; --cream-2:#E9E2D4; --paper:#FAF7F0;
-  --gold:#C9A227; --gold-lt:#E7D49A; --gold-dp:#8E6F1C;
-  --txt:#F3EEE4; --txt-dim:rgba(243,238,228,.62); --txt-dim2:rgba(243,238,228,.42);
-  --dark-txt:#1B1E1C; --dark-dim:#6A6558;
-  --serif:"Cormorant Garamond","Noto Serif SC",Georgia,serif;
+  --ink:#0A0C0D; --ink-2:#111415; --ink-3:#181C1D; --ink-4:#202526;
+  --cream:#F3EEE4; --cream-2:#E7DFD0; --paper:#FAF7F0;
+  --gold:#C9A227; --gold-lt:#EBD9A4; --gold-dp:#8A6A18; --gold-glow:rgba(201,162,39,.22);
+  --txt:#F3EEE4; --txt-dim:rgba(243,238,228,.64); --txt-dim2:rgba(243,238,228,.40);
+  --dark-txt:#1B1E1C; --dark-dim:#6A6558; --dark-dim2:#948D7C;
+  --serif:"Cormorant Garamond","Noto Serif SC",Georgia,"Songti SC",serif;
   --sans:"Inter","Noto Serif SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-  --max:1240px; --pad:34px;
+  --max:1280px; --pad:38px;
+  --ease:cubic-bezier(.2,.7,.2,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  background:var(--ink); color:var(--txt); font-family:var(--sans);
-  font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden;
-}
+body{background:var(--ink);color:var(--txt);font-family:var(--sans);font-size:16px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
+::selection{background:rgba(201,162,39,.32);color:#fff}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='0.6'/></svg>")}
 
 /* ============ 导航 ============ */
-.nav-wrap{position:fixed;top:0;left:0;right:0;z-index:80;padding:22px var(--pad);
+.nav-wrap{position:fixed;top:0;left:0;right:0;z-index:90;padding:22px var(--pad);
   transition:background .45s ease,backdrop-filter .45s ease,border-color .45s ease,padding .45s ease;
   border-bottom:1px solid transparent}
-.nav-wrap.solid{background:rgba(10,12,13,.82);backdrop-filter:blur(16px) saturate(140%);
-  -webkit-backdrop-filter:blur(16px) saturate(140%);border-bottom-color:rgba(231,212,154,.14);padding-top:14px;padding-bottom:14px}
-.nav{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:34px}
-.brand{display:flex;align-items:center;gap:12px}
-.brand .mark{width:34px;height:34px;border-radius:3px;display:grid;place-items:center;flex:none;
-  background:linear-gradient(150deg,#1D2223,#0B0D0E);border:1px solid rgba(231,212,154,.4);
-  color:var(--gold-lt);font-family:var(--serif);font-size:16px;letter-spacing:.06em}
+.nav-wrap.solid{background:rgba(9,11,12,.84);backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);border-bottom-color:rgba(231,212,154,.13);padding-top:13px;padding-bottom:13px}
+.nav{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:30px}
+.brand{display:flex;align-items:center;gap:12px;flex:none}
+.brand .mark{width:36px;height:36px;border-radius:2px;display:grid;place-items:center;
+  background:linear-gradient(150deg,#202627,#0A0C0D);border:1px solid rgba(231,212,154,.42);
+  color:var(--gold-lt);font-family:var(--serif);font-size:16px;letter-spacing:.06em;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 6px 18px -12px rgba(201,162,39,.8)}
 .brand b{display:block;font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:.03em;line-height:1.1}
 .brand small{display:block;font-size:8.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--txt-dim2);margin-top:3px}
-.nav-links{display:flex;gap:30px;flex:1}
-.nav-links a{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--txt-dim);transition:color .25s;position:relative;padding:4px 0}
+.nav-links{display:flex;gap:24px;flex:1;justify-content:center}
+.nav-links a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt-dim);transition:color .25s;position:relative;padding:4px 0;white-space:nowrap}
 .nav-links a:hover,.nav-links a.on{color:var(--gold-lt)}
 .nav-links a.on::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--gold)}
-.btn-pill{display:inline-flex;align-items:center;gap:9px;border-radius:999px;padding:11px 24px;cursor:pointer;
-  font-size:11px;letter-spacing:.2em;text-transform:uppercase;transition:.25s;white-space:nowrap;border:1px solid transparent}
-.btn-solid{background:#0A0C0D;color:var(--cream)}
-.btn-solid:hover{background:#1B2021;transform:translateY(-1px)}
-.btn-gold{background:linear-gradient(135deg,var(--gold-lt),var(--gold));color:#14110A;font-weight:500}
-.btn-gold:hover{transform:translateY(-1px);box-shadow:0 12px 30px -14px rgba(201,162,39,.7)}
-.btn-line{border-color:rgba(243,238,228,.34);color:var(--txt)}
-.btn-line:hover{border-color:var(--gold-lt);color:var(--gold-lt);background:rgba(231,212,154,.08)}
-.nav .btn-pill:last-child{background:rgba(243,238,228,.07);border-color:rgba(231,212,154,.32);color:var(--gold-lt)}
-.nav .btn-pill:last-child:hover{background:rgba(231,212,154,.16)}
+.btn-pill{display:inline-flex;align-items:center;gap:9px;border-radius:999px;padding:11px 22px;cursor:pointer;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;transition:.28s var(--ease);white-space:nowrap;border:1px solid transparent}
+.btn-gold{background:linear-gradient(135deg,var(--gold-lt),var(--gold));color:#14110A;font-weight:600;
+  box-shadow:0 10px 26px -14px rgba(201,162,39,.9)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 34px -14px rgba(201,162,39,.95)}
+.btn-line{border-color:rgba(243,238,228,.30);color:var(--txt)}
+.btn-line:hover{border-color:var(--gold-lt);color:var(--gold-lt);background:rgba(231,212,154,.07)}
+.nav .btn-pill:last-child{background:rgba(243,238,228,.06);border-color:rgba(231,212,154,.30);color:var(--gold-lt)}
+.nav .btn-pill:last-child:hover{background:rgba(231,212,154,.15)}
+.nav-toggle{display:none}
+.mnav{position:fixed;inset:0;z-index:85;background:rgba(9,11,12,.97);backdrop-filter:blur(18px);
+  display:flex;flex-direction:column;justify-content:center;gap:6px;padding:90px var(--pad) 60px;
+  opacity:0;pointer-events:none;transition:opacity .35s ease;overflow-y:auto;overscroll-behavior:contain}
+.mnav.open{opacity:1;pointer-events:auto}
+.mnav a{font-family:var(--serif);font-size:30px;font-weight:300;letter-spacing:.02em;color:var(--cream);
+  padding:12px 0;border-bottom:1px solid rgba(231,212,154,.1);transition:color .25s,padding-left .25s}
+.mnav a:hover{color:var(--gold-lt);padding-left:8px}
+@media(max-height:820px){
+  .mnav{justify-content:flex-start;gap:0;padding-top:80px;padding-bottom:32px}
+  .mnav a{font-size:23px;padding:7px 0}
+}
+@media(max-width:1180px){
+  .nav-links{display:none}.nav{gap:14px}
+  .nav-toggle{display:grid;place-items:center;width:40px;height:36px;border:1px solid rgba(231,212,154,.3);
+    border-radius:6px;background:none;cursor:pointer;gap:5px;margin-left:auto}
+  .nav-toggle i{display:block;width:17px;height:1px;background:var(--gold-lt);transition:transform .3s,opacity .3s}
+  .nav-toggle.on i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .nav-toggle.on i:nth-child(2){opacity:0}
+  .nav-toggle.on i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+}
+@media(max-width:720px){.nav .btn-pill{display:none}}
 
 /* ============ HERO ============ */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;
-  background:linear-gradient(180deg,#0A0C0D 0%,#111514 45%,#0A0C0D 100%)}
-.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 24%;opacity:.9;
-  transform:scale(1.06);animation:drift 26s ease-in-out infinite alternate}
-@keyframes drift{from{transform:scale(1.06) translate3d(0,0,0)}to{transform:scale(1.13) translate3d(-1.2%,-1.4%,0)}}
-.hero-veil{position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(8,10,10,.62) 0%,rgba(8,10,10,.34) 34%,rgba(8,10,10,.62) 72%,rgba(10,12,13,.95) 100%),
-  radial-gradient(78% 62% at 16% 52%,rgba(8,10,10,.78),rgba(8,10,10,.28) 62%,transparent 88%)}
-.hero-inner{position:relative;z-index:2;max-width:var(--max);width:100%;margin:0 auto;padding:150px var(--pad) 96px}
-.eyebrow{display:inline-flex;align-items:center;gap:11px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--gold-lt);border:1px solid rgba(231,212,154,.42);border-radius:999px;padding:8px 18px;
-  background:rgba(10,12,13,.34);backdrop-filter:blur(6px)}
-.eyebrow i{width:5px;height:5px;border-radius:50%;background:var(--gold);display:block}
-.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(44px,7.2vw,104px);line-height:1.02;letter-spacing:-.015em;
-  margin:30px 0 26px;max-width:16ch}
-.hero h1 em{font-style:italic;color:var(--gold-lt);display:inline-block;font-weight:400}
-.hero-lead{max-width:620px;font-size:15px;line-height:2;color:var(--txt-dim);font-weight:300}
+  background:linear-gradient(180deg,#0A0C0D 0%,#101414 46%,#0A0C0D 100%);isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center 22%;opacity:.92;
+  transform:scale(1.05);animation:drift 28s ease-in-out infinite alternate}
+@keyframes drift{from{transform:scale(1.05) translate3d(0,0,0)}to{transform:scale(1.13) translate3d(-1.4%,-1.6%,0)}}
+.hero-veil{position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,rgba(7,9,9,.66) 0%,rgba(7,9,9,.30) 32%,rgba(7,9,9,.58) 70%,rgba(10,12,13,.97) 100%),
+  radial-gradient(80% 64% at 14% 50%,rgba(7,9,9,.84),rgba(7,9,9,.22) 60%,transparent 88%)}
+.hero-inner{position:relative;z-index:2;max-width:var(--max);width:100%;margin:0 auto;padding:158px var(--pad) 92px}
+.eyebrow{display:inline-flex;align-items:center;gap:11px;font-size:10px;letter-spacing:.30em;text-transform:uppercase;
+  color:var(--gold-lt);border:1px solid rgba(231,212,154,.40);border-radius:999px;padding:8px 18px;
+  background:rgba(10,12,13,.36);backdrop-filter:blur(6px)}
+.eyebrow i{width:5px;height:5px;border-radius:50%;background:var(--gold);display:block;box-shadow:0 0 10px var(--gold)}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(42px,7.4vw,106px);line-height:1.02;letter-spacing:-.018em;
+  margin:30px 0 26px;max-width:15ch}
+.hero h1 em{font-style:italic;font-weight:400;display:inline-block;
+  background:linear-gradient(100deg,#F6EADF 0%,var(--gold-lt) 38%,var(--gold) 74%,#F1DFAE 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-lead{max-width:632px;font-size:15px;line-height:2;color:var(--txt-dim);font-weight:300}
 .hero-lead b{color:var(--txt);font-weight:500}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px}
-.hero-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:84px;
-  border-top:1px solid rgba(231,212,154,.16);padding-top:34px}
-@media(max-width:720px){.hero-stats{grid-template-columns:repeat(2,1fr);gap:26px 0}}
-.hero-stats div{padding-left:26px;border-left:1px solid rgba(231,212,154,.16)}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:38px}
+.hero-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin-top:78px;
+  border-top:1px solid rgba(231,212,154,.15);padding-top:32px}
+@media(max-width:760px){.hero-stats{grid-template-columns:repeat(3,1fr);gap:26px 0}}
+@media(max-width:460px){.hero-stats{grid-template-columns:repeat(2,1fr)}}
+.hero-stats div{padding-left:24px;border-left:1px solid rgba(231,212,154,.14)}
 .hero-stats div:first-child{padding-left:0;border-left:none}
-.hero-stats b{display:block;font-family:var(--serif);font-size:clamp(30px,3.6vw,50px);font-weight:400;line-height:1;letter-spacing:.01em}
-.hero-stats span{display:block;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--txt-dim2);margin-top:12px}
-.scroll-hint{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:3;
-  width:1px;height:64px;background:linear-gradient(180deg,transparent,rgba(231,212,154,.65))}
+.hero-stats b{display:block;font-family:var(--serif);font-size:clamp(28px,3.4vw,46px);font-weight:400;line-height:1;letter-spacing:.01em}
+.hero-stats b sup{font-size:.42em;letter-spacing:.1em;vertical-align:super;color:var(--gold)}
+.hero-stats span{display:block;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--txt-dim2);margin-top:11px}
+.scroll-hint{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:3;
+  width:1px;height:62px;background:linear-gradient(180deg,transparent,rgba(231,212,154,.62))}
 .scroll-hint::after{content:"";position:absolute;left:-3px;bottom:0;width:7px;height:7px;border-right:1px solid var(--gold);
   border-bottom:1px solid var(--gold);transform:rotate(45deg)}
 
+/* ============ 跑马灯 ============ */
+.ribbon{border-top:1px solid rgba(231,212,154,.13);border-bottom:1px solid rgba(231,212,154,.13);
+  background:#0C0F10;overflow:hidden;position:relative;z-index:2;padding:19px 0}
+.ribbon-track{display:flex;gap:52px;width:max-content;animation:slide 46s linear infinite}
+.ribbon-track span{font-family:var(--serif);font-size:14px;letter-spacing:.30em;text-transform:uppercase;
+  color:rgba(243,238,228,.42);display:inline-flex;align-items:center;gap:52px;white-space:nowrap}
+.ribbon-track span::after{content:"";width:4px;height:4px;border-radius:50%;background:var(--gold-dp);display:block;flex:none}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
 /* ============ 通用版式 ============ */
-.sec{padding:120px 0}
+.sec{padding:122px 0;position:relative}
+section[id],header[id]{scroll-margin-top:92px}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
-.sec-head{max-width:760px;margin-bottom:64px}
-.sec-head .kicker{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px}
+.sec-head{max-width:790px;margin-bottom:60px}
+.sec-head .kicker{font-size:10px;letter-spacing:.30em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px}
 .sec-head .kicker::after{content:"";height:1px;width:64px;background:linear-gradient(90deg,var(--gold),transparent)}
-.sec-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(30px,4.2vw,58px);line-height:1.12;letter-spacing:-.015em;margin:20px 0 18px}
-.sec-head h2 em{font-style:italic;color:var(--gold-lt);display:inline-block}
+.sec-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(31px,4.1vw,58px);line-height:1.12;letter-spacing:-.015em;margin:20px 0 18px}
+.sec-head h2 em{font-style:italic;display:inline-block;
+  background:linear-gradient(100deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
 .sec-head p{font-size:14.5px;line-height:1.95;color:var(--txt-dim);font-weight:300}
 .cream{background:var(--cream);color:var(--dark-txt)}
 .cream .sec-head .kicker{color:var(--gold-dp)}
 .cream .sec-head .kicker::after{background:linear-gradient(90deg,var(--gold-dp),transparent)}
-.cream .sec-head h2 em{color:var(--gold-dp)}
+.cream .sec-head h2 em{background:linear-gradient(100deg,var(--gold-dp),#B08D24);-webkit-background-clip:text;background-clip:text;color:transparent}
 .cream .sec-head p{color:var(--dark-dim)}
 .paper{background:var(--paper)}
+.alt{background:var(--ink-2)}
+
+/* 装饰分隔 */
+.orn{display:flex;align-items:center;justify-content:center;gap:16px;opacity:.62;margin:0 auto 54px}
+.orn::before,.orn::after{content:"";height:1px;width:min(180px,22vw);background:linear-gradient(90deg,transparent,rgba(201,162,39,.7))}
+.orn::after{background:linear-gradient(270deg,transparent,rgba(201,162,39,.7))}
+.orn i{width:6px;height:6px;border:1px solid var(--gold);transform:rotate(45deg);display:block}
 
 /* ============ 入口 ============ */
-.entries{display:grid;grid-template-columns:1.12fr .88fr;gap:22px}
+.entries{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
 @media(max-width:900px){.entries{grid-template-columns:1fr}}
-.entry{position:relative;overflow:hidden;border-radius:4px;min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;
-  padding:40px;isolation:isolate}
-.entry .bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.entry{position:relative;overflow:hidden;border-radius:3px;min-height:452px;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:42px;isolation:isolate;border:1px solid rgba(27,30,28,.08);transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.entry:hover{transform:translateY(-4px);box-shadow:0 34px 60px -40px rgba(10,12,13,.56)}
+.entry .bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform 1.2s var(--ease)}
 .entry .veil{position:absolute;inset:0;z-index:-1;background:
-  linear-gradient(180deg,rgba(8,10,10,.52) 0%,rgba(8,10,10,.74) 42%,rgba(8,10,10,.96) 100%),
-  radial-gradient(105% 72% at 18% 100%,rgba(8,10,10,.88),transparent 62%)}
-.entry:hover .bg{transform:scale(1.07)}
-.entry .no{font-size:10px;letter-spacing:.3em;color:var(--gold-lt);opacity:.9}
-.entry h3{font-family:var(--serif);font-weight:300;font-size:clamp(28px,3vw,42px);margin:14px 0 12px;letter-spacing:-.01em}
+  linear-gradient(180deg,rgba(7,9,9,.50) 0%,rgba(7,9,9,.72) 40%,rgba(7,9,9,.96) 100%),
+  radial-gradient(105% 72% at 16% 100%,rgba(7,9,9,.90),transparent 62%)}
+.entry:hover .bg{transform:scale(1.06)}
+.entry .no{font-size:10px;letter-spacing:.30em;color:var(--gold-lt);opacity:.92}
+.entry h3{font-family:var(--serif);font-weight:300;font-size:clamp(28px,3vw,44px);margin:14px 0 12px;letter-spacing:-.01em;color:var(--txt)}
 .entry p{font-size:13.5px;line-height:1.9;color:var(--txt-dim);max-width:46ch;font-weight:300}
-.entry .go{display:inline-flex;align-items:center;gap:12px;margin-top:26px;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;
-  color:var(--gold-lt);border-bottom:1px solid rgba(231,212,154,.42);padding-bottom:7px;transition:.25s}
-.entry:hover .go{border-color:var(--gold-lt);gap:18px}
-.entry.gold-card{border:1px solid rgba(201,162,39,.42);box-shadow:0 30px 60px -40px rgba(10,12,13,.9)}
+.entry .go{display:inline-flex;align-items:center;gap:12px;margin-top:24px;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--gold-lt);border-bottom:1px solid rgba(231,212,154,.42);padding-bottom:7px;transition:.28s}
+.entry:hover .go{border-color:var(--gold-lt);gap:20px}
+.entry .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.entry .tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,238,228,.72);
+  border:1px solid rgba(231,212,154,.28);border-radius:999px;padding:5px 12px;background:rgba(10,12,13,.34)}
+.entry.gold-card{border:1px solid rgba(201,162,39,.46);box-shadow:0 30px 60px -44px rgba(201,162,39,.7)}
 
-/* ============ 规则清单 ============ */
-.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(231,212,154,.14);border:1px solid rgba(231,212,154,.14)}
+/* ============ 规则卡 ============ */
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(231,212,154,.13);border:1px solid rgba(231,212,154,.13)}
 @media(max-width:980px){.rules{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.rules{grid-template-columns:1fr}}
-.rule{background:var(--ink-2);padding:40px 34px;transition:background .35s}
+.rule{background:var(--ink-2);padding:42px 34px;transition:background .4s}
 .rule:hover{background:var(--ink-3)}
 .rule .idx{font-family:var(--serif);font-size:13px;letter-spacing:.24em;color:var(--gold)}
-.rule h4{font-family:var(--serif);font-weight:400;font-size:23px;margin:16px 0 12px;letter-spacing:.01em}
+.rule h4{font-family:var(--serif);font-weight:400;font-size:23px;margin:16px 0 11px;letter-spacing:.01em}
 .rule p{font-size:13px;line-height:1.9;color:var(--txt-dim);font-weight:300}
+.rule p em{font-style:normal;color:var(--gold-lt);border-bottom:1px dotted rgba(231,212,154,.4)}
 
-/* ============ 会员 / 图文 ============ */
-.split{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:center}
-@media(max-width:960px){.split{grid-template-columns:1fr;gap:38px}}
-.figure{position:relative;overflow:hidden;border-radius:4px;aspect-ratio:4/3;background:var(--ink-3)}
-.figure img{width:100%;height:100%;object-fit:cover}
-.figure::after{content:"";position:absolute;inset:0;border:1px solid rgba(231,212,154,.22);pointer-events:none}
-.figure figcaption{position:absolute;left:22px;bottom:18px;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;
-  color:var(--gold-lt);text-shadow:0 2px 12px rgba(0,0,0,.6)}
-.tiers{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--cream-2);border:1px solid var(--cream-2);margin-top:38px}
-@media(max-width:620px){.tiers{grid-template-columns:1fr}}
-.tier{background:var(--paper);padding:26px 24px}
-.tier b{display:block;font-family:var(--serif);font-size:20px;font-weight:500;color:var(--dark-txt)}
-.tier span{display:block;font-size:11px;letter-spacing:.06em;color:var(--dark-dim);margin-top:7px;line-height:1.7}
+/* ============ 数据表 ============ */
+.table-wrap{overflow-x:auto;border:1px solid rgba(231,212,154,.16);background:rgba(255,255,255,.015)}
+.data-table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+.data-table thead th{font-family:var(--serif);font-weight:500;font-size:11.5px;letter-spacing:.20em;text-transform:uppercase;
+  color:var(--gold-lt);text-align:left;padding:18px 20px;border-bottom:1px solid rgba(231,212,154,.2);
+  background:rgba(201,162,39,.05);white-space:nowrap}
+.data-table tbody td{padding:16px 20px;border-bottom:1px solid rgba(231,212,154,.08);color:var(--txt-dim);vertical-align:middle}
+.data-table tbody tr:last-child td{border-bottom:none}
+.data-table tbody tr{transition:background .3s}
+.data-table tbody tr:hover{background:rgba(231,212,154,.05)}
+.data-table td b{color:var(--txt);font-weight:500}
+.data-table td .mono{font-family:var(--serif);font-size:15px;color:var(--gold-lt);letter-spacing:.02em}
+.data-table .neg{color:#D98873}
+.data-table .pos{color:#8FBF94}
+.table-note{font-size:11.5px;color:var(--txt-dim2);margin-top:14px;line-height:1.9;letter-spacing:.02em}
+.cream .table-wrap{border-color:rgba(27,30,28,.12);background:rgba(255,255,255,.5)}
+.cream .data-table thead th{color:var(--gold-dp);border-bottom-color:rgba(27,30,28,.16);background:rgba(201,162,39,.07)}
+.cream .data-table tbody td{color:var(--dark-dim);border-bottom-color:rgba(27,30,28,.07)}
+.cream .data-table tbody tr:hover{background:rgba(201,162,39,.06)}
+.cream .data-table td b{color:var(--dark-txt)}
+.cream .data-table td .mono{color:var(--gold-dp)}
+.cream .table-note{color:var(--dark-dim2)}
+
+/* 穿透率条 */
+.bar{position:relative;display:block;height:4px;background:rgba(231,212,154,.13);border-radius:2px;min-width:88px;margin-top:7px}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--gold-dp),var(--gold-lt));border-radius:2px}
+
+/* ============ 厅房矩阵 ============ */
+.rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:1000px){.rooms-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.rooms-grid{grid-template-columns:1fr}}
+.room-card{position:relative;padding:30px 28px 26px;border:1px solid rgba(231,212,154,.16);
+  background:linear-gradient(165deg,rgba(255,255,255,.03),rgba(255,255,255,0) 58%);overflow:hidden;transition:.4s var(--ease)}
+.room-card:hover{border-color:rgba(231,212,154,.42);transform:translateY(-3px);background:linear-gradient(165deg,rgba(201,162,39,.07),transparent 62%)}
+.room-card .lv{font-family:var(--serif);font-size:11px;letter-spacing:.24em;color:var(--gold);text-transform:uppercase}
+.room-card h4{font-family:var(--serif);font-weight:400;font-size:26px;margin:10px 0 6px}
+.room-card .sub{font-size:11.5px;letter-spacing:.05em;color:var(--txt-dim2)}
+.room-card ul{list-style:none;margin-top:18px;display:grid;gap:9px}
+.room-card li{display:flex;justify-content:space-between;gap:14px;font-size:12px;color:var(--txt-dim);
+  padding-bottom:9px;border-bottom:1px dashed rgba(231,212,154,.1)}
+.room-card li:last-child{border-bottom:none;padding-bottom:0}
+.room-card li b{color:var(--txt);font-weight:500;letter-spacing:.02em}
+.room-card .need{position:absolute;top:26px;right:26px;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(231,212,154,.7);border:1px solid rgba(231,212,154,.28);border-radius:999px;padding:4px 10px}
+.room-card.locked{border-color:rgba(231,212,154,.34)}
+.room-card.locked .need{background:rgba(201,162,39,.14);color:var(--gold-lt)}
+
+/* ============ 场馆名录 ============ */
+.op-bar{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:34px}
+.op-bar button{font:inherit;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;
+  padding:9px 18px;border-radius:999px;border:1px solid rgba(27,30,28,.16);background:transparent;
+  color:var(--dark-dim);transition:.25s}
+.op-bar button:hover{border-color:var(--gold-dp);color:var(--gold-dp)}
+.op-bar button.on{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.casino-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(27,30,28,.1);border:1px solid rgba(27,30,28,.1)}
+@media(max-width:980px){.casino-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.casino-grid{grid-template-columns:1fr}}
+.casino{background:var(--paper);padding:30px 28px;transition:.35s;position:relative;display:flex;flex-direction:column}
+.casino:hover{background:#fff;box-shadow:inset 3px 0 0 var(--gold)}
+.casino .op{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dp)}
+.casino h4{font-family:var(--serif);font-size:26px;font-weight:500;margin:9px 0 8px;color:var(--dark-txt)}
+.casino .note{font-size:12px;line-height:1.85;color:var(--dark-dim);margin-bottom:16px}
+.casino .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.casino .chips span{font-size:9.5px;letter-spacing:.06em;padding:4px 9px;border:1px solid rgba(27,30,28,.14);
+  border-radius:2px;color:var(--dark-dim);background:#fff}
+.casino .chips span.vipc{border-color:rgba(201,162,39,.5);color:var(--gold-dp);background:rgba(201,162,39,.08)}
+.casino .cnt{position:absolute;top:28px;right:26px;font-family:var(--serif);font-size:13px;color:rgba(27,30,28,.32)}
+
+/* ============ 会籍 ============ */
+.prog{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+@media(max-width:900px){.prog{grid-template-columns:1fr}}
+.prog-card{background:#fff;border:1px solid rgba(27,30,28,.1);padding:34px 32px;position:relative;transition:.32s var(--ease)}
+.prog-card:hover{box-shadow:0 26px 50px -40px rgba(10,12,13,.36);transform:translateY(-2px)}
+.prog-card .k{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dp)}
+.prog-card h4{font-family:var(--serif);font-size:29px;font-weight:500;margin:8px 0 4px;color:var(--dark-txt)}
+.prog-card .en{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dark-dim2)}
+.prog-card .conv{font-size:12px;line-height:1.85;color:var(--dark-dim);margin:16px 0 4px;
+  padding-top:14px;border-top:1px solid rgba(27,30,28,.09)}
+.tierline{display:flex;flex-wrap:wrap;gap:1px;margin-top:16px;background:rgba(27,30,28,.1);border:1px solid rgba(27,30,28,.1)}
+.tierline span{flex:1 1 auto;background:var(--paper);padding:10px 12px;text-align:center;min-width:78px}
+.tierline span b{display:block;font-family:var(--serif);font-size:15px;color:var(--dark-txt);font-weight:500}
+.tierline span i{display:block;font-style:normal;font-size:9.5px;letter-spacing:.04em;color:var(--dark-dim2);margin-top:3px}
+.tierline span.vip{background:linear-gradient(160deg,#1A1E1F,#0D1010)}
+.tierline span.vip b{color:var(--gold-lt)}
+.tierline span.vip i{color:rgba(243,238,228,.5)}
+.prog-card .vipname{margin-top:14px;font-size:11.5px;color:var(--gold-dp);letter-spacing:.04em}
+
+/* ============ 卡面墙 ============ */
+.vault{background:var(--ink);position:relative;overflow:hidden}
+.vault::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(70% 60% at 50% 0%,rgba(201,162,39,.13),transparent 68%);pointer-events:none}
+.rail-block{margin-top:44px;position:relative}
+.rail-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:18px;
+  padding-bottom:13px;border-bottom:1px solid rgba(231,212,154,.14)}
+.rail-head h4{font-family:var(--serif);font-size:24px;font-weight:400;letter-spacing:.02em}
+.rail-head h4 em{font-style:italic;color:var(--gold-lt)}
+.rail-head span{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--txt-dim2)}
+.rail{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 22px;scrollbar-width:thin;scrollbar-color:rgba(231,212,154,.3) transparent}
+.rail::-webkit-scrollbar{height:5px}
+.rail::-webkit-scrollbar-thumb{background:rgba(231,212,154,.22);border-radius:3px}
+.card-slot{flex:0 0 224px;border-radius:10px;overflow:hidden;position:relative;background:#111;
+  border:1px solid rgba(231,212,154,.16);transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .4s}
+.card-slot:hover{transform:translateY(-8px) scale(1.02);border-color:rgba(231,212,39,.58);
+  box-shadow:0 30px 50px -26px rgba(0,0,0,.9),0 0 0 1px rgba(231,212,154,.18)}
+.card-slot img{width:100%;height:150px;object-fit:cover;opacity:.95;transition:opacity .4s}
+.card-slot:hover img{opacity:1}
+.card-slot .cap{padding:11px 14px 14px}
+.card-slot .cap b{display:block;font-family:var(--serif);font-size:15.5px;font-weight:500;letter-spacing:.02em;color:var(--txt)}
+.card-slot .cap span{display:block;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--txt-dim2);margin-top:4px}
+.card-slot.vip-slot{border-color:rgba(201,162,39,.4);
+  background:linear-gradient(160deg,#1B1F20,#0A0C0D)}
+.card-slot.vip-slot::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,transparent 30%,rgba(231,212,154,.16) 47%,transparent 62%);
+  transform:translateX(-120%);transition:transform .9s var(--ease)}
+.card-slot.vip-slot:hover::after{transform:translateX(120%)}
+
+/* ============ 商城预览 ============ */
+.mall-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:1000px){.mall-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.mall-grid{grid-template-columns:1fr}}
+.mall-item{padding:26px 24px;background:#fff;border:1px solid rgba(27,30,28,.09);transition:.3s;position:relative}
+.mall-item:hover{transform:translateY(-3px);box-shadow:0 22px 40px -34px rgba(10,12,13,.4)}
+.mall-item .ico{font-family:var(--serif);font-size:13px;letter-spacing:.2em;color:var(--gold-dp)}
+.mall-item h4{font-family:var(--serif);font-size:21px;font-weight:500;margin:9px 0 6px;color:var(--dark-txt)}
+.mall-item p{font-size:11.5px;line-height:1.8;color:var(--dark-dim)}
+.mall-item .num{position:absolute;top:24px;right:22px;font-family:var(--serif);font-size:26px;color:rgba(201,162,39,.35)}
+
+/* ============ FAQ ============ */
+.faq{max-width:900px;margin:0 auto;border-top:1px solid rgba(231,212,154,.15)}
+.faq-item{border-bottom:1px solid rgba(231,212,154,.15)}
+.faq-q{width:100%;display:flex;align-items:flex-start;justify-content:space-between;gap:24px;
+  padding:24px 4px;background:none;border:none;cursor:pointer;text-align:left;font:inherit;color:var(--txt);transition:color .25s}
+.faq-q:hover{color:var(--gold-lt)}
+.faq-q b{font-family:var(--serif);font-size:clamp(17px,2vw,21px);font-weight:400;letter-spacing:.01em;line-height:1.5;flex:1}
+.faq-q i{flex:none;width:22px;height:22px;border:1px solid rgba(231,212,154,.3);border-radius:50%;
+  position:relative;transition:transform .35s var(--ease),border-color .3s;margin-top:3px}
+.faq-q i::before,.faq-q i::after{content:"";position:absolute;left:50%;top:50%;background:var(--gold-lt);transform:translate(-50%,-50%)}
+.faq-q i::before{width:9px;height:1px}
+.faq-q i::after{width:1px;height:9px;transition:opacity .3s}
+.faq-item.open .faq-q i{transform:rotate(180deg);border-color:var(--gold)}
+.faq-item.open .faq-q i::after{opacity:0}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+.faq-a p{font-size:13px;line-height:1.95;color:var(--txt-dim);padding:0 4px 26px;max-width:74ch;font-weight:300}
+.faq-a p b{color:var(--gold-lt);font-weight:500}
 
 /* ============ CTA ============ */
-.cta{position:relative;overflow:hidden;background:var(--ink-2);text-align:center;padding:110px var(--pad)}
-.cta::before{content:"";position:absolute;inset:0;background:
-  radial-gradient(60% 90% at 50% 0%,rgba(201,162,39,.16),transparent 70%)}
-.cta h3{position:relative;font-family:var(--serif);font-weight:300;font-size:clamp(30px,4.4vw,60px);line-height:1.15;letter-spacing:-.015em}
-.cta h3 em{font-style:italic;color:var(--gold-lt)}
-.cta p{position:relative;max-width:520px;margin:22px auto 0;color:var(--txt-dim);font-size:14px;line-height:1.95;font-weight:300}
-.cta .hero-cta{position:relative;justify-content:center;margin-top:38px}
+.cta{position:relative;overflow:hidden;background:var(--ink-2);text-align:center;padding:118px var(--pad)}
+.cta::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(58% 88% at 50% 0%,rgba(201,162,39,.17),transparent 70%)}
+.cta::after{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:1px;height:86px;
+  background:linear-gradient(180deg,rgba(201,162,39,.6),transparent)}
+.cta h3{position:relative;font-family:var(--serif);font-weight:300;font-size:clamp(30px,4.6vw,62px);line-height:1.14;letter-spacing:-.015em}
+.cta h3 em{font-style:italic;background:linear-gradient(100deg,var(--gold-lt),var(--gold));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.cta p{position:relative;max-width:540px;margin:22px auto 0;color:var(--txt-dim);font-size:14px;line-height:1.95;font-weight:300}
+.cta .hero-cta{position:relative;justify-content:center;margin-top:36px}
 
 /* ============ 页脚 ============ */
-footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.14);padding:72px 0 46px}
-.foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
-.foot-top p{font-size:12.5px;line-height:1.95;color:var(--txt-dim2);max-width:520px;margin-top:18px;font-weight:300}
-.foot-links{display:flex;gap:26px;flex-wrap:wrap}
-.foot-links a{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt-dim);transition:color .25s}
-.foot-links a:hover{color:var(--gold-lt)}
-.foot-bot{margin-top:52px;padding-top:26px;border-top:1px solid rgba(231,212,154,.1);
+footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:76px 0 44px}
+.foot-grid{display:grid;grid-template-columns:1.35fr .65fr .65fr .75fr;gap:44px}
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.foot-grid{grid-template-columns:1fr}}
+.foot-grid h5{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.foot-grid ul{list-style:none;display:grid;gap:10px}
+.foot-grid ul a,.foot-grid ul li{font-size:12px;color:var(--txt-dim);transition:color .25s;line-height:1.75}
+.foot-grid ul a:hover{color:var(--gold-lt)}
+.foot-brand p{font-size:12.5px;line-height:1.95;color:var(--txt-dim2);max-width:420px;margin-top:16px;font-weight:300}
+.foot-bot{margin-top:56px;padding-top:26px;border-top:1px solid rgba(231,212,154,.1);
   display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:10.5px;color:var(--txt-dim2);letter-spacing:.04em}
 
+/* ============ 电影感增强 ============ */
+.progress{position:fixed;left:0;top:0;height:2px;width:0;z-index:100;pointer-events:none;
+  background:linear-gradient(90deg,var(--gold-dp),var(--gold-lt));box-shadow:0 0 14px rgba(201,162,39,.55)}
+.hero-spot{position:absolute;inset:0;z-index:-1;pointer-events:none;mix-blend-mode:screen;
+  background:radial-gradient(480px 480px at var(--mx,68%) var(--my,30%),rgba(201,162,39,.20),transparent 66%);
+  transition:background .2s linear}
+.hero-frame{position:absolute;inset:24px;z-index:1;pointer-events:none;border:1px solid rgba(231,212,154,.12)}
+.hero-frame::before,.hero-frame::after{content:"";position:absolute;width:30px;height:30px;border:1px solid rgba(231,212,154,.42)}
+.hero-frame::before{left:-1px;top:-1px;border-right:0;border-bottom:0}
+.hero-frame::after{right:-1px;bottom:-1px;border-left:0;border-top:0}
+.hero-meta{position:absolute;left:var(--pad);bottom:36px;z-index:2;
+  font-size:8.5px;letter-spacing:.34em;text-transform:uppercase;color:rgba(243,238,228,.32)}
+.scroll-label{position:absolute;left:calc(50% + 20px);bottom:38px;z-index:3;font-size:8px;letter-spacing:.36em;
+  text-transform:uppercase;color:rgba(243,238,228,.3)}
+@media(max-width:900px){.hero-frame,.hero-meta,.scroll-label{display:none}}
+
+/* 右侧章节点 */
+.rail-nav{position:fixed;right:28px;top:50%;transform:translateY(-50%);z-index:70;display:flex;flex-direction:column;gap:15px}
+.rail-nav a{position:relative;width:5px;height:5px;border-radius:50%;background:rgba(243,238,228,.24);display:block;transition:.3s}
+.rail-nav a::after{content:attr(data-l);position:absolute;right:15px;top:50%;transform:translateY(-50%) translateX(4px);
+  white-space:nowrap;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);opacity:0;transition:.25s}
+.rail-nav a:hover::after,.rail-nav a.on::after{opacity:1;transform:translateY(-50%)}
+.rail-nav a.on{background:var(--gold);box-shadow:0 0 12px rgba(201,162,39,.85)}
+@media(max-width:1279px){.rail-nav{display:none}}
+
+/* 电影感插页 */
+.interlude{position:relative;min-height:76vh;display:grid;place-items:center;overflow:hidden;isolation:isolate;background:#080A0B}
+.interlude .bg{position:absolute;left:0;right:0;top:-12%;bottom:-12%;z-index:-2;background-size:cover;background-position:center 42%;will-change:transform}
+.interlude .veil{position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,rgba(8,10,11,.96),rgba(8,10,11,.48) 40%,rgba(8,10,11,.9)),
+  radial-gradient(66% 74% at 50% 50%,rgba(8,10,11,.16),rgba(8,10,11,.82))}
+.interlude .q{position:relative;max-width:980px;padding:120px var(--pad);text-align:center}
+.interlude blockquote{font-family:var(--serif);font-weight:300;font-size:clamp(27px,4.3vw,56px);line-height:1.26;
+  letter-spacing:-.01em;margin-top:26px}
+.interlude blockquote em{font-style:italic;background:linear-gradient(100deg,var(--gold-lt),var(--gold));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.interlude .q p{margin:28px auto 0;max-width:620px;font-size:13.5px;line-height:2.05;color:var(--txt-dim);font-weight:300}
+
+/* 章节编号水印 */
+.sec-head{position:relative}
+.sec-wm{position:absolute;right:-6px;top:-26px;font-family:var(--serif);font-size:clamp(84px,11vw,152px);line-height:.78;
+  color:transparent;-webkit-text-stroke:1px rgba(231,212,154,.16);pointer-events:none;user-select:none}
+.cream .sec-wm{-webkit-text-stroke-color:rgba(27,30,28,.13)}
+@media(max-width:760px){.sec-wm{display:none}}
+
+/* 台面几何 */
+.geo{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
+@media(max-width:980px){.geo{grid-template-columns:1fr;gap:34px}}
+.geo-figure{position:relative;border:1px solid rgba(27,30,28,.12);padding:16px 16px 30px;
+  background:radial-gradient(82% 82% at 50% 38%,rgba(201,162,39,.10),transparent 70%),#0B0E0F}
+.geo-figure .cap{position:absolute;left:20px;bottom:11px;font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(243,238,228,.4)}
+.geo-svg{width:100%;height:auto;display:block}
+.geo-svg .seat circle{transition:.3s}
+.geo-svg .seat:hover circle{fill:rgba(201,162,39,.26)}
+.geo-svg text{font-family:'Inter','Noto Serif SC',sans-serif}
+.geo-specs{border-top:1px solid rgba(27,30,28,.14)}
+.geo-specs div{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:baseline;
+  padding:15px 2px;border-bottom:1px solid rgba(27,30,28,.08);font-size:12.6px;color:var(--dark-dim);font-weight:300}
+.geo-specs b{font-family:var(--serif);font-size:18px;font-weight:500;color:var(--dark-txt);letter-spacing:.02em;text-align:right}
+
+/* 基本策略表 */
+.strat-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;margin-top:38px}
+.strat{min-width:0;border:1px solid rgba(231,212,154,.16);background:#0C0F10}
+.strat h4{font-family:var(--serif);font-size:19px;font-weight:400;color:var(--cream);padding:15px 20px;
+  border-bottom:1px solid rgba(231,212,154,.14);display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.strat h4 span{font-family:var(--sans);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--txt-dim2)}
+.strat-scroll{overflow-x:auto;scrollbar-width:thin;scrollbar-color:rgba(231,212,154,.3) transparent}
+.strat-scroll::-webkit-scrollbar{height:5px}
+.strat-scroll::-webkit-scrollbar-track{background:transparent}
+.strat-scroll::-webkit-scrollbar-thumb{background:rgba(231,212,154,.22);border-radius:3px}
+.table-wrap{scrollbar-width:thin;scrollbar-color:rgba(231,212,154,.3) transparent}
+.table-wrap::-webkit-scrollbar{height:5px}
+.table-wrap::-webkit-scrollbar-track{background:transparent}
+.table-wrap::-webkit-scrollbar-thumb{background:rgba(231,212,154,.22);border-radius:3px}
+.cream .table-wrap{scrollbar-color:rgba(27,30,28,.25) transparent}
+.cream .table-wrap::-webkit-scrollbar-thumb{background:rgba(27,30,28,.18)}
+@media(max-width:760px){
+  .strat h4::after{content:"↔ 左右滑动查看 10 列";margin-left:auto;font-family:var(--sans);
+    font-size:9px;letter-spacing:.1em;color:var(--txt-dim2)}
+}
+.strat table{width:100%;border-collapse:collapse;min-width:660px}
+.strat th{font-size:9.5px;letter-spacing:.12em;color:var(--txt-dim2);font-weight:500;padding:11px 0;text-align:center;
+  border-bottom:1px solid rgba(231,212,154,.12)}
+.strat th.h{text-align:left;padding-left:20px;min-width:104px}
+.strat td{text-align:center;padding:6px 0;border-bottom:1px solid rgba(231,212,154,.055)}
+.strat td.h{text-align:left;padding-left:20px;font-family:var(--serif);font-size:14px;color:var(--cream);white-space:nowrap}
+.strat tbody tr:hover td{background:rgba(231,212,154,.05)}
+.cell{display:inline-grid;place-items:center;width:27px;height:23px;border-radius:3px;font-size:10px;
+  font-style:normal;letter-spacing:.02em}
+.cell.H{background:rgba(201,162,39,.16);color:#EBD9A4}
+.cell.S{background:rgba(47,122,79,.28);color:#A9D6AF}
+.cell.D{background:rgba(176,73,52,.26);color:#E8A995}
+.cell.P{background:rgba(112,96,168,.28);color:#C9BCE8}
+.cell.R{background:rgba(140,140,132,.18);color:#CFCBC0}
+.strat-legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:22px;font-size:11.5px;color:var(--txt-dim)}
+.strat-legend span{display:inline-flex;align-items:center;gap:8px}
+
+/* 天际线横幅 */
+.city-band{position:relative;margin:4px 0 12px;overflow:hidden;border:1px solid rgba(231,212,154,.14)}
+.city-band img{width:100%;height:clamp(170px,25vw,300px);object-fit:cover;object-position:center 62%;
+  filter:saturate(.82) brightness(.7)}
+.city-band::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,12,13,.28),rgba(10,12,13,.88))}
+.city-band figcaption{position:absolute;left:24px;bottom:18px;z-index:2;display:flex;align-items:center;gap:14px;
+  font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-lt)}
+.city-band figcaption i{display:block;width:34px;height:1px;background:rgba(231,212,154,.5)}
+
+/* 时间线 */
+.timeline{margin-top:46px;border-top:1px solid rgba(231,212,154,.16)}
+.tl{display:grid;grid-template-columns:150px 1fr auto;gap:36px;padding:30px 4px;align-items:baseline;
+  border-bottom:1px solid rgba(231,212,154,.1);transition:background .3s}
+.tl:hover{background:rgba(231,212,154,.035)}
+.tl .y{font-family:var(--serif);font-size:clamp(26px,3vw,40px);font-weight:400;color:var(--gold-lt);line-height:1}
+.tl h4{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--cream);margin-bottom:6px;letter-spacing:.01em}
+.tl p{font-size:12.6px;line-height:1.92;color:var(--txt-dim);max-width:66ch;font-weight:300}
+.tl .tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,162,39,.32);
+  padding:5px 11px;border-radius:999px;white-space:nowrap}
+@media(max-width:760px){.tl{grid-template-columns:1fr;gap:10px}.tl .tag{justify-self:start}}
+
+/* 会籍对照 */
+.cmp-link{color:var(--gold-lt);border-bottom:1px solid rgba(231,212,154,.34);padding-bottom:1px;transition:.25s}
+.cmp-link:hover{color:var(--cream);border-color:var(--gold)}
+
+/* 卡面展示 */
+.vault-hero{display:grid;grid-template-columns:.94fr 1.06fr;gap:58px;align-items:center;margin-bottom:58px}
+@media(max-width:900px){.vault-hero{grid-template-columns:1fr;gap:36px}}
+.vault-card{position:relative;perspective:1100px}
+.vault-card .halo{position:absolute;inset:-16%;z-index:0;background:radial-gradient(closest-side,rgba(201,162,39,.30),transparent 70%);filter:blur(20px)}
+.vault-card .inner{position:relative;z-index:1;border-radius:14px;overflow:hidden;aspect-ratio:496/314;
+  transform:rotateY(-13deg) rotateX(5deg);
+  box-shadow:0 54px 90px -46px rgba(0,0,0,.96),0 0 0 1px rgba(231,212,154,.3);transition:transform .9s var(--ease)}
+.vault-card:hover .inner{transform:rotateY(-3deg) rotateX(1deg)}
+.vault-card .inner img{width:100%;display:block}
+.vault-card .sheen{position:absolute;inset:0;background:linear-gradient(115deg,transparent 34%,rgba(255,255,255,.18) 48%,transparent 62%);
+  transform:translateX(-130%);transition:transform 1.15s var(--ease)}
+.vault-card:hover .sheen{transform:translateX(130%)}
+.vault-card .tagline{position:absolute;left:0;right:0;bottom:0;padding:22px 22px 18px;
+  background:linear-gradient(180deg,transparent,rgba(8,10,11,.92));font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-lt)}
+.vault-stats{display:flex;gap:30px;margin-top:26px;flex-wrap:wrap}
+.vault-stats div{border-left:1px solid rgba(231,212,154,.2);padding-left:16px}
+.vault-stats div:first-child{border-left:none;padding-left:0}
+.vault-stats b{display:block;font-family:var(--serif);font-size:26px;font-weight:400;color:var(--cream);line-height:1}
+.vault-stats span{display:block;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--txt-dim2);margin-top:7px}
+
+/* 卡面灯箱 */
+.card-slot{cursor:zoom-in}
+.lb{position:fixed;inset:0;z-index:130;display:grid;place-items:center;padding:40px;
+  background:rgba(5,7,8,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  opacity:0;pointer-events:none;transition:opacity .35s}
+.lb.open{opacity:1;pointer-events:auto}
+.lb figure{max-width:min(860px,88vw);text-align:center;transform:scale(.96);transition:transform .42s var(--ease)}
+.lb.open figure{transform:none}
+.lb img{max-height:68vh;width:auto;margin:0 auto;border-radius:12px;
+  box-shadow:0 44px 90px -34px rgba(0,0,0,.95),0 0 0 1px rgba(231,212,154,.3)}
+.lb figcaption{margin-top:20px;font-family:var(--serif);font-size:21px;color:var(--cream);font-weight:400}
+.lb figcaption span{display:block;font-size:8.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-top:6px}
+.lb .x{position:absolute;top:26px;right:30px;width:40px;height:40px;border:1px solid rgba(231,212,154,.3);border-radius:50%;
+  background:none;color:var(--gold-lt);font-size:14px;cursor:pointer;transition:.25s}
+.lb .x:hover{background:rgba(201,162,39,.14);border-color:var(--gold)}
+
+/* 术语表 */
+.gloss{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(231,212,154,.14);
+  border:1px solid rgba(231,212,154,.14);margin-top:42px}
+@media(max-width:960px){.gloss{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.gloss{grid-template-columns:1fr}}
+.gloss div{background:var(--ink-2);padding:28px 26px;transition:background .3s}
+.gloss div:hover{background:var(--ink-3)}
+.gloss b{display:block;font-family:var(--serif);font-size:21px;font-weight:400;color:var(--cream)}
+.gloss i{display:block;font-style:normal;font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-top:7px}
+.gloss p{font-size:12.2px;line-height:1.88;color:var(--txt-dim);margin-top:12px;font-weight:300}
+
 /* ============ 滚动入场 ============ */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.hero-bg{animation:none}}
+.reveal.d1{transition-delay:.09s}.reveal.d2{transition-delay:.18s}.reveal.d3{transition-delay:.27s}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .hero-bg,.ribbon-track{animation:none}
+}
 </style>
 </head>
 <body>
+<div class="progress" id="prog" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 
 <div class="nav-wrap" id="navWrap">
   <nav class="nav">
@@ -183,39 +549,97 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.14);padding:
     </a>
     <div class="nav-links">
       <a href="index.html" class="on">首页</a>
-      <a href="blackjack.html">21 点</a>
-      <a href="blackjack-mall.html">积分商城</a>
-      <a href="#rules">台规</a>
-      <a href="#member">会员</a>
+      <a href="#rules">台面</a>
+      <a href="#strategy">策略</a>
+      <a href="#rooms">厅房</a>
+      <a href="#casinos">场馆</a>
+      <a href="#history">历史</a>
+      <a href="#member">会籍</a>
+      <a href="#vault">卡面</a>
+      <a href="blackjack-mall.html">商城</a>
     </div>
-    <a class="btn-pill" href="https://github.com/laoyangnb666/macau-casino-simulator" target="_blank" rel="noopener">GitHub 仓库</a>
+    <a class="btn-pill" href="https://github.com/laoyangnb666/macau-casino-simulator" target="_blank" rel="noopener">GitHub</a>
     <a class="btn-pill" href="blackjack.html">进入牌桌</a>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单" aria-expanded="false"><i></i><i></i><i></i></button>
   </nav>
 </div>
 
-<header class="hero">
+<nav class="rail-nav" id="railNav" aria-label="章节导航">
+  <a href="#top" data-l="Top"></a>
+  <a href="#rules" data-l="台规"></a>
+  <a href="#strategy" data-l="策略"></a>
+  <a href="#rooms" data-l="厅房"></a>
+  <a href="#casinos" data-l="场馆"></a>
+  <a href="#history" data-l="历史"></a>
+  <a href="#member" data-l="会籍"></a>
+  <a href="#vault" data-l="卡面"></a>
+  <a href="#glossary" data-l="术语"></a>
+</nav>
+
+<div class="mnav" id="mnav">
+  <a href="blackjack.html">21 点台面</a>
+  <a href="#rules">台规与附加注</a>
+  <a href="#strategy">基本策略</a>
+  <a href="#rooms">七档厅房</a>
+  <a href="#casinos">二十一家场馆</a>
+  <a href="#history">赌权时间线</a>
+  <a href="#member">六套会籍</a>
+  <a href="#vault">卡面墙</a>
+  <a href="#glossary">术语表</a>
+  <a href="blackjack-mall.html">积分商城</a>
+</div>
+
+<header class="hero" id="top">
   <div class="hero-bg" style="background-image:url('assets/img/hero.jpg')"></div>
+  <div class="hero-spot" id="heroSpot" aria-hidden="true"></div>
   <div class="hero-veil"></div>
+  <div class="hero-frame" aria-hidden="true"></div>
+  <span class="hero-meta" aria-hidden="true">Macao · 22°11′N 113°32′E · Est. 1847</span>
   <div class="hero-inner">
-    <span class="eyebrow"><i></i>Macao · 六门台 · 法定规章复刻</span>
+    <span class="eyebrow"><i></i>Macao · 六门台 · 法定规章复刻 · 2026 台规版</span>
     <h1>一张六门的台，<em>你只坐第三门。</em></h1>
     <p class="hero-lead">
       无底牌制、软 17 停牌、早投降、五张牌与三种附加注，<b>每一项都能在澳门的法定规章里找到出处</b>。
-      二十一家娱乐场、六套官方会员体系、二十多张牌面 —— 坐下即是澳门。
+      二十一家娱乐场、七档厅房、六套官方会籍、五十余张卡面 —— 坐下即是澳门。
     </p>
     <div class="hero-cta">
       <a class="btn-pill btn-gold" href="blackjack.html">进入 21 点台面</a>
+      <a class="btn-pill btn-line" href="#rules">先读台规</a>
       <a class="btn-pill btn-line" href="blackjack-mall.html">看看积分能换什么</a>
     </div>
     <div class="hero-stats">
-      <div><b>21</b><span>家娱乐场</span></div>
-      <div><b>7</b><span>档厅房</span></div>
-      <div><b>6</b><span>套会员体系</span></div>
-      <div><b>200+</b><span>项官网礼遇</span></div>
+      <div><b data-count="21">21</b><span>家娱乐场</span></div>
+      <div><b data-count="7">7</b><span>档厅房</span></div>
+      <div><b data-count="6">6</b><span>套会籍体系</span></div>
+      <div><b data-count="52">52</b><span>张会员卡面</span></div>
+      <div><b data-count="200">200<sup>+</sup></b><span>项官网礼遇</span></div>
     </div>
   </div>
   <span class="scroll-hint" aria-hidden="true"></span>
+  <span class="scroll-label" aria-hidden="true">Scroll</span>
 </header>
+
+<div class="ribbon" aria-hidden="true">
+  <div class="ribbon-track">
+    <span>金沙中国 Sands China</span><span>银河娱乐 Galaxy Entertainment</span><span>永利澳门 Wynn Macau</span>
+    <span>美高梅 MGM China</span><span>新濠博亚 Melco Resorts</span><span>澳娱综合 SJM Resorts</span>
+    <span>路氹金光大道 Cotai Strip</span><span>澳门半岛 Macau Peninsula</span>
+    <span>金沙中国 Sands China</span><span>银河娱乐 Galaxy Entertainment</span><span>永利澳门 Wynn Macau</span>
+    <span>美高梅 MGM China</span><span>新濠博亚 Melco Resorts</span><span>澳娱综合 SJM Resorts</span>
+    <span>路氹金光大道 Cotai Strip</span><span>澳门半岛 Macau Peninsula</span>
+  </div>
+</div>
+
+<!-- ============ 电影感插页 ============ -->
+<section class="interlude" aria-label="庄家优势">
+  <div class="bg" data-parallax style="background-image:url('assets/img/skyline.jpg')"></div>
+  <div class="veil"></div>
+  <div class="q">
+    <span class="eyebrow"><i></i>The House Edge · 期望值</span>
+    <blockquote>桌上没有运气，<br><em>只有被装饰过的期望值。</em></blockquote>
+    <p>21 点的庄家优势可以低到 0.5%，也可以高到 2% 以上 —— 差别全写在台规里：BJ 赔 3:2 还是 6:5、软 17 停牌还是要牌、能不能早投降、能不能分 A 再分。下面把它们逐条摊开。</p>
+  </div>
+</section>
 
 <!-- ============ 入口 ============ -->
 <section class="sec cream">
@@ -223,7 +647,7 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.14);padding:
     <div class="sec-head reveal">
       <div class="kicker">Two Entries</div>
       <h2>两个入口，<em>一条完整的链路。</em></h2>
-      <p>在牌桌上积累有效投注，换成会员卡与贵宾卡；再用积分兑换餐饮、住宿、演出、水疗与交通 —— 全部按六家公司官网公布的物业与项目整理。</p>
+      <p>在牌桌上积累有效投注，换成会员卡与贵宾卡；再用积分兑换餐饮、住宿、演出、水疗与交通 —— 全部按六家公司官网公布的物业与项目整理，不虚构项目、不虚构档位。</p>
     </div>
     <div class="entries">
       <a class="entry reveal" href="blackjack.html">
@@ -231,15 +655,26 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.14);padding:
         <span class="veil"></span>
         <span class="no">01 / THE TABLE</span>
         <h3>21 点台面</h3>
-        <p>六门台、无底牌制、软 17 停牌，支持分门、加注、投降、五张牌与三种附加注。七档厅房各有独立台规，六家公司各自的品牌配色与获卡动效。</p>
+        <p>六门台、无底牌制、软 17 停牌，支持分门、加注、投降、五张牌与三种附加注。七档厅房各有独立台规，六家公司各自的品牌配色与获卡动效；同桌闲家一律明牌，所有人的牌你都看得见。</p>
+        <div class="tags">
+          <span class="tag">6 / 7 / 8 门</span>
+          <span class="tag">4–8 副牌</span>
+          <span class="tag">真数实时</span>
+          <span class="tag">全屏模式</span>
+        </div>
         <span class="go">进入牌桌 →</span>
       </a>
-      <a class="entry gold-card reveal" href="blackjack-mall.html">
+      <a class="entry gold-card reveal d1" href="blackjack-mall.html">
         <span class="bg" style="background-image:url('assets/img/skyline.jpg')"></span>
         <span class="veil"></span>
         <span class="no">02 / THE REWARDS</span>
         <h3>积分商城</h3>
-        <p>金沙、银河、永利、美高梅、新濠、澳娱六册礼遇，支持搜索、排序、心愿单与每日精选。会员档位越高折扣越大，贵宾卡再叠加。</p>
+        <p>金沙、银河、永利、美高梅、新濠、澳娱六册礼遇，支持搜索、排序、心愿单与每日精选。会员档位越高折扣越大，贵宾卡再叠加；每一件都能追到官网页面。</p>
+        <div class="tags">
+          <span class="tag">七大类目</span>
+          <span class="tag">会员折扣</span>
+          <span class="tag">心愿单</span>
+        </div>
         <span class="go">进入商城 →</span>
       </a>
     </div>
@@ -250,47 +685,691 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.14);padding:
 <section class="sec" id="rules">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="kicker">The Rules</div>
+      <div class="kicker">The Rules · 台规</div>
       <h2>台面上真实存在的<em>每一条规则。</em></h2>
-      <p>不是简化版：桌面上的每个选项，都能在澳门的法定规章或场馆台规里找到出处。</p>
+      <p>不是简化版。桌面上的每个选项，都能在澳门现行《「Black Jack」或「二十一点」法定规章》或场馆台规里找到出处；参数差异按厅房逐档写明。</p>
     </div>
     <div class="rules reveal">
-      <div class="rule"><span class="idx">01</span><h4>无底牌制</h4><p>庄家只先开一张明牌，全部闲家行动完才补第二张。分门与加注遇庄家 Blackjack 只失原注。</p></div>
-      <div class="rule"><span class="idx">02</span><h4>六门独立结算</h4><p>每门单独下注、单独要牌与结算。同桌闲家一律明牌，所有人的牌你都看得见 —— 这也是能算牌的前提。</p></div>
-      <div class="rule"><span class="idx">03</span><h4>三种附加注</h4><p>任何对子、7、13 以上／以下；另有五张牌与早投降，按场馆逐项开关。</p></div>
-      <div class="rule"><span class="idx">04</span><h4>会员与贵宾卡</h4><p>六套官方档位按积分升级；贵宾卡为申请制，按投注、单注与到访天数三维审核，获批后长期保留。</p></div>
-      <div class="rule"><span class="idx">05</span><h4>七档厅房台规</h4><p>从中场洗牌机到超级贵宾厅 8 副牌靴，牌副、穿透率、销牌与发牌顺序逐档不同。</p></div>
-      <div class="rule"><span class="idx">06</span><h4>算牌工具</h4><p>流水数、真数、剩余牌与切牌位置实时显示；洗牌机台会直接说明为什么计数在这里失效。</p></div>
+      <div class="rule"><span class="idx">01</span><h4>无底牌制</h4><p>庄家只先开一张明牌，全部闲家行动完才补第二张。分门与加注遇庄家 Blackjack<em>只失原注</em>，不额外吞掉加注部分。</p></div>
+      <div class="rule"><span class="idx">02</span><h4>六门独立结算</h4><p>每门单独下注、单独要牌与结算。同桌闲家一律<em>明牌</em>，所有人的牌你都看得见 —— 这也是能算牌的前提。</p></div>
+      <div class="rule"><span class="idx">03</span><h4>三种附加注</h4><p>任何对子、幸运 7、13 以上／以下；另有五张牌与早投降，按场馆与厅房<em>逐项开关</em>，不是每张台都有。</p></div>
+      <div class="rule"><span class="idx">04</span><h4>会员与贵宾卡</h4><p>六套官方档位按积分升级；贵宾卡为<em>申请制</em>，按累计有效投注、单次最大投注、到访天数三维审核，获批后长期保留。</p></div>
+      <div class="rule"><span class="idx">05</span><h4>七档厅房台规</h4><p>从中场洗牌机到超级贵宾厅 8 副牌靴，牌副、穿透率、销牌与发牌顺序<em>逐档不同</em>，进门之前先看表。</p></div>
+      <div class="rule"><span class="idx">06</span><h4>算牌工具</h4><p>流水数、真数、剩余牌与切牌位置实时显示；洗牌机台会直接说明<em>为什么计数在这里失效</em>。</p></div>
+    </div>
+
+    <div class="orn reveal" aria-hidden="true"><i></i></div>
+
+    <div class="sec-head reveal" style="margin-bottom:30px">
+      <div class="kicker">Side Bets · 附加注</div>
+      <h2 style="font-size:clamp(24px,3vw,36px);margin-bottom:12px">附加注的真实赔率<em>与庄家优势。</em></h2>
+      <p>下表按 6 副牌（312 张）精确组合数学计算，不是估算。附加注的庄家优势远高于主游戏，长期期望为负。</p>
+    </div>
+    <div class="table-wrap reveal">
+      <table class="data-table">
+        <thead>
+          <tr><th>玩法</th><th>赔率</th><th>庄家优势</th><th>判定与说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>主游戏</b>（基本策略）</td><td><span class="mono">—</span></td><td><span class="pos">约 0.5%</span></td><td>规则越接近 3:2、S17、早投降，越靠近 0</td></tr>
+          <tr><td><b>任何对子</b></td><td><span class="mono">1 : 11</span></td><td><span class="neg">11.25%</span></td><td>首两张点数相同即中，J 与 Q 不算对子</td></tr>
+          <tr><td><b>幸运 7</b>（两张 7）</td><td><span class="mono">50 / 150</span></td><td><span class="neg">31.25%</span></td><td>不同花 50:1，同花 150:1</td></tr>
+          <tr><td><b>幸运 7</b>（三张 7）</td><td><span class="mono">500 / 5000</span></td><td><span class="neg">31.25%</span></td><td>不同花 500:1，同花 5000:1</td></tr>
+          <tr><td><b>13 以上 / 以下</b></td><td><span class="mono">1 : 1</span></td><td><span class="neg">6.6% / 10.1%</span></td><td>A 计 1 点，正好 13 点通吃</td></tr>
+          <tr><td><b>保险</b></td><td><span class="mono">2 : 1</span></td><td><span class="neg">约 5.9%</span></td><td>庄家明牌为 A 时可买，上限为原注一半</td></tr>
+          <tr><td><b>五张牌</b>（贵宾厅起）</td><td><span class="mono">赔半注</span></td><td><span class="pos">对玩家有利</span></td><td>五张不爆可弃牌，按第十九条执行，不是每张台都开</td></tr>
+          <tr><td><b>早投降</b>（高额区起）</td><td><span class="mono">退半注</span></td><td><span class="pos">降低主游戏劣势</span></td><td>庄家未查底牌前即可弃牌，庄家 BJ 也不吞全注</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note reveal">注：附加注赔率与庄家优势为 6 副牌精确值；不同牌副数会有小幅差异。五张牌与早投降的开关状态见「七档厅房」一节。</p>
+
+    <div class="orn reveal" aria-hidden="true"><i></i></div>
+
+    <div class="sec-head reveal" style="margin-bottom:28px">
+      <div class="kicker">The Price of a Rule · 规则代价</div>
+      <h2 style="font-size:clamp(24px,3vw,36px);margin-bottom:12px">同款游戏，<em>不同的价格。</em></h2>
+      <p>以 6 副牌、S17、BJ 3:2、允许 DAS 为基准，逐条改规则对玩家期望值的影响（常用近似值，负号代表对玩家不利）。</p>
+    </div>
+    <div class="table-wrap reveal">
+      <table class="data-table">
+        <thead>
+          <tr><th>规则改动</th><th>对玩家 EV 影响</th><th>出现位置</th><th>桌上的应对</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>BJ 3:2 → 6:5</b></td><td><span class="neg">−1.39%</span></td><td>澳娱低额台、十六浦</td><td>升到高额区改回 3:2，或换台</td></tr>
+          <tr><td><b>S17 → H17</b></td><td><span class="neg">−0.22%</span></td><td>澳娱部分台面</td><td>软 18 对 2 改为加倍</td></tr>
+          <tr><td><b>允许 → 禁止 DAS</b></td><td><span class="neg">−0.14%</span></td><td>部分场馆中场</td><td>2,2 / 3,3 / 4,4 对 2 改为要牌</td></tr>
+          <tr><td><b>可早投降 → 不可</b></td><td><span class="neg">−0.08%</span></td><td>普通场与中场</td><td>16 对 9 / 10 只能硬扛</td></tr>
+          <tr><td><b>6 副 → 8 副</b></td><td><span class="neg">−0.03%</span></td><td>贵宾厅起全部 8 副</td><td>穿透率更高，计数略受益</td></tr>
+          <tr><td><b>牌靴 → CSM</b></td><td><span class="neg">计数失效</span></td><td>中场普遍使用</td><td>放弃算牌，只打基本策略</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note reveal">注：数值为多副牌基本策略下的常用近似，实际随牌副、规则组合与打法浮动；「计数失效」不是 EV 变化，而是信息优势归零。</p>
+  </div>
+</section>
+
+<!-- ============ 台面几何 ============ -->
+<section class="sec cream paper" id="geometry">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-wm" aria-hidden="true">03</span>
+      <div class="kicker">The Layout · 台面几何</div>
+      <h2>先看清这张台，<em>再决定坐哪一门。</em></h2>
+      <p>六门台不是六张独立的桌子：同一副牌靴、同一位庄家、同一轮发牌。位置只决定你看到多少牌、承受多少波动，改变不了任何一张牌的概率。</p>
+    </div>
+    <div class="geo">
+      <figure class="geo-figure reveal">
+        <svg class="geo-svg" viewBox="0 0 760 470" role="img" aria-label="六门 21 点台面俯视示意">
+          <ellipse cx="380" cy="232" rx="326" ry="178" fill="#0E2A22" stroke="rgba(201,162,39,.45)" stroke-width="1.2"/>
+          <ellipse cx="380" cy="232" rx="300" ry="155" fill="none" stroke="rgba(201,162,39,.16)" stroke-width="1"/>
+          <path d="M96 232h568" stroke="rgba(231,212,154,.10)" stroke-width="1" stroke-dasharray="4 6"/>
+
+          <text x="380" y="64" text-anchor="middle" font-size="15" letter-spacing="4" fill="rgba(243,238,228,.62)">DEALER · 庄家</text>
+          <rect x="356" y="80" width="36" height="50" rx="3" fill="#F3EEE4" stroke="rgba(27,30,28,.25)"/>
+          <rect x="362" y="86" width="24" height="3" rx="1.5" fill="rgba(159,29,29,.7)"/>
+          <rect x="400" y="80" width="36" height="50" rx="3" fill="none" stroke="rgba(231,212,154,.4)" stroke-dasharray="4 4"/>
+          <text x="418" y="114" text-anchor="middle" font-size="11" fill="rgba(243,238,228,.5)">未发</text>
+          <path d="M444 96h40" stroke="rgba(201,162,39,.5)" stroke-width="1"/>
+          <text x="492" y="99" font-size="14" fill="rgba(243,238,228,.82)">庄家只开一张明牌</text>
+          <text x="492" y="118" font-size="12" fill="rgba(243,238,228,.5)">另一张在所有闲家行动后补发</text>
+
+          <rect x="70" y="52" width="54" height="46" rx="3" fill="#14181A" stroke="rgba(231,212,154,.3)"/>
+          <text x="97" y="113" text-anchor="middle" font-size="12" fill="rgba(243,238,228,.55)">弃牌盘</text>
+          <rect x="636" y="48" width="50" height="66" rx="4" fill="#14181A" stroke="rgba(231,212,154,.3)"/>
+          <path d="M644 58h34M644 70h34M644 82h34" stroke="rgba(231,212,154,.28)" stroke-width="1"/>
+          <text x="661" y="129" text-anchor="middle" font-size="12" fill="rgba(243,238,228,.55)">牌靴 · 4–8 副</text>
+
+          <text x="380" y="198" text-anchor="middle" font-size="11" letter-spacing="4" fill="rgba(231,212,154,.38)">BLACKJACK · SIX SEATS</text>
+          <path d="M330 208h100" stroke="rgba(201,162,39,.4)" stroke-width="1"/>
+
+          <g class="seat"><circle cx="112" cy="286" r="24" fill="rgba(201,162,39,.06)" stroke="rgba(201,162,39,.5)"/><text x="112" y="291" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#EBD9A4">1</text><text x="112" y="326" text-anchor="middle" font-size="13" fill="rgba(243,238,228,.55)">第一门</text></g>
+          <g class="seat"><circle cx="190" cy="346" r="24" fill="rgba(201,162,39,.06)" stroke="rgba(201,162,39,.5)"/><text x="190" y="351" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#EBD9A4">2</text><text x="190" y="386" text-anchor="middle" font-size="13" fill="rgba(243,238,228,.55)">第二门</text></g>
+          <g class="seat"><circle cx="311" cy="381" r="25" fill="rgba(201,162,39,.30)" stroke="#EBD9A4" stroke-width="1.6"/><text x="311" y="386" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#FFF8E4">3</text><text x="311" y="424" text-anchor="middle" font-size="13" fill="#EBD9A4">第三门 · 你</text><text x="311" y="345" text-anchor="middle" font-size="10" letter-spacing="3" fill="#C9A227">DEFAULT</text></g>
+          <g class="seat"><circle cx="449" cy="381" r="24" fill="rgba(201,162,39,.06)" stroke="rgba(201,162,39,.5)"/><text x="449" y="386" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#EBD9A4">4</text><text x="449" y="420" text-anchor="middle" font-size="13" fill="rgba(243,238,228,.55)">第四门</text></g>
+          <g class="seat"><circle cx="571" cy="346" r="24" fill="rgba(201,162,39,.06)" stroke="rgba(201,162,39,.5)"/><text x="571" y="351" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#EBD9A4">5</text><text x="571" y="386" text-anchor="middle" font-size="13" fill="rgba(243,238,228,.55)">第五门</text></g>
+          <g class="seat"><circle cx="648" cy="286" r="24" fill="rgba(201,162,39,.06)" stroke="rgba(201,162,39,.5)"/><text x="648" y="291" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#EBD9A4">6</text><text x="648" y="326" text-anchor="middle" font-size="13" fill="rgba(243,238,228,.55)">第六门</text></g>
+        </svg>
+        <figcaption class="cap">Table Layout · 6 Seats · No Hole Card</figcaption>
+      </figure>
+      <div class="reveal d1">
+        <div class="geo-specs">
+          <div><span>门位与默认座位</span><b>6 / 7 / 8 门 · 第三门</b></div>
+          <div><span>牌副</span><b>4 / 6 / 8 副</b></div>
+          <div><span>每局销牌</span><b>1–2 张</b></div>
+          <div><span>切牌卡位置</span><b>剩余 12%–28%</b></div>
+          <div><span>发牌顺序</span><b>逐门发出，庄家最后</b></div>
+          <div><span>结算</span><b>每门独立</b></div>
+        </div>
+        <p class="table-note" style="color:var(--dark-dim2)">庄家只先开一张明牌（无底牌制），这是澳门台与美式台最大的结构差别：闲家先行动，庄家第二张牌在所有门结算前才补发，所以分门与加注遇庄家 Blackjack <b>只失原注</b>。</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 会员 ============ -->
-<section class="sec cream paper" id="member">
+<!-- ============ 基本策略 ============ -->
+<section class="sec" id="strategy">
   <div class="wrap">
-    <div class="split">
-      <figure class="figure reveal">
-        <img src="assets/img/dining.jpg" alt="澳门娱乐场 · 餐饮与住宿礼遇">
-        <figcaption>Six Programmes · 200+ Benefits</figcaption>
+    <div class="sec-head reveal">
+      <span class="sec-wm" aria-hidden="true">04</span>
+      <div class="kicker">Basic Strategy · 基本策略</div>
+      <h2>不靠感觉，<em>靠一张表。</em></h2>
+      <p>下表与牌桌里的策略引擎同源：6 副牌、S17、BJ 3:2、允许 DAS、可早投降的高额区口径。它不保证任何一局赢，只保证长期把庄家优势压到最低。</p>
+    </div>
+
+    <div class="strat-legend reveal">
+      <span><i class="cell H">要</i>要牌 Hit</span>
+      <span><i class="cell S">停</i>停牌 Stand</span>
+      <span><i class="cell D">加</i>加倍 Double</span>
+      <span><i class="cell P">分</i>分牌 Split</span>
+      <span><i class="cell R">降</i>投降 Surrender</span>
+    </div>
+
+    <div class="strat-grid">
+      <div class="strat reveal">
+        <h4>硬牌 · Hard Totals<span>无 A 或 A 只算 1 点</span></h4>
+        <div class="strat-scroll">
+          <table>
+            <thead><tr><th class="h">点数</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>A</th></tr></thead>
+            <tbody>
+              <tr><td class="h">8 或以下</td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">9</td><td><i class="cell H">要</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">10</td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">11</td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td></tr>
+              <tr><td class="h">12</td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">13</td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">14</td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">15</td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell R">降</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">16</td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell R">降</i></td><td><i class="cell R">降</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">17 或以上</td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="strat reveal">
+        <h4>软牌 · Soft Totals<span>A 可同时算 1 或 11 点</span></h4>
+        <div class="strat-scroll">
+          <table>
+            <thead><tr><th class="h">手牌</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>A</th></tr></thead>
+            <tbody>
+              <tr><td class="h">A,2 · 13</td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">A,3 · 14</td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">A,4 · 15</td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">A,5 · 16</td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">A,6 · 17</td><td><i class="cell H">要</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">A,7 · 18</td><td><i class="cell S">停</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">A,8 · 19</td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td></tr>
+              <tr><td class="h">A,9 · 20</td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="strat reveal">
+        <h4>对子 · Pairs<span>首两张同点数时分不分</span></h4>
+        <div class="strat-scroll">
+          <table>
+            <thead><tr><th class="h">对子</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>A</th></tr></thead>
+            <tbody>
+              <tr><td class="h">A,A</td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td></tr>
+              <tr><td class="h">10,10</td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td></tr>
+              <tr><td class="h">9,9</td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell S">停</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell S">停</i></td><td><i class="cell S">停</i></td></tr>
+              <tr><td class="h">8,8</td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td></tr>
+              <tr><td class="h">7,7</td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">6,6</td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">5,5</td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell D">加</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">4,4</td><td><i class="cell H">要</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">3,3</td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+              <tr><td class="h">2,2</td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell P">分</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td><td><i class="cell H">要</i></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <p class="table-note reveal">读法与例外：<b>加倍</b>在厅房不允许时一律改为要牌；<b>投降</b>仅在开放早投降的高额区以上有效，不可投降时按要牌处理。H17 台面把 A,7 对 2 改为加倍；禁用 DAS 时 2,2 / 3,3 / 4,4 对 2 改为要牌。表是长期最优，不是单局必胜。</p>
+  </div>
+</section>
+
+<!-- ============ 厅房 ============ -->
+<section class="sec alt" id="rooms">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Seven Room Levels · 厅房</div>
+      <h2>七档厅房，<em>七套台规。</em></h2>
+      <p>同一家公司，中场用洗牌机、贵宾厅换成 8 副牌靴；门数、穿透率、销牌、发牌顺序全部不同。下面每一档都可以在牌桌里直接切换。</p>
+    </div>
+    <div class="rooms-grid">
+      <div class="room-card reveal">
+        <span class="need">自由入场</span>
+        <div class="lv">Level 00</div><h4>普通场</h4><div class="sub">General Floor</div>
+        <ul><li><span>门数 / 牌副</span><b>6 门 · 6 副</b></li><li><span>洗牌方式</span><b>牌靴</b></li><li><span>穿透率</span><b>72%</b></li><li><span>最低注</span><b>100–300 MOP</b></li></ul>
+      </div>
+      <div class="room-card reveal d1">
+        <span class="need">自由入场</span>
+        <div class="lv">Level 01</div><h4>中场</h4><div class="sub">Main Floor</div>
+        <ul><li><span>门数 / 牌副</span><b>6 门 · 6 副</b></li><li><span>洗牌方式</span><b>洗牌机 CSM</b></li><li><span>穿透率</span><b>75%</b></li><li><span>最低注</span><b>300–1,500 MOP</b></li></ul>
+      </div>
+      <div class="room-card reveal d2">
+        <span class="need">自由入场</span>
+        <div class="lv">Level 02</div><h4>高额区</h4><div class="sub">High Limit</div>
+        <ul><li><span>门数 / 牌副</span><b>6 门 · 8 副</b></li><li><span>早投降 / 等额</span><b>两项皆开</b></li><li><span>穿透率</span><b>78%</b></li><li><span>最低注</span><b>3,000–15,000 MOP</b></li></ul>
+      </div>
+      <div class="room-card locked reveal">
+        <span class="need">基础贵宾卡</span>
+        <div class="lv">Level 03</div><h4>贵宾厅</h4><div class="sub">VIP Room</div>
+        <ul><li><span>门数 / 牌副</span><b>7 门 · 8 副</b></li><li><span>五张牌 / 分 A</span><b>开 / 可再分</b></li><li><span>穿透率</span><b>80%</b></li><li><span>最低注</span><b>1–4 万 MOP</b></li></ul>
+      </div>
+      <div class="room-card locked reveal d1">
+        <span class="need">私人贵宾卡</span>
+        <div class="lv">Level 04</div><h4>私人厅</h4><div class="sub">Private Salon</div>
+        <ul><li><span>门数 / 牌副</span><b>5 门 · 8 副</b></li><li><span>发牌顺序</span><b>逐门发牌</b></li><li><span>穿透率</span><b>82%</b></li><li><span>最低注</span><b>10–20 万 MOP</b></li></ul>
+      </div>
+      <div class="room-card locked reveal d2">
+        <span class="need">主席卡</span>
+        <div class="lv">Level 05</div><h4>主席厅</h4><div class="sub">Chairman's Club</div>
+        <ul><li><span>门数 / 牌副</span><b>5 门 · 8 副</b></li><li><span>分 A 后再分</span><b>开</b></li><li><span>穿透率</span><b>85%</b></li><li><span>最低注</span><b>20–40 万 MOP</b></li></ul>
+      </div>
+      <div class="room-card locked reveal">
+        <span class="need">御匾 / 超级卡</span>
+        <div class="lv">Level 06</div><h4>超级贵宾厅</h4><div class="sub">Super VIP</div>
+        <ul><li><span>门数 / 牌副</span><b>4 门 · 8 副</b></li><li><span>分 A 后再分</span><b>开</b></li><li><span>穿透率</span><b>88%</b></li><li><span>最低注</span><b>50–80 万 MOP</b></li></ul>
+      </div>
+    </div>
+    <div class="table-wrap reveal" style="margin-top:34px">
+      <table class="data-table">
+        <thead>
+          <tr><th>厅房</th><th>门数</th><th>牌副</th><th>洗牌</th><th>软 17</th><th>BJ 赔付</th><th>早投降</th><th>五张牌</th><th>穿透率</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>普通场</b></td><td>6</td><td>6</td><td>牌靴</td><td>停牌</td><td>3 : 2</td><td>—</td><td>—</td><td>72%<span class="bar"><i style="width:72%"></i></span></td></tr>
+          <tr><td><b>中场</b></td><td>6</td><td>6</td><td>CSM</td><td>停牌</td><td>3 : 2</td><td>—</td><td>—</td><td>75%<span class="bar"><i style="width:75%"></i></span></td></tr>
+          <tr><td><b>高额区</b></td><td>6</td><td>8</td><td>牌靴</td><td>停牌</td><td>3 : 2</td><td>开</td><td>—</td><td>78%<span class="bar"><i style="width:78%"></i></span></td></tr>
+          <tr><td><b>贵宾厅</b></td><td>7</td><td>8</td><td>牌靴</td><td>停牌</td><td>3 : 2</td><td>开</td><td>开</td><td>80%<span class="bar"><i style="width:80%"></i></span></td></tr>
+          <tr><td><b>私人厅</b></td><td>5</td><td>8</td><td>牌靴</td><td>停牌</td><td>3 : 2</td><td>开</td><td>开</td><td>82%<span class="bar"><i style="width:82%"></i></span></td></tr>
+          <tr><td><b>主席厅</b></td><td>5</td><td>8</td><td>牌靴</td><td>停牌</td><td>3 : 2</td><td>开</td><td>开</td><td>85%<span class="bar"><i style="width:85%"></i></span></td></tr>
+          <tr><td><b>超级贵宾厅</b></td><td>4</td><td>8</td><td>牌靴</td><td>停牌</td><td>3 : 2</td><td>开</td><td>开</td><td>88%<span class="bar"><i style="width:88%"></i></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note reveal">澳娱综合（新葡京、葡京、凯旋门、十六浦）的低额台另按场馆台规执行：BJ 只赔 <b>6 : 5</b>、庄家<b>软 17 要牌</b>，庄家优势明显更高 —— 这就是同一座城市里「同一款游戏不同价格」的原因。</p>
+  </div>
+</section>
+
+<!-- ============ 场馆 ============ -->
+<section class="sec cream paper" id="casinos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">The Houses · 场馆</div>
+      <h2>二十一家场馆，<em>六个承批集团。</em></h2>
+      <p>每一家的厅房开关、最低注与洗牌习惯都不同。点上面的集团名筛选，看每一家开了哪些厅房。</p>
+    </div>
+    <div class="op-bar reveal" id="opBar">
+      <button class="on" data-op="all">全部 21</button>
+      <button data-op="金沙中国">金沙中国 5</button>
+      <button data-op="银河娱乐">银河娱乐 4</button>
+      <button data-op="永利澳门">永利澳门 2</button>
+      <button data-op="美高梅">美高梅 2</button>
+      <button data-op="新濠博亚">新濠博亚 3</button>
+      <button data-op="澳娱综合">澳娱综合 5</button>
+      <button data-op="卫星场">卫星场 1</button>
+    </div>
+    <div class="casino-grid reveal" id="casinoGrid">
+      <article class="casino" data-op="金沙中国"><span class="cnt">01</span><div class="op">金沙中国 · Sands China</div><h4>威尼斯人</h4><p class="note">金光大道最大的低额台群，中场以洗牌机为主，贵宾厅改 8 副牌靴、可早投降。</p><div class="chips"><span>普通场</span><span>中场</span><span>高额区</span><span class="vipc">贵宾厅</span><span class="vipc">私人厅</span></div></article>
+      <article class="casino" data-op="金沙中国"><span class="cnt">02</span><div class="op">金沙中国 · Sands China</div><h4>巴黎人</h4><p class="note">与威尼斯人同套台规，低额台密集；高额区可提前预约。</p><div class="chips"><span>普通场</span><span>中场</span><span>高额区</span><span class="vipc">贵宾厅</span></div></article>
+      <article class="casino" data-op="金沙中国"><span class="cnt">03</span><div class="op">金沙中国 · Sands China</div><h4>伦敦人</h4><p class="note">新场，台数多、厅房层级最全，独立包厅按 Paiza 体系预约。</p><div class="chips"><span>中场</span><span>高额区</span><span class="vipc">贵宾厅</span><span class="vipc">私人厅</span></div></article>
+      <article class="casino" data-op="金沙中国"><span class="cnt">04</span><div class="op">金沙中国 · Sands China</div><h4>金沙</h4><p class="note">半岛老场，台数较少，洗牌机为主，适合先熟悉台规。</p><div class="chips"><span>普通场</span><span>中场</span><span>高额区</span></div></article>
+      <article class="casino" data-op="金沙中国"><span class="cnt">05</span><div class="op">金沙中国 · Sands China</div><h4>百利宫</h4><p class="note">四季名店旁的高端区，御匾白金 / 钻石 / 主席卡都在这里用；超级贵宾厅只开 4 门。</p><div class="chips"><span>高额区</span><span class="vipc">贵宾厅</span><span class="vipc">私人厅</span><span class="vipc">主席厅</span><span class="vipc">超级贵宾厅</span></div></article>
+
+      <article class="casino" data-op="银河娱乐"><span class="cnt">06</span><div class="op">银河娱乐 · Galaxy Ent.</div><h4>银河</h4><p class="note">6 副牌靴、分 A 后不可再分；主席厅改 8 副并放开分 A 再分。</p><div class="chips"><span>中场</span><span>高额区</span><span class="vipc">贵宾厅</span><span class="vipc">私人厅</span><span class="vipc">主席厅</span></div></article>
+      <article class="casino" data-op="银河娱乐"><span class="cnt">07</span><div class="op">银河娱乐 · Galaxy Ent.</div><h4>星际</h4><p class="note">半岛场，高额台密度高，楼层贵宾厅凭金尊会卡进入。</p><div class="chips"><span>中场</span><span>高额区</span><span class="vipc">贵宾厅</span></div></article>
+      <article class="casino" data-op="银河娱乐"><span class="cnt">08</span><div class="op">银河娱乐 · Galaxy Ent.</div><h4>百老汇</h4><p class="note">平价场，6 副牌靴，与银河共用同一套会员卡。</p><div class="chips"><span>普通场</span><span>中场</span><span>高额区</span></div></article>
+      <article class="casino" data-op="银河娱乐"><span class="cnt">09</span><div class="op">银河娱乐 · Galaxy Ent.</div><h4>澳门银河 · 万豪区</h4><p class="note">酒店群配套的中场，台规与银河主楼一致，人多时排队较长。</p><div class="chips"><span>中场</span><span>高额区</span></div></article>
+
+      <article class="casino" data-op="永利澳门"><span class="cnt">10</span><div class="op">永利澳门 · Wynn</div><h4>永利澳门</h4><p class="note">6 副牌靴、位置少；白金 / 黑卡主要在这里打，主席厅为邀约制。</p><div class="chips"><span>中场</span><span>高额区</span><span class="vipc">贵宾厅</span><span class="vipc">私人厅</span><span class="vipc">主席厅</span></div></article>
+      <article class="casino" data-op="永利澳门"><span class="cnt">11</span><div class="op">永利澳门 · Wynn</div><h4>永利皇宫</h4><p class="note">路氹中场 + 完整贵宾序列，Chairman's Club 包厅与 4 门超级贵宾厅。</p><div class="chips"><span>中场</span><span>高额区</span><span class="vipc">贵宾厅</span><span class="vipc">私人厅</span><span class="vipc">主席厅</span><span class="vipc">超级贵宾厅</span></div></article>
+
+      <article class="casino" data-op="美高梅"><span class="cnt">12</span><div class="op">美高梅 · MGM China</div><h4>美高梅澳门</h4><p class="note">中场 8 副洗牌机，高额区 8 副牌靴；珍珠卡以上可进贵宾厅。</p><div class="chips"><span>中场</span><span>高额区</span><span class="vipc">贵宾厅</span></div></article>
+      <article class="casino" data-op="美高梅"><span class="cnt">13</span><div class="op">美高梅 · MGM China</div><h4>美高梅路氹</h4><p class="note">路氹新场，狮王卡主席厅与超级贵宾厅都在这一栋。</p><div class="chips"><span>中场</span><span>高额区</span><span class="vipc">贵宾厅</span><span class="vipc">私人厅</span><span class="vipc">主席厅</span><span class="vipc">超级贵宾厅</span></div></article>
+
+      <article class="casino" data-op="新濠博亚"><span class="cnt">14</span><div class="op">新濠博亚 · Melco</div><h4>新濠天地</h4><p class="note">8 副牌靴、台数密集；摩珀斯厅限额更高，红玺卡以上使用。</p><div class="chips"><span>中场</span><span>高额区</span><span class="vipc">贵宾厅</span><span class="vipc">私人厅</span><span class="vipc">主席厅</span></div></article>
+      <article class="casino" data-op="新濠博亚"><span class="cnt">15</span><div class="op">新濠博亚 · Melco</div><h4>新濠影汇</h4><p class="note">家庭客多，普通场与中场以洗牌机为主，高额区另设牌靴。</p><div class="chips"><span>普通场</span><span>中场</span><span>高额区</span></div></article>
+      <article class="casino" data-op="新濠博亚"><span class="cnt">16</span><div class="op">新濠博亚 · Melco</div><h4>新濠锋</h4><p class="note">半岛精品场，只有高额区以上，五张牌与分 A 再分都开。</p><div class="chips"><span>高额区</span><span class="vipc">贵宾厅</span><span class="vipc">私人厅</span><span class="vipc">主席厅</span><span class="vipc">超级贵宾厅</span></div></article>
+
+      <article class="casino" data-op="澳娱综合"><span class="cnt">17</span><div class="op">澳娱综合 · SJM</div><h4>新葡京</h4><p class="note">低额台 BJ 只赔 6:5、庄家软 17 要牌；高额区才改回 3:2，庄家优势差距明显。</p><div class="chips"><span>普通场</span><span>中场</span><span>高额区</span><span class="vipc">贵宾厅</span><span class="vipc">私人厅</span></div></article>
+      <article class="casino" data-op="澳娱综合"><span class="cnt">18</span><div class="op">澳娱综合 · SJM</div><h4>上葡京</h4><p class="note">路氹新场，8 副牌靴，至尊卡高额厅与主席厅、超级贵宾厅齐全。</p><div class="chips"><span>中场</span><span>高额区</span><span class="vipc">贵宾厅</span><span class="vipc">私人厅</span><span class="vipc">主席厅</span><span class="vipc">超级贵宾厅</span></div></article>
+      <article class="casino" data-op="澳娱综合"><span class="cnt">19</span><div class="op">澳娱综合 · SJM</div><h4>葡京</h4><p class="note">老葡京，最低注门槛全城最低，但 6:5 与软 17 要牌让庄家优势抬升。</p><div class="chips"><span>普通场</span><span>中场</span><span>高额区</span></div></article>
+      <article class="casino" data-op="澳娱综合"><span class="cnt">20</span><div class="op">澳娱综合 · SJM</div><h4>回力海立方</h4><p class="note">码头旁，中转场，洗牌机为主；海景贵宾厅规模不大。</p><div class="chips"><span>中场</span><span>高额区</span><span class="vipc">贵宾厅</span></div></article>
+      <article class="casino" data-op="卫星场"><span class="cnt">21</span><div class="op">卫星场 · Satellite</div><h4>十六浦</h4><p class="note">内港卫星场，台规偏保守：每局销两张牌、6:5 赔付。</p><div class="chips"><span>普通场</span><span>中场</span></div></article>
+    </div>
+    <p class="table-note reveal" style="color:var(--dark-dim2)">注：凯旋门为澳娱综合卫星场，台规偏保守、只开普通场与中场；厅房开关与最低注为模拟口径，现场以场馆公示为准。</p>
+  </div>
+</section>
+
+<!-- ============ 时间线 ============ -->
+<section class="sec alt" id="history">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-wm" aria-hidden="true">06</span>
+      <div class="kicker">The City · 澳门</div>
+      <h2>一座城，<em>一百七十年的赌权史。</em></h2>
+      <p>今天的六家承批、二十一家场馆，不是自然长出来的。专营、开放、重新竞投 —— 每一次制度变化，都直接改写了台规与价格。</p>
+    </div>
+    <figure class="city-band reveal">
+      <img src="assets/img/skyline.jpg" alt="澳门半岛与路氹天际线" loading="lazy">
+      <figcaption><span>Macau Peninsula</span><i></i><span>Cotai Strip</span></figcaption>
+    </figure>
+    <div class="timeline">
+      <div class="tl reveal">
+        <span class="y">1847</span>
+        <div><h4>博彩合法化</h4><p>葡澳政府把番摊等中式博彩纳入牌照与税制管理，博彩收入开始进入公共财政，澳门逐渐形成「以博彩养城市」的结构。</p></div>
+        <span class="tag">Origins</span>
+      </div>
+      <div class="tl reveal">
+        <span class="y">1930</span>
+        <div><h4>专营时代开启</h4><p>豪兴公司取得全澳博彩专营权，赌场从街边铺面进入制度化经营；此后数十年，专营权几度易手，但「一家独占」的格局未变。</p></div>
+        <span class="tag">Monopoly</span>
+      </div>
+      <div class="tl reveal">
+        <span class="y">1962</span>
+        <div><h4>澳娱登场</h4><p>澳门旅游娱乐有限公司（STDM）取得专营权。葡京、新葡京相继落成，成为半岛地标，专营格局一直延续到 2002 年。</p></div>
+        <span class="tag">STDM</span>
+      </div>
+      <div class="tl reveal">
+        <span class="y">2002</span>
+        <div><h4>赌权一开三</h4><p>特区政府结束专营，发出三张主牌照（澳博、永利、银河）；随后各转批一张副牌，形成「三主三副」六家并存的格局，路氹金光大道开始成形。</p></div>
+        <span class="tag">Liberalisation</span>
+      </div>
+      <div class="tl reveal">
+        <span class="y">2022</span>
+        <div><h4>重新竞投</h4><p>新《博彩法》通过，六家承批公司获发十年期牌照（2023–2032）；卫星场与中介人制度同步收紧，非博彩投资成为续牌条件的一部分。</p></div>
+        <span class="tag">Re-tender</span>
+      </div>
+      <div class="tl reveal">
+        <span class="y">2026</span>
+        <div><h4>今天的台面</h4><p>六家承批、二十一家场馆、七档厅房。同一款 21 点，在中场与超级贵宾厅之间，牌副、洗牌方式、赔付与准入完全不同 —— 这正是本页要摊开的东西。</p></div>
+        <span class="tag">Now</span>
+      </div>
+    </div>
+    <p class="table-note reveal">注：时间线依据澳门公开史料与博彩监察协调局公开资料整理；牌照期限以 2022 年批给合同为准。</p>
+  </div>
+</section>
+
+<!-- ============ 会籍 ============ -->
+<section class="sec" id="member">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Six Programmes · 会籍</div>
+      <h2>六套官方会籍，<em>六条升级路径。</em></h2>
+      <p>档位名称与门槛全部取自各集团官网会籍页；只有官方未公开的部分才标注为模拟估算。贵宾卡永远是「申请 + 邀约」，不是攒够积分自动发放。</p>
+    </div>
+    <div class="prog">
+      <div class="prog-card reveal">
+        <div class="k">金沙中国</div><h4>金沙会</h4><div class="en">Sands Rewards</div>
+        <div class="conv">约 5,000 MOP 有效投注 = 1 分（圈内估算）。官方 10 档，后三档为贵宾卡。</div>
+        <div class="tierline">
+          <span><b>金卡</b><i>0</i></span><span><b>红宝 Ⅰ</b><i>888</i></span><span><b>红宝 Ⅱ</b><i>2,888</i></span>
+          <span><b>红宝 Ⅲ</b><i>6,888</i></span><span><b>钻石 Ⅰ</b><i>8,888</i></span><span><b>钻石 Ⅱ</b><i>18,888</i></span><span><b>钻石 Ⅲ</b><i>38,888</i></span>
+        </div>
+        <div class="vipname">贵宾序列：御匾白金 → 御匾钻石 → 御匾主席</div>
+      </div>
+      <div class="prog-card reveal d1">
+        <div class="k">银河娱乐</div><h4>银河优越会</h4><div class="en">GEG Privilege Club</div>
+        <div class="conv">约 6,000 MOP = 1 分（估算）。官方公布：皇卡满 10 分晋爵卡；赫卡门槛未公开。</div>
+        <div class="tierline">
+          <span><b>皇</b><i>0</i></span><span><b>爵</b><i>10 分</i></span><span><b>赫</b><i>600 分</i></span>
+        </div>
+        <div class="vipname">贵宾序列（仅三档）：尊 → 金尊 → 至尊</div>
+      </div>
+      <div class="prog-card reveal">
+        <div class="k">新濠博亚</div><h4>新濠皇会</h4><div class="en">Melco Club</div>
+        <div class="conv">约 400 MOP = 1 分。官方：白金 +80 分、钻石 +2,800 分、红玺 +18,000 分；龙玺 / 天皇仅限邀请。</div>
+        <div class="tierline">
+          <span><b>黄金</b><i>0</i></span><span><b>白金</b><i>80</i></span><span><b>钻石</b><i>2,800</i></span>
+          <span class="vip"><b>红玺</b><i>18,000</i></span>
+        </div>
+        <div class="vipname">贵宾序列：红玺 → 龙玺 → 天皇（后两者为邀请制）</div>
+      </div>
+      <div class="prog-card reveal d1">
+        <div class="k">美高梅</div><h4>金狮会</h4><div class="en">Golden Lion Club</div>
+        <div class="conv">官方基准 20 MOP = 1 分；21 点桌面衰减后固定按 25 MOP = 1 分。6 个月累计。</div>
+        <div class="tierline">
+          <span><b>蓝宝石</b><i>0</i></span><span><b>珍珠</b><i>400</i></span><span><b>铂金</b><i>5,900</i></span>
+          <span><b>黑玺</b><i>15,000</i></span><span><b>钻石</b><i>45,000</i></span><span><b>黑钻</b><i>120,000</i></span>
+        </div>
+        <div class="vipname">贵宾序列：Privé → 狮王卡（隐藏顶层）</div>
+      </div>
+      <div class="prog-card reveal">
+        <div class="k">永利澳门</div><h4>永利红卡</h4><div class="en">Red Card</div>
+        <div class="conv">约 5,000–8,000 MOP = 1 分，取中值 6,500（估算）。官方从未公开升级积分。</div>
+        <div class="tierline">
+          <span><b>红卡</b><i>0</i></span><span><b>银卡</b><i>3,000</i></span><span><b>金卡</b><i>12,000</i></span><span><b>白金</b><i>36,000</i></span>
+        </div>
+        <div class="vipname">贵宾序列：黑卡 → 主席卡（隐藏顶层，邀约制）</div>
+      </div>
+      <div class="prog-card reveal d1">
+        <div class="k">澳娱综合</div><h4>至尊卡</h4><div class="en">SJM Supreme Card</div>
+        <div class="conv">官方按过去 12 个月指定商户净消费计级；模拟以有效投注 1:1 近似消费额。</div>
+        <div class="tierline">
+          <span><b>翡翠</b><i>0</i></span><span><b>黄金</b><i>5 万</i></span><span><b>白金</b><i>15 万</i></span>
+          <span><b>钻石</b><i>30 万</i></span><span class="vip"><b>至尊钻石</b><i>贵宾凭证</i></span>
+        </div>
+        <div class="vipname">贵宾序列：至尊钻石 → 至尊御尊（顶层）</div>
+      </div>
+    </div>
+
+    <div class="sec-head reveal" style="margin:64px 0 24px">
+      <div class="kicker">One Ruler · 换算对照</div>
+      <h2 style="font-size:clamp(24px,3vw,38px);margin-bottom:12px">六套会籍，<em>放在同一把尺上。</em></h2>
+      <p>换算率决定「打同样的流水，谁给分更快」；档位数与贵宾序列决定「分能换到哪一层」。官方未公开的部分标注为估算，不伪装成官方数字。</p>
+    </div>
+    <div class="table-wrap reveal">
+      <table class="data-table">
+        <thead><tr><th>集团</th><th>会籍</th><th>21 点换算</th><th>大众档位</th><th>贵宾序列</th><th>官网</th></tr></thead>
+        <tbody>
+          <tr><td><b>金沙中国</b></td><td>金沙会</td><td><span class="mono">≈5,000 MOP / 分</span></td><td>金卡 → 红宝 Ⅰ–Ⅲ → 钻石 Ⅰ–Ⅲ</td><td>御匾白金 → 御匾钻石 → 御匾主席</td><td><a class="cmp-link" href="https://cn.sandsrewards.com/" target="_blank" rel="noopener">Sands Rewards ↗</a></td></tr>
+          <tr><td><b>银河娱乐</b></td><td>银河优越会</td><td><span class="mono">≈6,000 MOP / 分</span></td><td>皇 → 爵 → 赫</td><td>尊 → 金尊 → 至尊</td><td><a class="cmp-link" href="https://www.galaxyentertainment.com/" target="_blank" rel="noopener">GEG ↗</a></td></tr>
+          <tr><td><b>新濠博亚</b></td><td>新濠皇会</td><td><span class="mono">≈400 MOP / 分</span></td><td>黄金 → 白金 → 钻石</td><td>红玺 → 龙玺 → 天皇</td><td><a class="cmp-link" href="https://www.melcoclub.com/" target="_blank" rel="noopener">Melco Club ↗</a></td></tr>
+          <tr><td><b>美高梅</b></td><td>金狮会</td><td><span class="mono">25 MOP / 分</span></td><td>蓝宝石 → 珍珠 → 铂金 → 黑玺 → 钻石 → 黑钻</td><td>Privé → 狮王卡</td><td><a class="cmp-link" href="https://www.mgm.mo/" target="_blank" rel="noopener">MGM ↗</a></td></tr>
+          <tr><td><b>永利澳门</b></td><td>永利红卡</td><td><span class="mono">≈6,500 MOP / 分</span></td><td>红 → 银 → 金 → 白金</td><td>黑卡 → 主席卡</td><td><a class="cmp-link" href="https://www.wynnmacau.com/" target="_blank" rel="noopener">Wynn ↗</a></td></tr>
+          <tr><td><b>澳娱综合</b></td><td>至尊卡</td><td><span class="mono">按净消费计 · 模拟 1:1</span></td><td>翡翠 → 黄金 → 白金 → 钻石</td><td>至尊钻石 → 至尊御尊</td><td><a class="cmp-link" href="https://www.sjmresorts.com/sc/supreme-card" target="_blank" rel="noopener">SJM ↗</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note reveal">注：换算率为公开资料与圈内估算的模拟口径；官方未公布的档位门槛在模拟器内以参考值运行，只用于比较，不代表真实发卡标准。</p>
+
+    <div class="orn reveal" aria-hidden="true"><i></i></div>
+
+    <div class="sec-head reveal" style="margin-bottom:26px">
+      <div class="kicker">VIP Assessment · 贵宾准入</div>
+      <h2 style="font-size:clamp(24px,3vw,38px);margin-bottom:12px">贵宾卡不是攒够就能拿，<em>是四个维度一起看。</em></h2>
+      <p>真实赌场不看总流水一项：还看单次最大投注、到访天数与流水是否稳定。短期突击砸钱即使总额达标，邀约概率也会被显著下调。</p>
+    </div>
+    <div class="table-wrap reveal">
+      <table class="data-table">
+        <thead><tr><th>集团 / 贵宾序列</th><th>基础贵宾候门槛</th><th>顶层隐藏卡候选</th><th>辅助维度</th></tr></thead>
+        <tbody>
+          <tr><td><b>金沙 · 御匾</b></td><td>1,200 万 MOP</td><td>御匾主席 · 8,000 万 MOP</td><td>单注 2 万 / 到访 12 天</td></tr>
+          <tr><td><b>银河 · 金尊</b></td><td>1,000 万 MOP</td><td>至尊 · 7,000 万 MOP</td><td>单注 1.5 万 / 到访 10 天</td></tr>
+          <tr><td><b>新濠 · 皇玺</b></td><td>1,000 万 MOP</td><td>天皇 · 6,500 万 MOP</td><td>单注 1.5 万 / 到访 10 天</td></tr>
+          <tr><td><b>美高梅 · Privé</b></td><td>900 万 MOP</td><td>狮王卡 · 6,000 万 MOP</td><td>单注 1.2 万 / 到访 10 天</td></tr>
+          <tr><td><b>永利 · 贵宾</b></td><td>1,300 万 MOP</td><td>主席卡 · 9,000 万 MOP</td><td>单注 2 万 / 到访 12 天</td></tr>
+          <tr><td><b>澳娱 · 至尊</b></td><td>800 万 MOP</td><td>至尊御尊 · 5,500 万 MOP</td><td>单注 1 万 / 到访 8 天</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note reveal">注：以上门槛为 6 个月累计有效投注的模拟参考值，官方从不公布。系统只会给出【暂未进入候选池 / 已进入基础候选池 / 已进入顶层候选池】三种状态标签，<b style="color:var(--gold-lt)">不会自动授予贵宾权限</b>。</p>
+  </div>
+</section>
+
+<!-- ============ 卡面墙 ============ -->
+<section class="sec vault" id="vault">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">The Card Vault · 卡面</div>
+      <h2>五十余张卡面，<em>按公司分柜。</em></h2>
+      <p>金沙、新濠、澳娱用官方卡面；银河、永利、美高梅的贵宾档为 AI 生成卡面。牌桌上随卡级实时换肤，获卡时触发各公司独立的动效与桌面配色。</p>
+    </div>
+
+    <div class="vault-hero">
+      <div class="vault-card reveal">
+        <span class="halo" aria-hidden="true"></span>
+        <div class="inner">
+          <img src="assets/cards/sands_apex_chairman.webp" alt="金沙中国 · 御匾主席卡" width="496" height="314" loading="lazy">
+          <span class="sheen" aria-hidden="true"></span>
+          <span class="tagline">Paiza Chairman · 御匾主席卡 · 顶层邀约</span>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <div class="kicker">The Passport · 一卡一门</div>
+        <h3 style="font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.2vw,42px);line-height:1.2;letter-spacing:-.01em;margin:16px 0 14px">
+          卡面不是装饰，<em style="font-style:italic;background:linear-gradient(100deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent">是这扇门的通行证。</em>
+        </h3>
+        <p style="font-size:13.6px;line-height:2;color:var(--txt-dim);font-weight:300;max-width:52ch">
+          哪一扇门愿意为你开，先看这张卡。大众档位决定你在中场的礼遇，贵宾卡决定你能不能走进另一层楼 —— 卡面颜色、材质与字样，都是那套准入规则的外化。
+        </p>
+        <div class="vault-stats">
+          <div><b>52</b><span>张卡面</span></div>
+          <div><b>6</b><span>套会籍</span></div>
+          <div><b>3</b><span>档顶层隐藏卡</span></div>
+        </div>
+        <p class="table-note">点击任意卡面可放大查看细节；贵宾档卡面在牌桌上会同时切换桌面配色与获卡动效。</p>
+      </div>
+    </div>
+
+    <div class="rail-block reveal">
+      <div class="rail-head"><h4>金沙会 <em>/ Sands Rewards</em></h4><span>7 档 · 官方卡面</span></div>
+      <div class="rail">
+        <div class="card-slot"><img src="assets/cards/sands_gold.webp" alt="金沙会金卡" loading="lazy"><div class="cap"><b>金卡</b><span>开户即有</span></div></div>
+        <div class="card-slot"><img src="assets/cards/sands_ruby1.webp" alt="金沙会红宝卡Ⅰ" loading="lazy"><div class="cap"><b>红宝卡 Ⅰ</b><span>888 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/sands_ruby2.webp" alt="金沙会红宝卡Ⅱ" loading="lazy"><div class="cap"><b>红宝卡 Ⅱ</b><span>2,888 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/sands_ruby3.webp" alt="金沙会红宝卡Ⅲ" loading="lazy"><div class="cap"><b>红宝卡 Ⅲ</b><span>6,888 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/sands_dia1.webp" alt="金沙会钻石卡Ⅰ" loading="lazy"><div class="cap"><b>钻石卡 Ⅰ</b><span>8,888 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/sands_dia2.webp" alt="金沙会钻石卡Ⅱ" loading="lazy"><div class="cap"><b>钻石卡 Ⅱ</b><span>18,888 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/sands_dia3.webp" alt="金沙会钻石卡Ⅲ" loading="lazy"><div class="cap"><b>钻石卡 Ⅲ</b><span>38,888 分</span></div></div>
+        <div class="card-slot vip-slot"><img src="assets/cards/sands_apex_platinum.webp" alt="御匾白金卡" loading="lazy"><div class="cap"><b>御匾白金卡</b><span>Paiza · 贵宾</span></div></div>
+        <div class="card-slot vip-slot"><img src="assets/cards/sands_apex_diamond.webp" alt="御匾钻石卡" loading="lazy"><div class="cap"><b>御匾钻石卡</b><span>Paiza · 贵宾</span></div></div>
+        <div class="card-slot vip-slot"><img src="assets/cards/sands_apex_chairman.webp" alt="御匾主席卡" loading="lazy"><div class="cap"><b>御匾主席卡</b><span>Paiza · 顶层</span></div></div>
+      </div>
+    </div>
+
+    <div class="rail-block reveal">
+      <div class="rail-head"><h4>银河优越会 <em>/ GEG Privilege</em></h4><span>3 + 3 档 · 卡面</span></div>
+      <div class="rail">
+        <div class="card-slot"><img src="assets/cards/gal_royal.webp" alt="银河皇卡" loading="lazy"><div class="cap"><b>皇</b><span>0 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/gal_noble.webp" alt="银河爵卡" loading="lazy"><div class="cap"><b>爵</b><span>10 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/gal_eminent.webp" alt="银河赫卡" loading="lazy"><div class="cap"><b>赫</b><span>600 分</span></div></div>
+        <div class="card-slot vip-slot"><img src="assets/cards/gal_prestige.webp" alt="银河尊" loading="lazy"><div class="cap"><b>尊</b><span>金尊会 · 基础贵宾</span></div></div>
+        <div class="card-slot vip-slot"><img src="assets/cards/gal_sov.webp" alt="银河金尊" loading="lazy"><div class="cap"><b>金尊</b><span>金尊会 · 中阶</span></div></div>
+        <div class="card-slot vip-slot"><img src="assets/cards/gal_apex.webp" alt="银河至尊" loading="lazy"><div class="cap"><b>至尊</b><span>金尊会 · 顶层</span></div></div>
+      </div>
+    </div>
+
+    <div class="rail-block reveal">
+      <div class="rail-head"><h4>新濠皇会 <em>/ Melco Club</em></h4><span>3 + 3 档 · 官方卡面</span></div>
+      <div class="rail">
+        <div class="card-slot"><img src="assets/cards/melco_gold.webp" alt="新濠黄金卡" loading="lazy"><div class="cap"><b>黄金卡</b><span>免费登记</span></div></div>
+        <div class="card-slot"><img src="assets/cards/melco_platinum.webp" alt="新濠白金卡" loading="lazy"><div class="cap"><b>白金卡</b><span>80 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/melco_diamond.webp" alt="新濠钻石卡" loading="lazy"><div class="cap"><b>钻石卡</b><span>2,800 分</span></div></div>
+        <div class="card-slot vip-slot"><img src="assets/cards/melco_ruby.webp" alt="新濠红玺卡" loading="lazy"><div class="cap"><b>红玺卡</b><span>18,000 分</span></div></div>
+        <div class="card-slot vip-slot"><img src="assets/cards/melco_dragon.webp" alt="新濠龙玺卡" loading="lazy"><div class="cap"><b>龙玺卡</b><span>邀请制</span></div></div>
+        <div class="card-slot vip-slot"><img src="assets/cards/melco_emperor.webp" alt="新濠天皇卡" loading="lazy"><div class="cap"><b>天皇卡</b><span>顶层 · 邀请</span></div></div>
+      </div>
+    </div>
+
+    <div class="rail-block reveal">
+      <div class="rail-head"><h4>美高梅金狮会 <em>/ Golden Lion</em></h4><span>6 + 2 档 · 卡面</span></div>
+      <div class="rail">
+        <div class="card-slot"><img src="assets/cards/mgm_sapp.webp" alt="金狮会蓝宝石卡" loading="lazy"><div class="cap"><b>蓝宝石</b><span>0 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/mgm_pearl.webp" alt="金狮会珍珠卡" loading="lazy"><div class="cap"><b>珍珠</b><span>400 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/mgm_plat.webp" alt="金狮会铂金卡" loading="lazy"><div class="cap"><b>铂金</b><span>5,900 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/mgm_seal.webp" alt="金狮会黑玺卡" loading="lazy"><div class="cap"><b>黑玺</b><span>15,000 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/mgm_diam.webp" alt="金狮会钻石卡" loading="lazy"><div class="cap"><b>钻石</b><span>45,000 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/mgm_bdia.webp" alt="金狮会黑钻卡" loading="lazy"><div class="cap"><b>黑钻</b><span>120,000 分</span></div></div>
+        <div class="card-slot vip-slot"><img src="assets/cards/mgm_bdia.webp" alt="Privé 贵宾" loading="lazy"><div class="cap"><b>Privé</b><span>基础贵宾</span></div></div>
+        <div class="card-slot vip-slot"><img src="assets/cards/vip4.webp" alt="狮王卡" loading="lazy"><div class="cap"><b>狮王卡</b><span>隐藏顶层</span></div></div>
+      </div>
+    </div>
+
+    <div class="rail-block reveal">
+      <div class="rail-head"><h4>永利红卡 <em>/ Red Card</em></h4><span>4 + 2 档 · 卡面</span></div>
+      <div class="rail">
+        <div class="card-slot"><img src="assets/cards/wyn_red.webp" alt="永利红卡" loading="lazy"><div class="cap"><b>红卡</b><span>0 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/wyn_silver.webp" alt="永利银卡" loading="lazy"><div class="cap"><b>银卡</b><span>3,000 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/wyn_gold.webp" alt="永利金卡" loading="lazy"><div class="cap"><b>金卡</b><span>12,000 分</span></div></div>
+        <div class="card-slot"><img src="assets/cards/wyn_plat.webp" alt="永利白金卡" loading="lazy"><div class="cap"><b>白金</b><span>36,000 分</span></div></div>
+        <div class="card-slot vip-slot"><img src="assets/cards/wyn_black.webp" alt="永利黑卡" loading="lazy"><div class="cap"><b>黑卡</b><span>贵宾</span></div></div>
+        <div class="card-slot vip-slot"><img src="assets/cards/wyn_chair.webp" alt="永利主席卡" loading="lazy"><div class="cap"><b>主席卡</b><span>隐藏顶层</span></div></div>
+      </div>
+    </div>
+
+    <div class="rail-block reveal">
+      <div class="rail-head"><h4>澳娱至尊卡 <em>/ SJM Supreme</em></h4><span>4 + 1 档 · 官方卡面</span></div>
+      <div class="rail">
+        <div class="card-slot"><img src="assets/cards/sjm_emerald.webp" alt="至尊翡翠卡" loading="lazy"><div class="cap"><b>翡翠</b><span>免费</span></div></div>
+        <div class="card-slot"><img src="assets/cards/sjm_gold.webp" alt="至尊黄金卡" loading="lazy"><div class="cap"><b>黄金</b><span>5 万 MOP</span></div></div>
+        <div class="card-slot"><img src="assets/cards/sjm_platinum.webp" alt="至尊白金卡" loading="lazy"><div class="cap"><b>白金</b><span>15 万 MOP</span></div></div>
+        <div class="card-slot"><img src="assets/cards/sjm_diamond.webp" alt="至尊钻石卡" loading="lazy"><div class="cap"><b>钻石</b><span>30 万 MOP</span></div></div>
+        <div class="card-slot vip-slot"><img src="assets/cards/vip3.webp" alt="至尊御尊" loading="lazy"><div class="cap"><b>至尊御尊</b><span>顶层贵宾</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 商城预览 ============ -->
+<section class="sec cream paper">
+  <div class="wrap">
+    <div class="split" style="display:grid;grid-template-columns:.92fr 1.08fr;gap:64px;align-items:center">
+      <figure class="reveal" style="position:relative;overflow:hidden;border-radius:3px;aspect-ratio:4/3;background:var(--cream-2)">
+        <img src="assets/img/dining.jpg" alt="澳门娱乐场 · 餐饮与住宿礼遇" style="width:100%;height:100%;object-fit:cover" loading="lazy">
+        <figcaption style="position:absolute;left:22px;bottom:18px;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-lt);text-shadow:0 2px 12px rgba(0,0,0,.6)">Six Programmes · 200+ Benefits</figcaption>
       </figure>
-      <div class="reveal">
+      <div class="reveal d1">
         <div class="sec-head" style="margin-bottom:0">
-          <div class="kicker">Membership</div>
+          <div class="kicker">The Mall · 积分商城</div>
           <h2>打出来的积分，<em>换得回的东西。</em></h2>
-          <p>会员档位按有效投注累计，贵宾卡需三维达标后申请获批。六家公司的礼遇目录按官网分册整理：餐饮、住宿、演出、水疗、玩乐、购物与交通。</p>
+          <p>会员档位按有效投注累计，贵宾卡需三维达标后申请获批。六家公司的礼遇目录按官网分册整理，每一类都能点到官网来源。</p>
         </div>
-        <div class="tiers">
-          <div class="tier"><b>金沙会</b><span>御匾白金 / 钻石 / 主席卡</span></div>
-          <div class="tier"><b>银河优越</b><span>金尊会 · 尊 / 金尊 / 至尊</span></div>
-          <div class="tier"><b>新濠皇会</b><span>皇玺会 · 红玺 / 龙玺 / 天皇</span></div>
-          <div class="tier"><b>金狮会</b><span>Privé · 狮王卡</span></div>
-          <div class="tier"><b>永利红卡</b><span>黑卡 / 主席卡贵宾序列</span></div>
-          <div class="tier"><b>澳娱至尊卡</b><span>综合至尊卡 · 翡翠至钻石</span></div>
+        <div class="mall-grid" style="margin-top:34px;grid-template-columns:repeat(2,1fr)">
+          <div class="mall-item"><span class="num">01</span><div class="ico">DINING</div><h4>餐饮</h4><p>米其林餐厅、自助餐与行政酒廊，按会员档位给到不同折扣。</p></div>
+          <div class="mall-item"><span class="num">02</span><div class="ico">STAY</div><h4>住宿</h4><p>六家酒店群的客房与套房，贵宾卡可换到私人管家与专属楼层。</p></div>
+          <div class="mall-item"><span class="num">03</span><div class="ico">SHOW</div><h4>演出</h4><p>驻场演出、演唱会与剧院包厢，热门场次需要提前预约。</p></div>
+          <div class="mall-item"><span class="num">04</span><div class="ico">SPA</div><h4>水疗</h4><p>各酒店水疗中心的护理套餐，白金卡以上通常附带升级。</p></div>
+          <div class="mall-item"><span class="num">05</span><div class="ico">PLAY</div><h4>玩乐</h4><p>观景、乐园、游船与体验类项目，适合把零散积分用小。</p></div>
+          <div class="mall-item"><span class="num">06</span><div class="ico">SHOP</div><h4>购物</h4><p>名店礼券与免税额度，按集团不同分册结算。</p></div>
         </div>
-        <div class="hero-cta" style="margin-top:38px">
+        <div class="hero-cta" style="margin-top:32px">
           <a class="btn-pill" href="blackjack-mall.html" style="background:#0A0C0D;color:var(--cream)">浏览全部礼遇</a>
-          <a class="btn-pill" href="blackjack.html" style="border-color:rgba(27,30,28,.28);color:var(--dark-txt)">先打几局</a>
+          <a class="btn-pill" href="blackjack.html" style="border-color:rgba(27,30,28,.24);color:var(--dark-txt)">先打几局</a>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 术语表 ============ -->
+<section class="sec alt" id="glossary">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-wm" aria-hidden="true">09</span>
+      <div class="kicker">Glossary · 术语</div>
+      <h2>先把词说清楚，<em>再谈策略。</em></h2>
+      <p>这一页反复出现的九个词，几乎决定了你对「赌场到底怎么赚钱」的全部理解。</p>
+    </div>
+    <div class="gloss reveal">
+      <div><b>有效投注</b><i>Turnover</i><p>每局实际下注额的累计，与输赢无关。分牌、加倍按追加后的总额计；这也是会员积分的唯一计价基础。</p></div>
+      <div><b>庄家优势</b><i>House Edge</i><p>长期每下注 100 元的期望损失。21 点主游戏约 0.5%，附加注普遍在 5%–31% 之间。</p></div>
+      <div><b>穿透率</b><i>Penetration</i><p>牌靴发到切牌卡前已发出的牌占比。越高，剩余牌的信息越充分，计数越有效。</p></div>
+      <div><b>流水数</b><i>Running Count</i><p>Hi-Lo 体系下 2–6 记 +1、7–9 记 0、10 与 A 记 −1 的累计值，随每张明牌更新。</p></div>
+      <div><b>真数</b><i>True Count</i><p>流水数 ÷ 剩余牌副数。把「还剩多少牌」折算进计数，才可用于调整下注与策略。</p></div>
+      <div><b>连续洗牌机</b><i>CSM</i><p>每局把用过的牌立即洗回牌靴，剩余牌构成始终接近初始比例，算牌因此失效。</p></div>
+      <div><b>S17 / H17</b><i>Soft 17</i><p>庄家软 17 停牌还是继续要牌。H17 对玩家更不利，约多付 0.22 个百分点。</p></div>
+      <div><b>五张牌</b><i>Five-Card Rule</i><p>五张不爆可弃牌、按半注结算的特殊规则，仅部分贵宾厅开放，对玩家有利。</p></div>
+      <div><b>邀约制</b><i>Invitation Only</i><p>贵宾资格由场馆按流水、单注、到访与稳定性综合评估发出，玩家无法主动购买或解锁。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal" style="max-width:700px;margin-left:auto;margin-right:auto;text-align:center">
+      <div class="kicker" style="justify-content:center">Questions · 问答</div>
+      <h2>关于台规与积分，<em>常被问到的八件事。</em></h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item">
+        <button class="faq-q"><b>为什么积分要按「有效投注」而不是「输赢」来算？</b><i></i></button>
+        <div class="faq-a"><p>因为赌场赚的是<b>流水上的抽水</b>，不是某一局的输赢。按有效投注计分，玩家赢钱也照样累积积分；按输赢计分则会出现「赢家没分、输家满额」的荒谬结果，也会诱导玩家为了积分故意输。</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><b>贵宾卡为什么不能自动发放？</b><i></i></button>
+        <div class="faq-a"><p>贵宾厅的准入是<b>邀约制</b>：除了累计投注，还要看单次最大投注、到访天数与流水是否稳定。系统只会给出状态标签（暂未进入 / 基础候选 / 顶层候选），最终是否邀约由场馆评估，模拟器<b>不会自动授予</b>。</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><b>为什么短时间砸一大笔钱，反而更难进候选池？</b><i></i></button>
+        <div class="faq-a"><p>一次性大额流水在风控看来是「突击式充值」，不代表长期客户价值，也常与套利、洗钱特征重合。真实赌场更偏好<b>分散在多个月份、到访稳定</b>的流水结构，因此模拟器会对「80% 流水集中在 7 天内」打稳定性扣分。</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><b>洗牌机（CSM）为什么会让算牌失效？</b><i></i></button>
+        <div class="faq-a"><p>算牌依赖「已出牌与剩余牌的构成差异」。CSM 每局把用过的牌立即洗回牌靴，<b>剩余牌构成永远接近初始比例</b>，真数不会再拉开，计数自然失去意义。中场普遍使用 CSM，正是为了压制算牌。</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><b>为什么澳娱的低额台 BJ 只赔 6:5？</b><i></i></button>
+        <div class="faq-a"><p>6:5 把 Blackjack 的赔付从 3:2 降到 1.2 倍，单这一项就让庄家优势抬高约 <b>1.4 个百分点</b>；再叠加庄家软 17 要牌，低额台对玩家的劣势远高于高额区。这不是「小台小玩」，而是<b>更贵的同一款游戏</b>。</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><b>附加注看起来赔率很高，值得买吗？</b><i></i></button>
+        <div class="faq-a"><p>不值得。任何对子庄家优势 11.25%、幸运 7 高达 31.25%，都远高于主游戏的约 0.5%。<b>赔率高不等于期望高</b>，附加注的低频高赔正是用来放大「差一点就中」的错觉。</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><b>同桌其他人的牌为什么要给我看？</b><i></i></button>
+        <div class="faq-a"><p>澳门现行台规下闲家一律<b>明牌</b>，只有庄家先开一张明牌、另一张暗牌留到最后。你能看到全桌的牌，这也是算牌能成立的前提；同时它意味着你的决策会受同桌牌型影响，而不是单人对抗庄家。</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><b>模拟器的数据存在哪？会同步到真实账户吗？</b><i></i></button>
+        <div class="faq-a"><p>全部数据只存在<b>你自己的浏览器本地</b>，换页不丢、清除缓存即重置；不连接任何真实博彩账户，也不产生任何真实权益。本项目为概率教学模拟，<b>真实赌场禁止算牌，长期期望为负</b>。</p></div>
       </div>
     </div>
   </div>
@@ -299,7 +1378,7 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.14);padding:
 <!-- ============ CTA ============ -->
 <section class="cta">
   <h3>现在就可以坐下，<em>不用注册。</em></h3>
-  <p>全部数据只存在你自己的浏览器里，换页不丢，也不连接任何真实账户。</p>
+  <p>全部数据只存在你自己的浏览器里，换页不丢，也不连接任何真实账户。虚拟资金、真实台规。</p>
   <div class="hero-cta">
     <a class="btn-pill btn-gold" href="blackjack.html">打开牌桌</a>
     <a class="btn-pill btn-line" href="blackjack-mall.html">看看能换什么</a>
@@ -308,28 +1387,57 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.14);padding:
 
 <footer>
   <div class="wrap">
-    <div class="foot-top">
-      <div>
+    <div class="foot-grid">
+      <div class="foot-brand">
         <div style="display:flex;align-items:center;gap:12px">
-          <span class="mark" style="width:32px;height:32px;border-radius:3px;display:grid;place-items:center;background:linear-gradient(150deg,#1D2223,#0B0D0E);border:1px solid rgba(231,212,154,.4);color:var(--gold-lt);font-family:var(--serif);font-size:15px">澳</span>
+          <span class="mark" style="width:32px;height:32px;border-radius:2px;display:grid;place-items:center;background:linear-gradient(150deg,#202627,#0A0C0D);border:1px solid rgba(231,212,154,.4);color:var(--gold-lt);font-family:var(--serif);font-size:15px">澳</span>
           <span><b style="display:block;font-family:var(--serif);font-size:19px;font-weight:500">澳门娱乐场模拟器</b>
           <small style="display:block;font-size:8.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--txt-dim2);margin-top:3px">Macau Casino Simulator</small></span>
         </div>
         <p>台规整理自澳门现行法定规章与各场馆公开台面；会员档位与礼遇整理自各集团官网会籍页。兑换为模拟流程，不产生任何真实权益。</p>
       </div>
-      <div class="foot-links">
-        <a href="blackjack.html">21 点</a>
-        <a href="blackjack-mall.html">积分商城</a>
-        <a href="#rules">台规</a>
-        <a href="https://github.com/laoyangnb666/macau-casino-simulator" target="_blank" rel="noopener">GitHub</a>
+      <div>
+        <h5>产品</h5>
+        <ul>
+          <li><a href="blackjack.html">21 点台面</a></li>
+          <li><a href="blackjack-mall.html">积分商城</a></li>
+          <li><a href="#rooms">七档厅房</a></li>
+          <li><a href="#vault">卡面墙</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>资料</h5>
+        <ul>
+          <li><a href="#rules">台规与附加注</a></li>
+          <li><a href="#casinos">二十一家场馆</a></li>
+          <li><a href="#member">六套会籍</a></li>
+          <li><a href="#faq">常见问答</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>来源</h5>
+        <ul>
+          <li><a href="https://www.dicj.gov.mo/" target="_blank" rel="noopener">澳门博彩监察协调局</a></li>
+          <li><a href="https://cn.sandsrewards.com/" target="_blank" rel="noopener">金沙会 Sands Rewards</a></li>
+          <li><a href="https://www.melcoclub.com/" target="_blank" rel="noopener">新濠皇会 Melco Club</a></li>
+          <li><a href="https://www.sjmresorts.com/sc/supreme-card" target="_blank" rel="noopener">澳娱至尊卡</a></li>
+        </ul>
       </div>
     </div>
     <div class="foot-bot">
       <span>概率教学模拟 · 虚拟资金 · 真实赌场禁止算牌，长期期望为负 · 未成年人禁止参与赌博</span>
-      <span>MIT License</span>
+      <span>MIT License · 2026</span>
     </div>
   </div>
 </footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="卡面预览">
+  <button class="x" id="lbX" aria-label="关闭">✕</button>
+  <figure>
+    <img id="lbImg" alt="">
+    <figcaption id="lbCap">—<span id="lbSub"></span></figcaption>
+  </figure>
+</div>
 
 <script>
 (function () {
@@ -340,8 +1448,157 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.14);padding:
 
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.14 });
+  }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  /* 场馆筛选 */
+  var bar = document.getElementById('opBar');
+  var grid = document.getElementById('casinoGrid');
+  if (bar && grid){
+    bar.addEventListener('click', function (ev) {
+      var b = ev.target.closest('button[data-op]');
+      if (!b) return;
+      bar.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      var op = b.getAttribute('data-op');
+      grid.querySelectorAll('.casino').forEach(function (c) {
+        var show = (op === 'all') || (c.getAttribute('data-op') === op);
+        c.style.display = show ? 'flex' : 'none';
+      });
+    });
+  }
+
+  /* 移动端菜单 */
+  var tg = document.getElementById('navToggle'), mn = document.getElementById('mnav');
+  if (tg && mn){
+    tg.addEventListener('click', function () {
+      var on = mn.classList.toggle('open');
+      tg.classList.toggle('on', on);
+      tg.setAttribute('aria-expanded', on ? 'true' : 'false');
+      document.body.style.overflow = on ? 'hidden' : '';
+    });
+    mn.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        mn.classList.remove('open'); tg.classList.remove('on');
+        tg.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
+      });
+    });
+  }
+
+  /* FAQ 手风琴 */
+  document.querySelectorAll('.faq-item').forEach(function (item) {
+    var q = item.querySelector('.faq-q'), a = item.querySelector('.faq-a');
+    q.addEventListener('click', function () {
+      var open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function (o) {
+        o.classList.remove('open');
+        var oa = o.querySelector('.faq-a');
+        if (oa) oa.style.maxHeight = '0px';
+      });
+      if (!open){ item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+    });
+  });
+
+  /* 顶部阅读进度 */
+  var prog = document.getElementById('prog');
+  function paintProgress(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (window.scrollY || h.scrollTop) / max : 0;
+    if (prog) prog.style.width = Math.min(100, Math.max(0, p * 100)).toFixed(2) + '%';
+  }
+  paintProgress();
+  window.addEventListener('scroll', paintProgress, { passive: true });
+  window.addEventListener('resize', paintProgress);
+
+  /* 首屏光斑跟随 */
+  var spot = document.getElementById('heroSpot'), heroEl = document.getElementById('top');
+  if (spot && heroEl){
+    heroEl.addEventListener('mousemove', function(e){
+      var r = heroEl.getBoundingClientRect();
+      spot.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+      spot.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+    });
+  }
+
+  /* 数字滚动 */
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-count]').forEach(function(b){
+    var target = parseInt(b.getAttribute('data-count'), 10);
+    if (isNaN(target) || reduceMotion) return;
+    var start = null, dur = 1500;
+    function step(ts){
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      if (b.firstChild && b.firstChild.nodeType === 3) b.firstChild.nodeValue = String(Math.round(target * eased));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    if (b.firstChild && b.firstChild.nodeType === 3) b.firstChild.nodeValue = '0';
+    requestAnimationFrame(step);
+  });
+
+  /* 电影感插页视差 */
+  var plx = [].slice.call(document.querySelectorAll('[data-parallax]'));
+  var plxTick = false;
+  function parallax(){
+    var vh = window.innerHeight;
+    plx.forEach(function(el){
+      var host = el.parentNode;
+      if (!host) return;
+      var r = host.getBoundingClientRect();
+      if (r.bottom < -240 || r.top > vh + 240) return;
+      var offset = (r.top + r.height / 2 - vh / 2) * 0.06;
+      el.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
+    });
+    plxTick = false;
+  }
+  window.addEventListener('scroll', function(){
+    if (!plxTick){ plxTick = true; requestAnimationFrame(parallax); }
+  }, { passive: true });
+  parallax();
+
+  /* 卡面灯箱 */
+  var lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'),
+      lbCap = document.getElementById('lbCap'), lbSub = document.getElementById('lbSub');
+  function closeLb(){
+    if (!lb) return;
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  if (lb){
+    document.querySelectorAll('.card-slot').forEach(function(slot){
+      slot.addEventListener('click', function(){
+        var img = slot.querySelector('img');
+        if (!img) return;
+        lbImg.src = img.src;
+        lbImg.alt = img.alt || '';
+        var capB = slot.querySelector('.cap b'), capS = slot.querySelector('.cap span');
+        lbCap.firstChild.nodeValue = capB ? capB.textContent : (img.alt || '卡面');
+        lbSub.textContent = capS ? capS.textContent : '';
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    lb.addEventListener('click', function(e){
+      if (e.target === lb || e.target.id === 'lbX') closeLb();
+    });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLb(); });
+  }
+
+  /* 右侧章节指示 */
+  var railLinks = [].slice.call(document.querySelectorAll('.rail-nav a'));
+  var railSecs = railLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  if (railLinks.length && 'IntersectionObserver' in window){
+    var ioRail = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var i = railSecs.indexOf(e.target);
+        if (i < 0) return;
+        railLinks.forEach(function(a, j){ a.classList.toggle('on', j === i); });
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    railSecs.forEach(function(s){ if (s) ioRail.observe(s); });
+  }
 })();
 </script>
 </body>

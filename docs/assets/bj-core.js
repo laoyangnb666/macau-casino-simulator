@@ -98,7 +98,7 @@
     if (tot === 15) return up <= 6 ? 'STAND' : 'HIT';
     if (tot >= 13) return up <= 6 ? 'STAND' : 'HIT';
     if (tot === 12) return (up >= 4 && up <= 6) ? 'STAND' : 'HIT';
-    if (tot === 11) return (canDbl && up <= 10) ? 'DOUBLE' : 'HIT';
+    if (tot === 11) return (canDbl && up <= 11) ? 'DOUBLE' : 'HIT';
     if (tot === 10) return (canDbl && up <= 9) ? 'DOUBLE' : 'HIT';
     if (tot === 9) return (canDbl && up >= 3 && up <= 6) ? 'DOUBLE' : 'HIT';
     return 'HIT';
