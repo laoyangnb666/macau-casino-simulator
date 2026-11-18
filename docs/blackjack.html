@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
@@ -7,11 +7,11 @@
 <meta name="description" content="按澳门现行《“Black Jack”或“二十一点”法定规章》复刻的六门 21 点桌：无底牌制、软17停牌、OBBO、早投降、五张牌、任何对子/7/13以上以下三种附加注。含全屏模式与真实发牌动画。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/site.css">
-<link rel="stylesheet" href="assets/bj-mall.css?v=20261114d">
+<link rel="stylesheet" href="assets/bj-mall.css?v=20261118a">
 <style>
 :root{
   --gold:#C9A227; --gold-lt:#EBD98F; --cream:#F4EDDB;
@@ -391,7 +391,7 @@ body.fsmode .dock .actbar .btn-ico{width:30px;height:30px}
 body.fsmode .dock .msgline{margin:0;background:rgba(255,255,255,.055);border:1px solid rgba(235,217,143,.26);
   border-left:3px solid var(--gold);color:#E9E3D1;min-height:0;padding:6px 10px;font-size:11.5px;line-height:1.55}
 body.fsmode .dock .msgline b{color:var(--gold-lt)}
-body.fsmode .betpanel,body.fsmode .curve-card,body.fsmode .data-stack{display:none!important}
+body.fsmode .betpanel,body.fsmode .curve-card,body.fsmode .data-stack,body.fsmode .dash{display:none!important}
 
 .deck-panel{display:none}
 
@@ -861,9 +861,442 @@ body.fsmode .deck-panel .dp-read.dp-bank b.neg{color:#FCA5A5}
   .myhands{flex-wrap:wrap}
 }
 
+/* ============================================================
+   华丽暗色主题 · 与官网 index.html 同一视觉语言
+   （墨黑底 / 米金衬线 / 金色发丝线 / 玻璃面板）
+   ============================================================ */
+:root{
+  --ink:#0A0C0D; --ink-2:#101314; --ink-3:#171B1C; --ink-4:#202425;
+  --cream:#F3EEE4; --cream-2:#E7DFD0;
+  --gold:#C9A227; --gold-lt:#EBD9A4; --gold-dp:#8A6A18;
+  --lux-line:rgba(201,162,39,.16);
+  --lux-line-2:rgba(201,162,39,.34);
+  --lux-txt:rgba(243,238,228,.66);
+  --lux-txt-2:rgba(243,238,228,.42);
+  --lux-txt-3:rgba(243,238,228,.30);
+  --lux-panel:linear-gradient(168deg,rgba(27,31,32,.92) 0%,rgba(15,18,19,.94) 56%,rgba(9,11,12,.97) 100%);
+  --lux-serif:"Cormorant Garamond","Noto Serif SC",Georgia,"Songti SC",serif;
+  --lux-sans:"Inter","Noto Serif SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+}
+
+html{background:#060708}
+body{background:#08090A;color:var(--cream);font-family:var(--lux-sans)}
+body::before{background:none!important}
+/* 细微胶片颗粒（与官网同款叠加手法） */
+body::after{
+  content:"";position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.03;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='0.6'/></svg>")
+}
+/* 卡级越高，底色越带自家品牌色，但始终是深色 */
+body.lux-1,body.lux-2,body.lux-3,body.lux-4{background-color:#08090A}
+body.lux-1{background:color-mix(in srgb,var(--brand) 5%,#08090A)}
+body.lux-2{background:color-mix(in srgb,var(--brand) 7%,#08090A)}
+body.lux-3{background:color-mix(in srgb,var(--brand) 9%,#070809)}
+body.lux-4{background:color-mix(in srgb,var(--brand) 12%,#060607)}
+body.lux-1::before,body.lux-2::before,body.lux-3::before,body.lux-4::before{background:none!important}
+body.luxpage.fsmode{background:#060708}
+
+/* ---------------- 导航 ---------------- */
+.nav-wrap{top:0;padding:16px 22px;z-index:90}
+.nav{
+  background:rgba(10,12,13,.80);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);
+  border:1px solid rgba(201,162,39,.18);border-radius:999px;max-width:1280px;
+  box-shadow:0 18px 48px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.05)
+}
+.brand{color:var(--cream)}
+.brand b{color:var(--cream);font-weight:500;letter-spacing:.02em}
+.brand small{color:var(--lux-txt-2)}
+.nav-links a{color:rgba(243,238,228,.58)}
+.nav-links a:hover,.nav-links a.on{color:var(--gold-lt)}
+.nav-links a.on{font-weight:500}
+.btn-dark{
+  background:linear-gradient(135deg,#FFF6CE 0%,#E3C56A 34%,#C9A227 62%,#9A7415 100%);
+  border:1px solid rgba(255,246,206,.45);color:#1A1208;font-weight:600;
+  box-shadow:0 8px 22px rgba(201,162,39,.18)
+}
+.btn-dark:hover{box-shadow:0 14px 30px rgba(201,162,39,.3)}
+
+/* ---------------- 页面骨架 ---------------- */
+.bjpage{padding:120px 0 88px;position:relative}
+.bjhead{max-width:1320px;margin:0 auto 26px;padding:0 28px;position:relative}
+/* 英雄区微光背景：沿用官网同一张 hero 图，压到极暗，只留氛围 */
+.bjhead:before{
+  content:"";position:absolute;left:0;right:0;top:-126px;height:580px;z-index:0;pointer-events:none;
+  background:url("assets/img/hero.jpg") center 42%/cover no-repeat;
+  opacity:.15;filter:saturate(.75);
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 46%,transparent 88%);
+  mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 46%,transparent 88%)
+}
+.bjhead > *{position:relative;z-index:1}
+.bjkicker{color:#D8B84E;letter-spacing:3.8px}
+.bjkicker:before{width:34px;background:linear-gradient(90deg,var(--gold),transparent)}
+.bjhead h1{
+  font-family:var(--lux-serif);font-weight:400;color:var(--cream);
+  font-size:clamp(34px,4.2vw,56px);line-height:1.1;letter-spacing:-.012em;margin:14px 0 12px
+}
+.bjhead h1 em{color:var(--gold-lt);font-family:var(--lux-serif);font-style:italic}
+.bjhead p{color:rgba(243,238,228,.60);font-size:14.5px;line-height:1.85;max-width:910px}
+.bjhead p b{color:var(--cream-2);font-weight:500}
+.bjmeta{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+.bjmeta span{
+  display:inline-flex;align-items:center;gap:8px;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(243,238,228,.52);border:1px solid rgba(201,162,39,.22);border-radius:999px;
+  padding:6px 14px;background:rgba(255,255,255,.02)
+}
+.bjmeta span b{color:var(--gold-lt);font-weight:500;letter-spacing:.08em}
+.bjmeta i{width:4px;height:4px;border-radius:50%;background:var(--gold);display:block;flex:none}
+
+.stagebar{max-width:1320px;padding:0 28px;margin-top:18px}
+.stagebar .sg{height:2px;background:rgba(243,238,228,.12);border-radius:2px}
+.stagebar .sg.on{background:var(--gold);box-shadow:0 0 10px rgba(201,162,39,.5)}
+.stagebar .sg.done{background:rgba(201,162,39,.45)}
+.stagebar span{color:var(--lux-txt-2);letter-spacing:.08em}
+
+.bjgrid{
+  max-width:1320px;margin:20px auto 0;padding:0 14px;
+  grid-template-columns:minmax(0,1fr) 340px;gap:22px
+}
+
+/* ---------------- 牌桌外壳 ---------------- */
+.tablewrap{
+  padding:13px;background:linear-gradient(158deg,#1C2021 0%,#0F1213 40%,#08090A 74%,#040405 100%);
+  box-shadow:0 44px 96px -44px #000,0 0 0 1px rgba(201,162,39,.22),
+             0 0 calc(20px + var(--lux) * 60px) color-mix(in srgb,var(--brand) 20%,transparent),
+             inset 0 0 0 4px rgba(0,0,0,.55)
+}
+.tablewrap:before{border:1px solid rgba(235,217,143,.16)}
+.tablewrap:after{box-shadow:inset 0 1px 0 rgba(255,235,170,.22)}
+.felt{box-shadow:inset 0 0 0 1.5px rgba(235,217,143,.42),inset 0 0 130px rgba(0,0,0,.72)}
+body:is(.lux-2,.lux-3,.lux-4) .tablewrap{
+  box-shadow:0 44px 100px -44px #000,0 0 0 1px color-mix(in srgb,var(--brand) 34%,transparent),
+             0 0 calc(22px + var(--lux) * 70px) color-mix(in srgb,var(--brand) 28%,transparent),
+             inset 0 0 0 4px rgba(0,0,0,.6)
+}
+
+/* ---------------- 面板：下注 / 侧栏 / 数据 ---------------- */
+.card-panel,.side-card,.data-card{
+  position:relative;background:var(--lux-panel);
+  border:1px solid var(--lux-line);border-radius:14px;
+  box-shadow:0 22px 48px -34px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.045);
+  transition:border-color .35s ease,box-shadow .35s ease
+}
+.card-panel:before,.side-card:before,.data-card:before{
+  content:"";position:absolute;left:16px;right:16px;top:0;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(201,162,39,.5),transparent)
+}
+.side-card:hover,.data-card:hover{border-color:rgba(201,162,39,.30);box-shadow:0 26px 54px -34px #000,inset 0 1px 0 rgba(255,255,255,.06)}
+.side-card{padding:16px 17px;border-radius:14px}
+.card-panel{padding:14px 15px}
+.data-card{padding:14px 16px;border-radius:14px}
+
+.card-panel h4,.side-card h4,.data-card h4{
+  color:var(--gold-lt);font-weight:500;letter-spacing:1.7px;font-size:11.5px
+}
+.card-panel h4 span,.side-card h4 span,.data-card h4 span{color:var(--lux-txt-2);letter-spacing:.06em}
+.data-card h4#simRun,#simRun{color:var(--gold-lt)!important;text-decoration-color:rgba(201,162,39,.5)}
+
+/* 正文与次要文字 */
+.hint,.bead-legend,.beads-empty,.tag-src,.mc-note,.pts-note,.curve-foot,.vip-hint,.vip-note{color:var(--lux-txt-2)}
+.betline{color:var(--lux-txt);border-top-color:rgba(201,162,39,.14)}
+.betline b{color:var(--cream)}
+.betline small{color:var(--lux-txt-2)}
+.rulelist{color:var(--lux-txt)}
+.rulelist div{border-bottom-color:rgba(201,162,39,.10)}
+.rulelist b{color:var(--gold-lt);font-weight:500}
+.rulelist em{color:var(--lux-txt-3)}
+
+/* ---------------- 控件 ---------------- */
+/* 分段开关：胶囊形，金色实心表示选中 */
+.seg{border:1px solid rgba(201,162,39,.20);background:rgba(255,255,255,.02);border-radius:999px;padding:2px;gap:2px}
+.seg button{background:transparent;color:rgba(243,238,228,.58);border-radius:999px;padding:5px 10px;font-size:10.5px}
+.seg button+button{border-left:none}
+.seg button.on{background:linear-gradient(135deg,#F3E3A4,#C9A227);color:#1A1208;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.38)}
+.seg button:hover:not(.on){background:rgba(201,162,39,.10);color:var(--cream)}
+.segrow{gap:10px;margin-bottom:8px}
+.segrow .lbl{width:56px;font-size:10px;color:var(--lux-txt-2)}
+
+.setrow label{color:var(--lux-txt-2)}
+.setrow select,.setrow input,.betinput{
+  background:rgba(255,255,255,.035);border:1px solid rgba(201,162,39,.20);color:var(--cream)
+}
+.setrow select option{background:#141718;color:#F3EEE4}
+.setrow select:focus,.setrow input:focus,.betinput:focus{border-color:rgba(201,162,39,.65);box-shadow:0 0 0 2px rgba(201,162,39,.14)}
+
+/* ---- 牌桌设置：表单行 & 下拉框（去掉系统原生外观） ---- */
+.setrow{padding:7px 0;margin:0;gap:10px;border-bottom:1px solid rgba(201,162,39,.08)}
+.setrow label{
+  width:56px;font-size:10px;letter-spacing:.10em;color:rgba(243,238,228,.50);
+  text-transform:none;white-space:nowrap
+}
+.setrow select,.setrow input{
+  height:32px;padding:0 30px 0 10px;border-radius:9px;
+  background-color:rgba(255,255,255,.035);border:1px solid rgba(201,162,39,.20);
+  color:var(--cream);font-size:11.5px;letter-spacing:.02em;
+  outline:none;color-scheme:dark;
+  transition:border-color .18s,background-color .18s,box-shadow .18s;
+  -webkit-appearance:none;appearance:none
+}
+.setrow select{
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='12'%20height='8'%20viewBox='0%200%2012%208'%3E%3Cpath%20d='M1%201.6%206%206.4%2011%201.6'%20fill='none'%20stroke='%23B99A3A'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;background-size:11px 7px;
+  cursor:pointer;text-overflow:ellipsis
+}
+.setrow select:hover{
+  border-color:rgba(201,162,39,.52);background-color:rgba(201,162,39,.07);
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='12'%20height='8'%20viewBox='0%200%2012%208'%3E%3Cpath%20d='M1%201.6%206%206.4%2011%201.6'%20fill='none'%20stroke='%23EBD9A4'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E")
+}
+.setrow select:focus{
+  border-color:rgba(201,162,39,.72);background-color:rgba(201,162,39,.08);
+  box-shadow:0 0 0 3px rgba(201,162,39,.13),inset 0 1px 0 rgba(255,255,255,.06);
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='12'%20height='8'%20viewBox='0%200%2012%208'%3E%3Cpath%20d='M1%201.6%206%206.4%2011%201.6'%20fill='none'%20stroke='%23EBD9A4'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E")
+}
+.setrow select:disabled{opacity:.42;cursor:not-allowed}
+.setrow select option{background:#121516;color:#F3EEE4;padding:8px 10px}
+.setrow select option:checked{background:#2A2210;color:#EBD9A4}
+.setrow input{padding:0 10px;font-family:"Inter",monospace;font-size:11.5px;text-align:right;font-variant-numeric:tabular-nums}
+.setrow input[type=number]::-webkit-outer-spin-button,
+.setrow input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.setrow input[type=number]{-moz-appearance:textfield}
+.setrow input:hover{border-color:rgba(201,162,39,.42)}
+
+/* 自绘下拉样式见 assets/bj-mall.css（.luxsel 段），脚本见 assets/lux-select.js */
+
+.btn-apply{
+  margin-top:10px;height:34px;border-radius:9px;border:1px solid rgba(255,246,206,.42);
+  background:linear-gradient(135deg,#FFF6CE 0%,#E3C56A 36%,#C9A227 66%,#9A7415 100%);
+  color:#1A1208;font-weight:600;letter-spacing:.08em;font-size:11.5px;cursor:pointer;
+  box-shadow:0 10px 22px rgba(201,162,39,.16),inset 0 1px 0 rgba(255,255,255,.5);
+  transition:box-shadow .2s,transform .12s,filter .2s
+}
+.btn-apply:hover{filter:brightness(1.06);box-shadow:0 14px 28px rgba(201,162,39,.26),inset 0 1px 0 rgba(255,255,255,.6)}
+.btn-apply:active{transform:translateY(1px)}
+.betinput::placeholder{color:var(--lux-txt-3)}
+
+.btn-bj{
+  border:1px solid rgba(201,162,39,.22);background:rgba(255,255,255,.03);color:var(--cream-2);
+  border-radius:9px;font-weight:500
+}
+.btn-bj:hover:not(:disabled){border-color:rgba(201,162,39,.62);background:rgba(201,162,39,.10);color:#fff}
+.btn-bj:disabled{opacity:.26}
+.btn-bj.pri{
+  background:linear-gradient(135deg,#FFF6CE 0%,#E3C56A 36%,#C9A227 64%,#9A7415 100%);
+  border-color:rgba(255,246,206,.5);color:#1A1208;font-weight:600;
+  box-shadow:0 10px 24px rgba(201,162,39,.18)
+}
+.btn-bj.pri:hover:not(:disabled){background:linear-gradient(135deg,#FFF9DE,#EBD070 40%,#D3AE33 100%)}
+.btn-bj.gold{background:linear-gradient(135deg,#F3E3A4,#C9A227 62%,#8A6A18);border-color:rgba(235,217,143,.55);color:#1A1208}
+.btn-bj.gold:hover:not(:disabled){background:linear-gradient(135deg,#FFF0B8,#DDB63A 62%,#9A7415)}
+.btn-bj.warn{border-color:rgba(201,120,120,.42);color:#E8AFB2}
+.btn-bj.warn:hover:not(:disabled){background:rgba(179,32,42,.18);border-color:rgba(220,140,140,.65);color:#FFD4D4}
+.btn-mini{border-color:rgba(201,162,39,.22);background:rgba(255,255,255,.03);color:var(--cream-2)}
+.btn-mini:hover{border-color:rgba(201,162,39,.6);background:rgba(201,162,39,.1)}
+.btn-mini.ghost{color:var(--gold-lt);border-color:rgba(201,162,39,.3)}
+.btn-ico{border-color:rgba(201,162,39,.22);background:rgba(255,255,255,.03);color:var(--gold-lt)}
+.btn-ico:hover{border-color:rgba(201,162,39,.62);color:#fff}
+
+.actbar kbd,.betctl kbd,.dp-btn kbd,.msgkeys kbd{
+  color:#D9CFAF;background:rgba(255,255,255,.06);border:1px solid rgba(201,162,39,.26)
+}
+.btn-bj.pri kbd{color:#3B2E06;background:rgba(255,255,255,.42);border-color:rgba(74,58,6,.22)}
+.btn-bj.gold kbd{color:#3B2E06;background:rgba(255,255,255,.42);border-color:rgba(74,58,6,.22)}
+.btn-bj.warn kbd{color:#E8AFB2;background:rgba(179,32,42,.16);border-color:rgba(201,120,120,.3)}
+
+/* ---------------- 消息条 ---------------- */
+.msgline{
+  background:rgba(201,162,39,.06);border:1px solid rgba(201,162,39,.18);
+  border-left:3px solid var(--gold);color:rgba(243,238,228,.82);border-radius:9px
+}
+.msgline b{color:var(--gold-lt)}
+.msgline .hl{color:#EBD070}
+.msgkeys{color:var(--lux-txt-3)}
+
+/* ---------------- 筹码 ---------------- */
+.chip{box-shadow:0 4px 12px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.08)}
+.chip:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(0,0,0,.55),0 0 18px rgba(201,162,39,.28)}
+.chip.sel{box-shadow:0 0 0 2.5px rgba(235,217,143,.95),0 0 0 5px rgba(201,162,39,.18),0 8px 20px rgba(0,0,0,.5)}
+
+/* ---------------- 数字块 ---------------- */
+.stat,.kv{background:rgba(255,255,255,.028);border-color:rgba(201,162,39,.14);border-radius:8px}
+.stat small,.kv small{color:var(--lux-txt-2)}
+.stat b,.kv b{color:var(--cream)}
+.stat b.up,.kv b.up{color:#7FD9A6}
+.stat b.down,.kv b.down{color:#F09A9E}
+.ledger{background:rgba(255,255,255,.022);border-color:rgba(201,162,39,.14)}
+.lg-row{color:var(--lux-txt);border-bottom-color:rgba(201,162,39,.10)}
+.lg-row b{color:var(--cream)}
+.lg-row b.pos{color:#7FD9A6}.lg-row b.neg{color:#F09A9E}
+.lg-row.total{border-top-color:rgba(201,162,39,.30)}
+.lg-row.total span{color:var(--gold-lt)}
+.simbox,.countbox{background:rgba(255,255,255,.026);border-color:rgba(201,162,39,.14);color:var(--lux-txt)}
+.countbox b{color:var(--gold-lt)}
+.pts-big{color:var(--gold-lt)}
+.pts-tier{background:linear-gradient(135deg,#EBD9A4,#C9A227);color:#1A1208}
+.pts-bar{background:rgba(255,255,255,.08)}
+
+/* ---------------- 表格 ---------------- */
+.seat-table th,.vip-table th,.edge-table th{
+  color:rgba(243,238,228,.42);border-bottom-color:rgba(201,162,39,.20);letter-spacing:.5px
+}
+/* 台规提示 / 场馆标签：暗底原本的深色字会看不见 */
+.tips div{color:var(--lux-txt)}
+.venue-tag{background:rgba(201,162,39,.12);color:var(--gold-lt);border:1px solid rgba(201,162,39,.24)}
+.seat-table td,.vip-table td,.edge-table td{border-bottom-color:rgba(201,162,39,.09);color:var(--cream-2)}
+.seat-table td:first-child,.vip-table td:first-child{color:var(--cream)}
+.seat-table tr.me td{background:rgba(201,162,39,.09)}
+.seat-table td.pos{color:#7FD9A6}.seat-table td.neg{color:#F09A9E}
+.seat-table .badge{background:rgba(255,255,255,.06);color:rgba(243,238,228,.6)}
+.seat-table .badge.me{background:linear-gradient(135deg,#EBD9A4,#C9A227);color:#1A1208}
+.seat-table .badge.empty{background:rgba(255,255,255,.035);color:var(--lux-txt-3)}
+.edge-table td:last-child{color:#F09A9E}
+.edge-table tr:first-child td:last-child{color:#7FD9A6}
+.edge-table.wide td:last-child{color:var(--lux-txt-2)}
+.round-table td:nth-child(1){color:var(--lux-txt-2)}
+.round-table .empty-row{color:var(--lux-txt-3)}
+
+/* ---------------- 珠盘 / 计数 ---------------- */
+.bead.empty{border-color:rgba(243,238,228,.16)}
+.bead-legend{border-top-color:rgba(201,162,39,.12)}
+
+/* ---------------- 资金曲线 ---------------- */
+.curve-tabs{border:1px solid rgba(201,162,39,.20);border-radius:999px;padding:2px;gap:2px;background:rgba(255,255,255,.02)}
+.curve-tabs button{background:transparent;color:var(--lux-txt);border-radius:999px;padding:5px 10px}
+.curve-tabs button+button{border-left:none}
+.curve-tabs button.on{background:linear-gradient(135deg,#EBD9A4,#C9A227);color:#1A1208;font-weight:600}
+.curve-legend{color:var(--lux-txt-2)}
+.curve-foot{border-top-color:rgba(201,162,39,.14)}
+.curve-foot b{color:var(--cream)}
+
+/* ---------------- 贵宾候选 ---------------- */
+.vip-badge{background:rgba(255,255,255,.06);color:var(--lux-txt)}
+.vip-badge.lv1{background:rgba(47,122,79,.26);color:#8FE0B0}
+.vip-badge.lv2{background:linear-gradient(135deg,#EBD9A4,#C9A227);color:#1A1208}
+.vip-table tr.met td{color:#8FE0B0}
+.vip-table i.ok{color:#8FE0B0}
+.vip-table i.ok.no{color:#F09A9E}
+.vip-metrics{color:var(--lux-txt-2)}
+.vip-metrics b{color:var(--cream)}
+.vip-note{border-top-color:rgba(201,162,39,.14)}
+.vip-invite .iv.ok{color:#8FE0B0}
+.vip-invite .iv.no{color:#F09A9E}
+.vip-invite .iv-sub,.vip-invite .iv-idle{color:var(--lux-txt-3)}
+.vip-head,.vip-status{color:var(--lux-txt)}
+
+/* 候选进度条 */
+.apply-top{color:var(--lux-txt)}
+.apply-bars>div{background:rgba(255,255,255,.05);color:var(--lux-txt-2)}
+.apply-bars>div>i{background:rgba(201,162,39,.34)}
+.apply-bars>div>b{color:var(--cream)}
+.apply-btn{border-color:rgba(201,162,39,.4);background:linear-gradient(135deg,#EBD9A4,#C9A227);color:#1A1208}
+.apply-btn:disabled{border-color:rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:var(--lux-txt-3)}
+
+/* ---------------- 数据区：单块情报面板 + 分带 ---------------- */
+.sec-rule{display:flex;align-items:center;gap:16px;margin:30px 0 10px}
+.sec-rule:before,.sec-rule:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(201,162,39,.34),transparent)}
+.sec-rule span{font-size:10px;letter-spacing:3.2px;color:rgba(201,162,39,.78);white-space:nowrap}
+
+.dash{
+  counter-reset:dcard;position:relative;margin-top:2px;padding:2px 22px 10px;
+  background:var(--lux-panel);border:1px solid var(--lux-line);border-radius:18px;
+  box-shadow:0 30px 66px -44px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.05)
+}
+.dash:before{content:"";position:absolute;left:20px;right:20px;top:0;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(201,162,39,.5),transparent)}
+
+.dband{border-top:1px solid rgba(201,162,39,.13);padding-top:4px}
+.dband:first-child{border-top:0;padding-top:0}
+.dband-head{display:flex;align-items:center;gap:11px;margin:14px 0 4px}
+.dband-head i{
+  font-style:normal;font-family:"Inter",monospace;font-size:8.5px;letter-spacing:.12em;
+  color:#1A1208;background:linear-gradient(135deg,#F3E3A4,#C9A227);border-radius:3px;padding:2px 6px;flex:none
+}
+.dband-head span{font-size:11px;letter-spacing:2.6px;color:var(--gold-lt);white-space:nowrap}
+.dband-head em{font-style:normal;font-size:8.5px;letter-spacing:2.1px;text-transform:uppercase;color:var(--lux-txt-3);white-space:nowrap}
+.dband-head:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(201,162,39,.24),transparent)}
+
+.dband-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px;align-items:stretch}
+.data-card.span2{grid-column:span 2}
+
+/* 取消独立卡片外观：一格一格排在同一块面板里 */
+.dash .data-card{
+  counter-increment:dcard;position:static;background:none!important;border:0!important;
+  border-radius:0;box-shadow:none!important;padding:13px 0 15px;transition:none
+}
+.dash .data-card:hover{background:rgba(201,162,39,.025)!important}
+.dash .data-card:before{display:none}
+
+/* 卡头：序号 + 标题 + 右对齐说明 */
+.dash .data-card h4{
+  display:flex;align-items:center;gap:8px;margin:0 0 11px;padding-bottom:8px;
+  border-bottom:1px solid rgba(201,162,39,.12);font-size:12px;letter-spacing:1.3px;color:var(--gold-lt);font-weight:500
+}
+.dash .data-card h4:before{
+  content:counter(dcard,decimal-leading-zero);flex:none;
+  font:600 8.5px/1 "Inter",monospace;color:rgba(235,217,164,.82);
+  border:1px solid rgba(201,162,39,.30);border-radius:4px;padding:3px 5px;letter-spacing:.06em
+}
+.dash .data-card h4 span{margin-left:auto;font-size:9px;letter-spacing:.05em;color:var(--lux-txt-2);white-space:nowrap}
+
+/* 珠盘：宽格时按行铺开，像真实珠盘 */
+.dash .beads{min-height:92px;gap:4px}
+.dash .bead{width:15px;height:15px;border-radius:3px}
+.dash .bead-legend{gap:14px;font-size:9px;padding-top:8px;margin-top:9px;border-top-color:rgba(201,162,39,.12)}
+/* 会员卡面在宽格里铺满，避免右侧留白 */
+.dash .data-card .mcard.art{max-width:100%}
+
+@media(max-width:820px){
+  .dash{padding:2px 16px 8px}
+  .dband-grid{grid-template-columns:minmax(0,1fr);gap:0}
+  .data-card.span2{grid-column:auto}
+  .dband-head span{letter-spacing:1.8px}
+  .dband-head em{display:none}
+}
+
+/* 商城入口 */
+.mallentry{padding:12px 13px;border:1px solid rgba(201,162,39,.16);border-radius:11px;background:rgba(255,255,255,.025)}
+.mallentry b{color:var(--gold-lt)}
+.mallentry small{color:var(--lux-txt-2)}
+.mallentry a{background:linear-gradient(135deg,#EBD9A4,#C9A227);border-color:transparent;color:#1A1208;font-weight:600}
+.mallentry a:hover{background:linear-gradient(135deg,#FFF0B8,#DDB63A)}
+
+/* 会员卡说明 */
+.mc-note{white-space:pre-line}
+.mc-cap{color:var(--lux-txt-2);border-top-color:rgba(201,162,39,.13)!important}
+.mc-cap-t{color:var(--lux-txt-2)}
+.mc-cap .mc-pips i{background:rgba(255,255,255,.16)}
+.mc-cap .mc-pips i.on{background:var(--gold)}
+
+/* ---------------- 页脚 / 弹窗 ---------------- */
+footer{
+  border-top-color:rgba(201,162,39,.18)!important;color:rgba(243,238,228,.50)!important;
+  background:linear-gradient(180deg,rgba(0,0,0,0),rgba(201,162,39,.03))
+}
+body:is(.lux-2,.lux-3,.lux-4) footer{color:rgba(243,238,228,.50)!important;border-top-color:rgba(201,162,39,.18)!important}
+
+.modal{background:rgba(4,5,6,.72);backdrop-filter:blur(6px)}
+.modal-box{
+  background:linear-gradient(168deg,#171B1C,#0B0D0E);border:1px solid rgba(201,162,39,.28);
+  box-shadow:0 30px 70px rgba(0,0,0,.6)
+}
+.modal-box h3{color:var(--gold-lt);font-family:var(--lux-serif);font-weight:500;letter-spacing:.5px}
+.modal-box p{color:var(--lux-txt)}
+.modal-box b{color:#F09A9E}
+.modal-box button{background:linear-gradient(135deg,#EBD9A4,#C9A227);border-color:transparent;color:#1A1208;font-weight:600}
+
+/* ---------------- 小屏适配 ---------------- */
+@media(max-width:1080px){
+  .bjpage{padding:104px 0 64px}
+  .bjgrid{padding:0 12px;grid-template-columns:minmax(0,1fr);gap:18px}
+  .bjhead,.stagebar{padding:0 20px}
+}
+@media(max-width:900px){
+  .bjhead h1{font-size:clamp(28px,6.4vw,40px)}
+  .bjmeta span{font-size:9.5px;padding:5px 11px}
+  .sec-rule{margin:24px 0 10px}
+  .sec-rule span{letter-spacing:2px}
+}
 </style>
 </head>
-<body>
+<body class="luxpage">
 <script>document.documentElement.className += ' js';</script>
 <div class="lux-aura" aria-hidden="true"></div>
 
@@ -893,6 +1326,13 @@ body.fsmode .deck-panel .dp-read.dp-bank b.neg{color:#FCA5A5}
       还原了真实桌面才有的<b>三种附加注</b>、<b>五张牌</b>、<b>早投降</b>、<b>分门与加注遇庄家 Blackjack 只失原注</b>。
       同桌闲家一律<b>明牌</b>，所有人的牌你都看得见（这也是能算牌的前提）；只有庄家无底牌，先只开一张。
     </p>
+    <div class="bjmeta">
+      <span><i></i>六门台 · <b>6 SEATS</b></span>
+      <span><i></i>无底牌 · <b>NO HOLECARD</b></span>
+      <span><i></i>Blackjack 赔 <b>3 : 2</b></span>
+      <span><i></i>软 17 <b>停牌 · S17</b></span>
+      <span><i></i>OBBO · <b>分门加注只失原注</b></span>
+    </div>
   </div>
 
   <div class="stagebar">
@@ -1030,93 +1470,115 @@ body.fsmode .deck-panel .dp-read.dp-bank b.neg{color:#FCA5A5}
       </div>
 
       <!-- 底部数据区：瀑布流，卡片按内容高度紧排 -->
-      <section class="data-stack">
-        <div class="data-card">
-          <h4>本场珠盘 <span id="beadCount">0 局</span></h4>
-          <div class="beads" id="beads"><div class="beads-empty">还没开牌</div></div>
-          <div class="bead-legend">
-            <span><i style="background:#2F7A4F"></i>胜</span>
-            <span><i style="background:#B3202A"></i>负</span>
-            <span><i style="background:#BEB7A4"></i>和</span>
-            <span><i style="background:#C9A227"></i>Blackjack</span>
-            <span><i style="background:#7A1B1B"></i>爆牌</span>
+      <div class="sec-rule"><span>桌面情报 · TABLE INTELLIGENCE</span></div>
+      <div class="dash">
+
+        <!-- 01 牌局走势 -->
+        <div class="dband">
+          <div class="dband-head"><i>01</i><span>牌局走势</span><em>Round Flow</em></div>
+          <div class="dband-grid">
+            <div class="data-card span2">
+              <h4>本场珠盘 <span id="beadCount">0 局</span></h4>
+              <div class="beads" id="beads"><div class="beads-empty">还没开牌</div></div>
+              <div class="bead-legend">
+                <span><i style="background:#2F7A4F"></i>胜</span>
+                <span><i style="background:#B3202A"></i>负</span>
+                <span><i style="background:#BEB7A4"></i>和</span>
+                <span><i style="background:#C9A227"></i>Blackjack</span>
+                <span><i style="background:#7A1B1B"></i>爆牌</span>
+              </div>
+            </div>
+
+            <div class="data-card">
+              <h4>最近 10 局 <span>你 / 庄 / 结果 / 净额</span></h4>
+              <table class="seat-table round-table">
+                <thead><tr><th>局</th><th>你</th><th>庄</th><th>结果</th><th>净额</th></tr></thead>
+                <tbody id="recentRows"><tr><td colspan="5" class="empty-row">还没开牌</td></tr></tbody>
+              </table>
+            </div>
+
+            <div class="data-card">
+              <h4>本场统计 <span>按本局净额</span></h4>
+              <div class="kv-grid" id="kvGrid"></div>
+            </div>
           </div>
         </div>
 
-        <div class="data-card">
-          <h4>桌面设备 <span>影响计数</span></h4>
-          <div class="segrow"><span class="lbl">发牌</span>
-            <div class="seg" id="equipSeg"><button data-v="shoe" class="on">牌靴</button><button data-v="csm">洗牌机</button></div>
-          </div>
-          <div class="segrow"><span class="lbl">软 17</span>
-            <div class="seg" id="h17Seg"><button data-v="s17" class="on">停牌</button><button data-v="h17">要牌</button></div>
-          </div>
-          <div class="hint" id="countHint">牌靴：6 副 312 张，白咭插在最后 30 张处（规章第二条第 1 款）。</div>
-          <div class="countbox" id="countBox">
-            <div><span data-i18n="bj.cntRemain">剩余</span> <b id="cntLeft">312</b> · <span data-i18n="bj.cntBurn">已销</span> <b id="cntBurn">0</b></div>
-            <div><span data-i18n="bj.cntRC">流水数</span> <b id="cntRC">0</b> · <span data-i18n="bj.cntTC">真数</span> <b id="cntTC">0.00</b></div>
-          </div>
-        </div>
+        <!-- 02 台面参数 -->
+        <div class="dband">
+          <div class="dband-head"><i>02</i><span>台面参数</span><em>Table Parameters</em></div>
+          <div class="dband-grid">
+            <div class="data-card">
+              <h4>桌面设备 <span>影响计数</span></h4>
+              <div class="segrow"><span class="lbl">发牌</span>
+                <div class="seg" id="equipSeg"><button data-v="shoe" class="on">牌靴</button><button data-v="csm">洗牌机</button></div>
+              </div>
+              <div class="segrow"><span class="lbl">软 17</span>
+                <div class="seg" id="h17Seg"><button data-v="s17" class="on">停牌</button><button data-v="h17">要牌</button></div>
+              </div>
+              <div class="hint" id="countHint">牌靴：6 副 312 张，白咭插在最后 30 张处（规章第二条第 1 款）。</div>
+              <div class="countbox" id="countBox">
+                <div><span data-i18n="bj.cntRemain">剩余</span> <b id="cntLeft">312</b> · <span data-i18n="bj.cntBurn">已销</span> <b id="cntBurn">0</b></div>
+                <div><span data-i18n="bj.cntRC">流水数</span> <b id="cntRC">0</b> · <span data-i18n="bj.cntTC">真数</span> <b id="cntTC">0.00</b></div>
+              </div>
+            </div>
 
-        <div class="data-card">
-          <h4>这台怎么打 <span>按当前台规自动生成</span></h4>
-          <div class="tips" id="tableTips"></div>
-        </div>
+            <div class="data-card">
+              <h4>这台怎么打 <span>按当前台规自动生成</span></h4>
+              <div class="tips" id="tableTips"></div>
+            </div>
 
-        <div class="data-card">
-          <h4>最近 10 局 <span>你 / 庄 / 结果 / 净额</span></h4>
-          <table class="seat-table round-table">
-            <thead><tr><th>局</th><th>你</th><th>庄</th><th>结果</th><th>净额</th></tr></thead>
-            <tbody id="recentRows"><tr><td colspan="5" class="empty-row">还没开牌</td></tr></tbody>
-          </table>
-        </div>
-
-        <div class="data-card">
-          <h4>本场统计 <span>按本局净额</span></h4>
-          <div class="kv-grid" id="kvGrid"></div>
-        </div>
-
-        <div class="data-card">
-          <h4>贵宾候选评估 <span id="vipName">Paiza</span></h4>
-          <div class="vip-head" id="vipStatus"></div>
-          <div class="vip-held" id="vipHeld"></div>
-          <div class="vip-body" id="vipRows"></div>
-          <div class="vip-invite" id="vipInvite"></div>
-          <div class="vip-note" id="vipNote"></div>
-        </div>
-
-        <div class="data-card">
-          <h4>同桌座位 <span>本金 / 当前 / 损益</span></h4>
-          <table class="seat-table">
-            <thead><tr><th>座位</th><th>本金</th><th>当前</th><th>损益</th></tr></thead>
-            <tbody id="seatRows"></tbody>
-          </table>
-        </div>
-
-        <div class="data-card">
-          <h4>庄家优势实测 <span id="simRun" style="cursor:pointer;color:#8A5A0A;text-decoration:underline">跑 100,000 局</span></h4>
-          <div class="simbox" id="simOut" data-i18n="bj.simDesc">点击右上角：用基本策略自动打 100,000 局，
+            <div class="data-card span2">
+              <h4>庄家优势实测 <span id="simRun" style="cursor:pointer;color:#8A5A0A;text-decoration:underline">跑 100,000 局</span></h4>
+              <div class="simbox" id="simOut" data-i18n="bj.simDesc">点击右上角：用基本策略自动打 100,000 局，
 给出主游戏实测 EV 与抽样误差。</div>
-        </div>
-      <div class="data-card">
-          <h4>会员卡 <span id="mcHint">随卡级换卡面</span></h4>
-          <div class="mcard m0" id="mcCard"></div>
-          <div class="mc-note" id="mcNote"></div>
-        </div>
-      </section>
+            </div>
 
-      <div class="data-card">
-        <h4>附加注赔率 <span>庄家优势 · 精确组合数学（6 副 312 张）</span></h4>
-        <table class="edge-table wide">
-          <thead><tr><th>玩法</th><th>赔率</th><th>庄家优势</th><th>说明</th></tr></thead>
-          <tbody>
-            <tr><td>主游戏</td><td>—</td><td>约 0.5%</td><td>基本策略实测，越靠近 0 越好</td></tr>
-            <tr><td>任何对子</td><td>1 : 11</td><td>11.25%</td><td>首两张点数相同即中，J 与 Q 不算对子</td></tr>
-            <tr><td>7（两张 7）</td><td>50 / 150</td><td>31.25%</td><td>不同花 50:1，同花 150:1</td></tr>
-            <tr><td>7（三张 7）</td><td>500 / 5000</td><td>31.25%</td><td>不同花 500:1，同花 5000:1</td></tr>
-            <tr><td>13 以上 / 以下</td><td>1 : 1</td><td>6.6% / 10.1%</td><td>A 计 1 点，正好 13 通吃</td></tr>
-          </tbody>
-        </table>
+            <div class="data-card span2">
+              <h4>附加注赔率 <span>庄家优势 · 精确组合数学（6 副 312 张）</span></h4>
+              <table class="edge-table wide">
+                <thead><tr><th>玩法</th><th>赔率</th><th>庄家优势</th><th>说明</th></tr></thead>
+                <tbody>
+                  <tr><td>主游戏</td><td>—</td><td>约 0.5%</td><td>基本策略实测，越靠近 0 越好</td></tr>
+                  <tr><td>任何对子</td><td>1 : 11</td><td>11.25%</td><td>首两张点数相同即中，J 与 Q 不算对子</td></tr>
+                  <tr><td>7（两张 7）</td><td>50 / 150</td><td>31.25%</td><td>不同花 50:1，同花 150:1</td></tr>
+                  <tr><td>7（三张 7）</td><td>500 / 5000</td><td>31.25%</td><td>不同花 500:1，同花 5000:1</td></tr>
+                  <tr><td>13 以上 / 以下</td><td>1 : 1</td><td>6.6% / 10.1%</td><td>A 计 1 点，正好 13 通吃</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 会籍与同桌 -->
+        <div class="dband">
+          <div class="dband-head"><i>03</i><span>会籍与同桌</span><em>Membership &amp; Seats</em></div>
+          <div class="dband-grid">
+            <div class="data-card span2">
+              <h4>贵宾候选评估 <span id="vipName">Paiza</span></h4>
+              <div class="vip-head" id="vipStatus"></div>
+              <div class="vip-held" id="vipHeld"></div>
+              <div class="vip-body" id="vipRows"></div>
+              <div class="vip-invite" id="vipInvite"></div>
+              <div class="vip-note" id="vipNote"></div>
+            </div>
+
+            <div class="data-card">
+              <h4>会员卡 <span id="mcHint">随卡级换卡面</span></h4>
+              <div class="mcard m0" id="mcCard"></div>
+              <div class="mc-note" id="mcNote"></div>
+            </div>
+
+            <div class="data-card">
+              <h4>同桌座位 <span>本金 / 当前 / 损益</span></h4>
+              <table class="seat-table">
+                <thead><tr><th>座位</th><th>本金</th><th>当前</th><th>损益</th></tr></thead>
+                <tbody id="seatRows"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -2802,10 +3264,10 @@ const BJ = (() => {
         const d = peerHist[i] || [];
         if (!d.length) return;
         series.push({ name: s.name,
-                      color: s.human ? '#0C5C3B' : PEER_COLORS[i % PEER_COLORS.length], data: d, main: s.human, start: s.start });
+                      color: s.human ? '#EBD9A4' : PEER_COLORS[i % PEER_COLORS.length], data: d, main: s.human, start: s.start });
       });
     } else {
-      series.push({ name: '你', color: '#0C5C3B', data: hist, main: true, start: START_BANK });
+      series.push({ name: '你', color: '#EBD9A4', data: hist, main: true, start: START_BANK });
     }
     if (!series.length) return;
 
@@ -2829,17 +3291,17 @@ const BJ = (() => {
       const v = lo + (hi - lo) * k / steps;
       const y = Y(v);
       body += `<line x1="${pad.l}" y1="${y.toFixed(1)}" x2="${(W - pad.r).toFixed(1)}" y2="${y.toFixed(1)}"
-        stroke="#E7E1D1" stroke-width="1"/>`;
+        stroke="rgba(201,162,39,.14)" stroke-width="1"/>`;
       body += `<text x="${pad.l - 8}" y="${(y + 3.4).toFixed(1)}" text-anchor="end" font-size="9"
-        fill="#8A8272" font-family="Inter,monospace">${fmtAxis(v)}</text>`;
+        fill="rgba(243,238,228,.38)" font-family="Inter,monospace">${fmtAxis(v)}</text>`;
     }
     const ys = Y(ref);
     body += `<line x1="${pad.l}" y1="${ys.toFixed(1)}" x2="${(W - pad.r).toFixed(1)}" y2="${ys.toFixed(1)}"
       stroke="#C9A227" stroke-width="1" stroke-dasharray="3 4" opacity=".85"/>`;
     body += `<text x="${W - pad.r}" y="${(ys - 5).toFixed(1)}" text-anchor="end" font-size="8.5"
-      fill="#9A7C1A" font-family="Inter,monospace">${useDelta ? (EN ? 'start 0' : '起始 0') : (EN ? 'start ' : '起始 ') + fmtAxis(START_BANK)}</text>`;
-    body += `<text x="${pad.l}" y="${H - 6}" font-size="9" fill="#8A8272" font-family="Inter,monospace">0</text>`;
-    body += `<text x="${W - pad.r}" y="${H - 6}" text-anchor="end" font-size="9" fill="#8A8272"
+      fill="#D8B84E" font-family="Inter,monospace">${useDelta ? (EN ? 'start 0' : '起始 0') : (EN ? 'start ' : '起始 ') + fmtAxis(START_BANK)}</text>`;
+    body += `<text x="${pad.l}" y="${H - 6}" font-size="9" fill="rgba(243,238,228,.38)" font-family="Inter,monospace">0</text>`;
+    body += `<text x="${W - pad.r}" y="${H - 6}" text-anchor="end" font-size="9" fill="rgba(243,238,228,.38)"
       font-family="Inter,monospace">${EN ? `round ${n}` : `第 ${n} 局`}</text>`;
 
     series.forEach(s => {
@@ -2863,8 +3325,8 @@ const BJ = (() => {
 
     svg.innerHTML = `<defs>
         <linearGradient id="cvFill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#0C5C3B" stop-opacity=".2"/>
-          <stop offset="1" stop-color="#0C5C3B" stop-opacity="0"/>
+          <stop offset="0" stop-color="#C9A227" stop-opacity=".26"/>
+          <stop offset="1" stop-color="#C9A227" stop-opacity="0"/>
         </linearGradient></defs>
       ${body}<g id="cvHover"></g>`;
 
@@ -3368,5 +3830,7 @@ Scope: side bets excluded; splits and doubles settled OBBO.`
 
 document.addEventListener('DOMContentLoaded', () => BJ._boot());
 </script>
+<script src="assets/lux-select.js?v=20261118a"></script>
 </body>
 </html>
+

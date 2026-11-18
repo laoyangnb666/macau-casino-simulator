@@ -7,13 +7,13 @@
 <meta name="description" content="澳门 21 点会员积分商城：按金沙中国、银河娱乐、永利澳门、美高梅、新濠博亚、澳娱综合六家官网权益分册，用有效投注累计的积分兑换餐饮、住宿、演出、水疗、玩乐、购物与交通礼遇。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/site.css">
-<link rel="stylesheet" href="assets/bj-mall.css?v=20261114d">
+<link rel="stylesheet" href="assets/bj-mall.css?v=20261118a">
 </head>
-<body>
+<body class="mall-lux">
 <script>document.documentElement.className += ' js';</script>
 
 <div class="nav-wrap">
@@ -418,27 +418,28 @@
       </div>`;
     }).join('') : `<p class="mo-empty" style="grid-column:1/-1;padding:22px 4px">${EN ? 'No benefits match these filters.' : '没有符合当前筛选条件的礼遇。'}</p>`;
 
-    /* 事件委托：卡片 / 收藏 / 兑换 / 精选 */
+    /* 事件委托：卡片 / 收藏 / 兑换 / 精选（目录实时取，避免切换卡系后闭包过期） */
     if (!el.mallGrid.__wired){
       el.mallGrid.__wired = 1;
       el.mallGrid.addEventListener('click', ev => {
+        const cur = MALL.itemsOf(progId);
         const favBtn = ev.target.closest('button[data-fav]');
         if (favBtn){
           ev.stopPropagation();
-          const it = items.find(x => x.id === favBtn.dataset.fav);
+          const it = cur.find(x => x.id === favBtn.dataset.fav);
           if (it){ toggleFav(it); render(); }
           return;
         }
         const buy = ev.target.closest('button[data-buy]');
         if (buy){
           ev.stopPropagation();
-          const it = items.find(x => x.id === buy.dataset.buy);
+          const it = cur.find(x => x.id === buy.dataset.buy);
           if (it) redeem(it);
           return;
         }
         const card = ev.target.closest('[data-open]');
         if (card){
-          const it = items.find(x => x.id === card.dataset.open);
+          const it = cur.find(x => x.id === card.dataset.open);
           if (it) openModal(it);
         }
       });
@@ -528,5 +529,6 @@
   render();
 })();
 </script>
+<script src="assets/lux-select.js?v=20261118a"></script>
 </body>
 </html>

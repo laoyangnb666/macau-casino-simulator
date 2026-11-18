@@ -172,14 +172,28 @@
 
   function injectStyle() {
     if (document.getElementById('i18n-style')) return;
+    /* 依页面底色明暗自动选配色：暗底用金描边米字，浅底用墨绿描边 */
+    var dark = false;
+    try {
+      var m = getComputedStyle(document.body).backgroundColor.match(/\d+/g);
+      if (m) dark = (0.2126 * +m[0] + 0.7152 * +m[1] + 0.0722 * +m[2]) / 255 < 0.45;
+    } catch (e) {}
+    var border = dark ? 'rgba(201,162,39,.32)' : 'rgba(20,40,30,.22)';
+    var borderHover = dark ? 'rgba(201,162,39,.65)' : 'rgba(20,40,30,.4)';
+    var color = dark ? 'rgba(243,238,228,.72)' : 'inherit';
+    var colorHover = dark ? '#EBD9A4' : 'inherit';
+    var bgHover = dark ? 'rgba(201,162,39,.12)' : 'rgba(20,40,30,.07)';
     var s = document.createElement('style');
     s.id = 'i18n-style';
     s.textContent = [
-      '.lang-switch{margin-left:14px;padding:6px 13px;border-radius:999px;border:1px solid rgba(20,40,30,.22);',
-      'background:transparent;color:inherit;font:inherit;font-size:11.5px;font-weight:500;letter-spacing:.08em;',
-      'cursor:pointer;transition:background .18s,border-color .18s,color .18s;line-height:1.4}',
-      '.lang-switch:hover{background:rgba(20,40,30,.07);border-color:rgba(20,40,30,.4)}',
-      '@media(max-width:760px){.lang-switch{margin-left:8px;padding:5px 10px;font-size:11px}}'
+      /* 导航行内所有元素垂直居中，语言按钮与链接同一条中线 */
+      '.nav-links{align-items:center}',
+      '.lang-switch{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;',
+      'height:30px;margin-left:14px;padding:0 13px;border-radius:999px;border:1px solid ' + border + ';',
+      'background:transparent;color:' + color + ';font:inherit;font-size:11.5px;font-weight:500;letter-spacing:.08em;',
+      'cursor:pointer;transition:background .18s,border-color .18s,color .18s;line-height:1}',
+      '.lang-switch:hover{background:' + bgHover + ';border-color:' + borderHover + ';color:' + colorHover + '}',
+      '@media(max-width:760px){.lang-switch{margin-left:8px;padding:0 10px;height:28px;font-size:11px}}'
     ].join('');
     document.head.appendChild(s);
   }
