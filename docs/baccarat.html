@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-auth="required">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>百家乐台面 · 澳门娱乐场模拟器</title>
+<meta name="description" content="按澳门《百家乐法定规章》复刻的 8 副牌靴百家乐：庄 5% 抽水与免佣台（庄 6 赔半）、闲庄和、闲对庄对、幸运 6、珠盘路与大路，按场馆与厅房区分最低注与发牌习惯。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/baccarat.css?v=20261119b">
+<script src="assets/auth.js"></script>
+</head>
+<body class="bacpage">
+<div class="bac-bg" aria-hidden="true"></div>
+<button class="bac-fs-exit" id="fsExit" type="button">退出全屏</button>
+
+<header class="bac-nav">
+  <nav class="nav">
+    <a class="bac-brand" href="index.html">
+      <img src="assets/logo.png" alt="澳门娱乐场模拟器">
+      <span><b>澳门娱乐场模拟器</b><small>Macau Casino Simulator</small></span>
+    </a>
+    <div class="bac-links nav-links">
+      <a href="index.html">首页</a>
+      <a href="blackjack.html">21 点</a>
+      <a href="baccarat.html" class="on">百家乐</a>
+      <a href="slots.html">老虎机</a>
+      <a href="blackjack-mall.html">积分商城</a>
+    </div>
+    <a class="bac-out" href="https://github.com/laoyangnb666/macau-casino-simulator" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
+
+<main class="bac-main">
+  <div class="bac-head">
+    <div>
+      <div class="bac-kick">Baccarat · 8 副牌靴 · 法定规章复刻</div>
+      <h1>庄与闲，<em>只差 0.9 个百分点。</em></h1>
+      <p>
+        澳门桌面上最常见的一张台。8 副牌靴、销牌、固定补牌表；庄赢抽水 5%，免佣台则庄以 6 点胜出只赔一半。
+        闲、庄、和、闲对、庄对、幸运 6 六种注码，全部按法定规章结算；珠盘路与大路按真实开牌顺序生成。
+        各场馆的最低注、抽水方式与咪牌习惯不同，切换场馆与厅房即可看到差别。
+      </p>
+      <div class="bac-meta">
+        <span>牌靴 <b>8 副 · 416 张</b></span>
+        <span>庄赢 <b>抽水 5%</b></span>
+        <span>和局 <b>8 : 1</b></span>
+        <span>对子 <b>11 : 1</b></span>
+        <span>幸运 6 <b>12 / 20 : 1</b></span>
+      </div>
+    </div>
+    <div class="bac-tools">
+      <button class="btn" id="focusBtn" type="button">专注模式</button>
+      <button class="btn gold" id="fsBtn" type="button">全屏</button>
+    </div>
+  </div>
+
+  <div class="bac-grid">
+    <!-- ============ 台面 ============ -->
+    <div class="bac-tablewrap">
+      <div class="bac-felt" id="felt">
+        <div class="bac-top">
+          <div class="bac-devices">
+            <div class="bac-shoe">
+              <div class="bx"><span class="stack" id="shoeStack"></span></div>
+              <div class="lb">牌靴 <b id="shoeNo">#001</b></div>
+            </div>
+            <div class="bac-discard">
+              <div class="bx"><span class="stack" id="discardBar"></span></div>
+              <div class="lb">废牌 <span id="penInfo">416 张</span></div>
+            </div>
+          </div>
+          <div class="bac-placard">
+            <small>本台限红</small>
+            <b><span id="tblMin">500</span> – <span id="tblMax">150000</span></b>
+            <i><span id="tblName">威尼斯人</span> · <span id="tblRoom">普通场</span> · <span id="tblDecks">8 副</span> · <span id="tblMode">抽水 5%</span></i>
+          </div>
+        </div>
+
+        <div class="bac-arc" aria-hidden="true"></div>
+
+        <div class="bac-court">
+          <div class="bac-dealer"><b>庄家</b><span>DEALER</span></div>
+          <div class="bac-hand banker">
+            <span class="label"><b>庄</b><small>BANKER</small></span>
+            <div class="cards" id="dealerCards"></div>
+            <span class="total"><b id="bTotal">—</b><small>点数</small></span>
+          </div>
+          <div class="bac-felttext">
+            <div class="t1">百家乐 · BACCARAT</div>
+            <div class="t2">庄家抽水 5% · 免佣台庄 6 点赔半 · 和 8:1 · 对子 11:1 · 幸运 6 12/20:1</div>
+          </div>
+          <div class="bac-hand player">
+            <span class="label"><b>闲</b><small>PLAYER</small></span>
+            <div class="cards" id="playerCards"></div>
+            <span class="total"><b id="pTotal">—</b><small>点数</small></span>
+          </div>
+          <div class="bac-result" id="resultBadge" aria-live="polite"></div>
+        </div>
+
+        <div class="bac-bets">
+          <div class="betspot" data-bet="p">
+            <b>闲</b><small>PLAYER · 1 : 1</small><span class="stk" id="stk-p">—</span>
+          </div>
+          <div class="betspot" data-bet="b">
+            <b>庄</b><small>BANKER · 0.95 : 1</small><span class="stk" id="stk-b">—</span>
+          </div>
+          <div class="betspot" data-bet="t">
+            <b>和</b><small>TIE · 8 : 1</small><span class="stk" id="stk-t">—</span>
+          </div>
+        </div>
+        <div class="bac-slabel">边注 · SIDE BETS</div>
+        <div class="bac-bets2">
+          <div class="betspot" data-bet="pp">
+            <b>闲对</b><small>PLAYER PAIR · 11 : 1</small><span class="stk" id="stk-pp">—</span>
+          </div>
+          <div class="betspot" data-bet="bp">
+            <b>庄对</b><small>BANKER PAIR · 11 : 1</small><span class="stk" id="stk-bp">—</span>
+          </div>
+          <div class="betspot" data-bet="l6" id="l6Spot">
+            <b>幸运 6</b><small>LUCKY 6 · 12 / 20 : 1</small><span class="stk" id="stk-l6">—</span>
+          </div>
+        </div>
+
+        <div class="bac-actions">
+          <div class="bac-chips">
+            <button class="bchip" data-v="10" type="button">10</button>
+            <button class="bchip" data-v="50" type="button">50</button>
+            <button class="bchip on" data-v="100" type="button">100</button>
+            <button class="bchip" data-v="500" type="button">500</button>
+            <button class="bchip" data-v="1000" type="button">1K</button>
+            <button class="bchip" data-v="5000" type="button">5K</button>
+          </div>
+          <span class="sp"></span>
+          <button class="abtn ghost" id="undoBtn" type="button">撤销</button>
+          <button class="abtn ghost" id="clearBtn" type="button">清空</button>
+          <button class="abtn ghost" id="repeatBtn" type="button">重复上局</button>
+          <button class="abtn primary" id="dealBtn" type="button" disabled>开 牌</button>
+        </div>
+
+        <div class="bac-msg" id="bacMsg">选择场馆与厅房，点筹码下注，然后按「开牌」。</div>
+      </div>
+      <button class="bac-fs-exit-inside" id="fsExitIn" type="button">退出全屏</button>
+    </div>
+
+    <!-- ============ 侧栏 ============ -->
+    <aside class="bac-side">
+      <section class="bac-card">
+        <h4>台面设置 <em>TABLE</em></h4>
+        <div class="bac-field">
+          <label for="venueSel">娱乐场</label>
+          <select id="venueSel"></select>
+        </div>
+        <div class="bac-field">
+          <label for="roomSel">厅房</label>
+          <select id="roomSel"></select>
+        </div>
+        <div class="bac-field">
+          <label for="modeSel">庄家抽水方式</label>
+          <select id="modeSel"></select>
+        </div>
+        <div class="bac-field" id="lucky6Wrap">
+          <label style="display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font-size:10.5px;color:rgba(244,237,219,.6)">
+            <input type="checkbox" id="lucky6Chk" style="accent-color:#C9A227">
+            开幸运 6 附加注（庄以 6 点胜出）
+          </label>
+        </div>
+        <p class="bac-note" id="tableNote">—</p>
+        <p class="bac-note" id="squeezeTag" style="display:none"><b>贵宾厅咪牌</b>：发牌节奏放慢，可逐张看牌。</p>
+      </section>
+
+      <section class="bac-card">
+        <h4>本金与积分 <em>BANKROLL</em></h4>
+        <div class="bac-bal">
+          <div class="big"><span id="bankVal">200,000</span><small>MOP</small></div>
+          <div class="sub">本局累计<b id="statNet">+0</b></div>
+        </div>
+        <div class="bac-pt">
+          <span>会员积分 <b id="ptVal">0</b></span>
+          <span class="tier" id="tierVal">—</span>
+        </div>
+        <div class="bac-pt" style="border-top:none;padding-top:6px;margin-top:4px">
+          <button id="addBank" type="button">补充 10 万</button>
+          <button id="resetBank" type="button">重置本金</button>
+          <span style="font-size:8.5px;color:rgba(244,237,219,.3)">有效投注计入会籍</span>
+        </div>
+      </section>
+
+      <section class="bac-card">
+        <h4>本场统计 <em>SESSION</em></h4>
+        <div class="bac-stats">
+          <div><small>局数</small><b id="statRounds">0</b></div>
+          <div><small>庄赢</small><b id="statB">0</b></div>
+          <div><small>闲赢</small><b id="statP">0</b></div>
+          <div><small>和局</small><b id="statT">0</b></div>
+          <div><small>闲对</small><b id="statPP">0</b></div>
+          <div><small>庄对</small><b id="statBP">0</b></div>
+          <div><small>总有效投注</small><b id="statWager">0</b></div>
+          <div><small>抽水合计</small><b id="statComm">0</b></div>
+        </div>
+        <p class="bac-note" style="margin-top:9px">单局最大盈利 <b id="statBiggest">0</b> MOP · 注码合计 <b id="betTotal">0</b> MOP</p>
+      </section>
+    </aside>
+  </div>
+
+  <!-- ============ 路单 ============ -->
+  <section class="roads">
+    <div class="roadbox">
+      <h4>珠盘路 <span>BEAD PLATE · 最近 60 局</span></h4>
+      <div class="beadgrid" id="beadGrid"><span class="roadempty">尚无牌局</span></div>
+    </div>
+    <div class="roadbox">
+      <h4>大路 <span id="roadMeta">庄 0 · 闲 0 · 和 0</span></h4>
+      <div class="bigroad" id="bigRoad"><span class="roadempty">开牌后自动生成大路</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 规则说明 ============ -->
+  <section class="bac-foot">
+    <div class="bac-panel">
+      <h3>为什么澳门桌面几乎只开庄与闲</h3>
+      <p>
+        百家乐是澳门赌收的绝对主力。八副牌、固定补牌表，没有决策空间，比的是下注选择与注码管理。
+        庄的胜率略高于闲（约 45.9% 对 44.6%），所以庄赢要抽水 5%；抽水之后庄的庄家优势仍只有约 <b>1.06%</b>，
+        是桌面上最便宜的一注。闲约 <b>1.24%</b>，和约 <b>14.4%</b>，对子约 <b>10.4%</b>。
+      </p>
+      <p>
+        免佣台把抽水换成「庄以 6 点胜出只赔一半」，庄家优势约 <b>1.46%</b>，略差于标准抽水台，
+        但胜在不用每局找零。不同场馆的免佣台比例不同，新濠与澳娱的中低额台更常见。
+      </p>
+      <table class="bac-table">
+        <thead><tr><th>注项</th><th>赔率</th><th>庄家优势</th></tr></thead>
+        <tbody>
+          <tr><td>庄（抽水 5%）</td><td>0.95 : 1</td><td>1.06%</td></tr>
+          <tr><td>庄（免佣 · 庄 6 赔半）</td><td>1 : 1 / 0.5 : 1</td><td>约 1.46%</td></tr>
+          <tr><td>闲</td><td>1 : 1</td><td>1.24%</td></tr>
+          <tr><td>和</td><td>8 : 1</td><td>约 14.4%</td></tr>
+          <tr><td>闲对 / 庄对</td><td>11 : 1</td><td>约 10.4%</td></tr>
+          <tr><td>幸运 6</td><td>12 : 1 / 20 : 1</td><td>依牌副浮动</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="bac-panel">
+      <h3>场馆与厅房的差别</h3>
+      <p>
+        最低注按场馆与厅房逐档放大：普通场为场馆底注，中场 ×2，高额区 ×10，贵宾厅 ×40，私人厅 ×100。
+        威尼斯人、银河、永利的中场底注较高；葡京、凯旋门、十六浦仍保留 100–200 MOP 的低额台。
+      </p>
+      <p>
+        抽水方式同样按场馆切换：金沙与银河以标准 5% 抽水为主；新濠、澳娱普通场常见免佣台；永利贵宾厅可咪牌；
+        美高梅高额台常开幸运 6。以上为模拟口径，现场台规以赌场当日公告为准。
+      </p>
+      <p>
+        概率教学模拟，虚拟资金，不连接任何真实账户。真实赌场长期期望为负，未成年人禁止参与赌博。
+      </p>
+    </div>
+  </section>
+</main>
+
+<script src="assets/bj-casinos.js"></script>
+<script src="assets/bj-wallet.js"></script>
+<script src="assets/baccarat.js?v=20261119b"></script>
+</body>
+</html>

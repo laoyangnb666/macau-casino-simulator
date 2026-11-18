@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-auth="required">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>老虎机厅 · 澳门娱乐场模拟器</title>
+<meta name="description" content="按澳门娱乐场机台习惯复刻的老虎机模拟器：5×3 转轮、243 ways 与 20–30 线机台、免费游戏、累积奖池，六家场馆各自的 RTP、注码区间与主力机台。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/slots.css?v=20261119b">
+<script src="assets/auth.js"></script>
+</head>
+<body class="slotpage">
+<div class="slot-bg" aria-hidden="true"></div>
+
+<header class="slot-nav">
+  <nav class="nav">
+    <a class="slot-brand" href="index.html">
+      <img src="assets/logo.png" alt="澳门娱乐场模拟器">
+      <span><b>澳门娱乐场模拟器</b><small>Macau Casino Simulator</small></span>
+    </a>
+    <div class="slot-links nav-links">
+      <a href="index.html">首页</a>
+      <a href="blackjack.html">21 点</a>
+      <a href="baccarat.html">百家乐</a>
+      <a href="slots.html" class="on">老虎机</a>
+      <a href="blackjack-mall.html">积分商城</a>
+    </div>
+    <a class="slot-out" href="https://github.com/laoyangnb666/macau-casino-simulator" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
+
+<main class="slot-main">
+  <div class="slot-head">
+    <div>
+      <div class="slot-kick">Slots · 5 × 3 · 澳门机台</div>
+      <h1>机台不说话，<em>RTP 会。</em></h1>
+      <p>
+        澳门的老虎机厅在中场与角子机区：威尼斯人有上千台角子机与电子桌，永利、银河、美高梅各自的主力机台不同。
+        这里按场馆复刻了 11 款机台：243 ways 与 20–30 线两种结构，RTP 从 89.8% 到 94.0% 不等，
+        注码从 0.05 到 2,000 MOP。3 个彩金触发 10 次免费游戏、全奖 ×2；四层累积奖池按投注同步累积。
+      </p>
+      <div class="slot-meta">
+        <span>结构 <b>243 WAYS / 20–30 LINES</b></span>
+        <span>理论 RTP <b>89.8% – 94.0%</b></span>
+        <span>免费游戏 <b>10 次 · ×2</b></span>
+        <span>累积奖池 <b>4 层</b></span>
+      </div>
+    </div>
+    <div class="slot-tools">
+      <button class="btn" id="payBtn" type="button">赔率表</button>
+      <button class="btn" id="fsBtn" type="button">全屏</button>
+    </div>
+  </div>
+
+  <div class="slot-grid">
+    <!-- ============ 机柜 ============ -->
+    <div class="slot-maincol">
+    <div class="cab" id="cab">
+      <div class="cab-marquee">
+        <div class="cab-title">
+          <small>MACHINE</small>
+          <b id="marqueeName">金龙献瑞</b>
+          <span id="marqueeEn">Dragon's Fortune</span>
+          <span class="cab-badge" id="cabBadge">243 WAYS · 92.5%</span>
+        </div>
+        <div class="jp-row">
+          <div class="jp mini"><small>迷你奖池</small><b id="jp-mini">6,000</b></div>
+          <div class="jp minor"><small>次要奖池</small><b id="jp-minor">48,000</b></div>
+          <div class="jp major"><small>主要奖池</small><b id="jp-major">420,000</b></div>
+          <div class="jp grand"><small>超级大奖</small><b id="jp-grand">3,200,000</b></div>
+        </div>
+      </div>
+
+      <div class="cab-reels">
+        <div class="fsban" id="fsBanner">FREE SPINS · 10 次 · 全奖 ×2</div>
+        <div class="reels" id="reels"></div>
+      </div>
+
+      <div class="cab-layer" id="bigWin"></div>
+
+      <div class="cab-winbar">
+        <span id="slotMsg">选择场馆与机台，调整每转注额，然后按「开始」。</span>
+        <div class="amt zero" id="winAmount">0</div>
+      </div>
+
+      <div class="cab-deck">
+        <div class="betctl">
+          <button id="betMinus" type="button" aria-label="降低注额">−</button>
+          <span class="val" id="betVal">1.00<small>MOP / 转</small></span>
+          <button id="betPlus" type="button" aria-label="提高注额">+</button>
+        </div>
+        <span style="font-size:8px;letter-spacing:.1em;color:rgba(244,237,219,.3)" id="betIdx">5 / 17</span>
+        <div class="deck-btns">
+          <button class="dbtn" id="autoBtn" type="button">自动</button>
+          <button class="dbtn" id="turboBtn" type="button">极速</button>
+          <button class="dbtn" id="soundBtn" type="button">音效</button>
+          <button class="dbtn spin" id="spinBtn" type="button">开 始</button>
+        </div>
+      </div>
+      <button class="cab-fs-exit" id="fsExitIn" type="button">退出全屏</button>
+    </div>
+
+    <section class="slot-card">
+      <h4>机台参数 <em>SPEC</em></h4>
+      <p class="spec">
+        <b id="specName">金龙献瑞</b> · <span id="specVenue">威尼斯人</span><br>
+        结构：<span id="specMode">243 ways</span> · 波动：<span id="specVol">中</span><br>
+        <span id="specNote">—</span>
+      </p>
+    </section>
+
+    <section class="slot-card">
+      <h4>累积奖池 <em>JACKPOTS</em></h4>
+      <div class="jpexp">
+        <div><small>迷你</small><b id="jp2-mini">6,000</b></div>
+        <div><small>次要</small><b id="jp2-minor">48,000</b></div>
+        <div><small>主要</small><b id="jp2-major">420,000</b></div>
+        <div><small>超级</small><b id="jp2-grand">3,200,000</b></div>
+      </div>
+      <p class="spec" style="margin-top:9px">
+        每转按注额 2% 累积（四层各 0.5%），与机台基础 RTP 分开计算。
+        触发概率极低；<b>「试演」</b>只播放中奖动画，不改变本金。
+      </p>
+      <div class="ptline" style="border-top:none;padding-top:2px">
+        <button id="demoJp" type="button">试演超级大奖</button>
+        <span style="font-size:8.5px;color:rgba(244,237,219,.3)">奖池仅存于本机</span>
+      </div>
+    </section>
+    </div>
+
+    <!-- ============ 侧栏 ============ -->
+    <aside class="slot-side">
+      <section class="slot-card">
+        <h4>场馆与机台 <em>FLOOR</em></h4>
+        <div class="slot-field">
+          <label for="venueSel">娱乐场</label>
+          <select id="venueSel"></select>
+        </div>
+        <div class="mach-list" id="machList"></div>
+      </section>
+
+      <section class="slot-card">
+        <h4>本金与积分 <em>BANKROLL</em></h4>
+        <div class="bal">
+          <div class="big"><span id="bankVal">100,000</span><small>MOP</small></div>
+          <div class="sub">本场净输赢<b id="sessNet">+0</b></div>
+        </div>
+        <div class="ptline">
+          <span>会员积分 <b id="ptVal">0</b></span>
+          <span class="tier" id="tierVal">—</span>
+        </div>
+        <div class="ptline" style="border-top:none;padding-top:6px;margin-top:4px">
+          <button id="addBank" type="button">补充 5 万</button>
+          <button id="resetBank" type="button">重置本金</button>
+          <span style="font-size:8.5px;color:rgba(244,237,219,.3)">每转有效投注计分</span>
+        </div>
+      </section>
+
+      <section class="slot-card">
+        <h4>本机统计 <em>SESSION</em></h4>
+        <div class="sstats">
+          <div><small>转数</small><b id="statSpins">0</b></div>
+          <div><small>命中率</small><b id="statHit">—</b></div>
+          <div><small>总投注</small><b id="statWager">0</b></div>
+          <div><small>总派彩</small><b id="statWon">0</b></div>
+          <div><small>实测 RTP</small><b id="statRTP">—</b></div>
+          <div><small>最大单转</small><b id="statBiggest">0</b></div>
+          <div><small>免费游戏</small><b id="statFS">0</b></div>
+          <div><small>理论 RTP</small><b id="specRTP">—</b></div>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- ============ 说明 ============ -->
+  <section class="slot-foot">
+    <div class="slot-panel">
+      <h3>澳门老虎机的真实分布</h3>
+      <p>
+        澳门赌收九成来自百家乐，老虎机只占很小一块，但机台数量并不少：
+        威尼斯人约有 <b>1,137 台</b>角子机与电子桌，永利澳门约 <b>911 台</b>，永利皇宫约 <b>1,500 台</b>。
+        中场机台以多线视频机为主，角子机厅（摩卡、角子机区）则保留 0.05–0.20 MOP 的低额机台。
+      </p>
+      <p>
+        同一款机台在不同场馆的 RTP 可以不同：场馆会按楼层、注码区间设置不同的赔付百分比。
+        本模拟按场馆给出 ±1.6 个百分点的 RTP 偏移：永利偏高、澳娱偏低，金沙与银河居中；
+        每台机在载入时按目标 RTP 自动校准赔付表，所以「理论 RTP」与「实测 RTP」可以直接对照。
+      </p>
+      <table class="slot-table">
+        <thead><tr><th>机台</th><th>结构</th><th>波动</th><th>理论 RTP</th></tr></thead>
+        <tbody>
+          <tr><td>盛世金莲（永利）</td><td>20 线</td><td>低中</td><td>94.0% 起</td></tr>
+          <tr><td>钻石人生（永利）</td><td>243 ways</td><td>高</td><td>93.0% 起</td></tr>
+          <tr><td>金龙献瑞（金沙）</td><td>243 ways</td><td>中</td><td>92.5% 起</td></tr>
+          <tr><td>金狮传奇（美高梅）</td><td>243 ways</td><td>高</td><td>92.0% 起</td></tr>
+          <tr><td>摩卡财富（新濠）</td><td>30 线</td><td>中</td><td>91.8% 起</td></tr>
+          <tr><td>葡京金彩（澳娱）</td><td>25 线</td><td>中</td><td>89.8% 起</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="slot-panel">
+      <h3>RTP、波动与「差一点」</h3>
+      <p>
+        RTP 是长期回报率：94% 意味着每投注 100 MOP，长期平均拿回 94 MOP，剩下 6 MOP 是机台收益。
+        单次结果与 RTP 无关 —— 连输二十转仍然完全正常。波动（volatility）决定派彩分布：
+        低波动机台小奖多、大奖少；高波动机台空转多，但五连与大额派彩更重。
+      </p>
+      <p>
+        免费游戏由 3 个以上彩金触发，全部奖分 ×2；免费游戏内再触发可加 5 次。
+        累积奖池是独立事件，按注额累积、触发概率极低，不能当作稳定收益。
+      </p>
+      <p>
+        概率教学模拟，虚拟资金，不连接任何真实账户。真实机台长期期望为负，未成年人禁止参与赌博。
+      </p>
+    </div>
+  </section>
+</main>
+
+<!-- 赔率表弹层 -->
+<div class="paymodal" id="payModal">
+  <div class="paybox">
+    <button class="pclose" id="payClose" type="button">关闭</button>
+    <h3 id="payTitle">金龙献瑞</h3>
+    <div class="sub" id="paySub">—</div>
+    <div class="paygrid" id="payGrid"></div>
+    <p class="paynote" id="payRule"></p>
+  </div>
+</div>
+
+<script src="assets/bj-casinos.js"></script>
+<script src="assets/bj-wallet.js"></script>
+<script src="assets/slots.js?v=20261119b"></script>
+</body>
+</html>

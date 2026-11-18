@@ -81,11 +81,11 @@
   }
   function logout() { try { localStorage.removeItem(SKEY); } catch (e) {} }
 
-  /* next 只允许本站三个页面，防开放重定向 */
+  /* next 只允许本站页面，防开放重定向 */
   function safeNext() {
     var n = 'blackjack.html';
     try { n = new URLSearchParams(location.search).get('next') || n; } catch (e) {}
-    return /^(index|blackjack|blackjack-mall)\.html([?#].*)?$/.test(n) && n.indexOf('//') < 0 ? n : 'blackjack.html';
+    return /^(index|blackjack|blackjack-mall|baccarat|slots)\.html([?#].*)?$/.test(n) && n.indexOf('//') < 0 ? n : 'blackjack.html';
   }
 
   /* ---------- 门禁：在 <head> 同步执行，未登录直接跳走 ---------- */
