@@ -62,9 +62,11 @@ body.loginpage .btn-dark:hover{box-shadow:0 14px 30px rgba(201,162,39,.3)}
   letter-spacing:-.01em;margin:14px 0 12px;color:var(--cream)}
 .lg-copy h1 em{font-style:italic;color:var(--gold-lt)}
 .lg-copy > p{color:rgba(243,238,228,.62);font-size:13.5px;line-height:1.85;max-width:470px;margin:0}
-.lg-points{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:8px}
-.lg-points li{font-size:12px;color:rgba(243,238,228,.55);letter-spacing:.06em;display:flex;gap:9px;align-items:center}
-.lg-points li:before{content:"";width:4px;height:4px;background:#C9A227;transform:rotate(45deg);flex:none}
+.lg-notes{margin:26px 0 0;max-width:440px;border-top:1px solid rgba(201,162,39,.22)}
+.lg-notes-t{font-size:10px;letter-spacing:2.4px;color:rgba(201,162,39,.75);padding:10px 0 6px}
+.lg-nrow{display:flex;gap:16px;padding:8px 0;border-bottom:1px dashed rgba(201,162,39,.14);font-size:11.5px}
+.lg-nrow b{flex:0 0 50px;font-weight:500;color:rgba(243,238,228,.45);letter-spacing:.06em}
+.lg-nrow span{color:rgba(243,238,228,.62);line-height:1.65}
 .lg-foot{position:relative;z-index:1;margin-top:34px;font-size:10px;letter-spacing:.12em;color:var(--txt-3)}
 
 .lg-panel{position:relative;display:flex;align-items:center;justify-content:center;padding:120px 44px 60px;
@@ -131,7 +133,7 @@ body.loginpage .btn-dark:hover{box-shadow:0 14px 30px rgba(201,162,39,.3)}
 }
 @media(max-width:560px){
   .lg-visual{min-height:250px;padding:100px 20px 22px}
-  .lg-points{display:none}
+  .lg-notes{display:none}
   .lg-foot{margin-top:20px}
   .lg-card{padding:24px 20px 20px}
 }
@@ -166,14 +168,15 @@ body.loginpage .btn-dark:hover{box-shadow:0 14px 30px rgba(201,162,39,.3)}
     <div class="lg-photo" role="img" aria-label="私人会所里的绿绒长桌与黄铜台灯"></div>
     <div class="lg-veil"></div>
     <div class="lg-copy">
-      <div class="lg-kicker">Members Only · 会员入座</div>
-      <h1 data-i18n="login.h1">夜色正好，<em>请入座</em>。</h1>
-      <p data-i18n="login.lead">登录后进入六门 21 点台面与积分商城。账号与进度只保存在这台设备的浏览器里，不上传、不联网。</p>
-      <ul class="lg-points">
-        <li>六门台 · 七档厅房 · 21 家娱乐场</li>
-        <li>六套官方会籍 · 贵宾卡申请</li>
-        <li>200+ 项礼遇积分兑换</li>
-      </ul>
+      <div class="lg-kicker">Local Account · 本地账号</div>
+      <h1 data-i18n="login.h1">先登录，<em>再落注</em>。</h1>
+      <p data-i18n="login.lead">牌桌和商城登录后才开放。没有服务器 —— 账号、钱包、兑换记录都写在这台设备的浏览器里，换一台设备就是新档。</p>
+      <div class="lg-notes">
+        <div class="lg-notes-t">入场须知</div>
+        <div class="lg-nrow"><b>存在哪</b><span>本机浏览器，不联网不上传</span></div>
+        <div class="lg-nrow"><b>管多久</b><span>记住我 30 天；不勾 12 小时</span></div>
+        <div class="lg-nrow"><b>想清档</b><span>清除站点数据，连钱包一起重置</span></div>
+      </div>
     </div>
     <div class="lg-foot">概率教学模拟 · 虚拟资金 · 未成年人禁止参与赌博</div>
   </div>
@@ -215,10 +218,11 @@ body.loginpage .btn-dark:hover{box-shadow:0 14px 30px rgba(201,162,39,.3)}
 if (window.I18N) I18N.extend({
   dict: {
     '登录 · 澳门娱乐场模拟器': 'Sign in · Macau Casino Simulator',
-    'Members Only · 会员入座': 'Members Only',
-    '六门台 · 七档厅房 · 21 家娱乐场': 'Six seats · seven room tiers · 21 casinos',
-    '六套官方会籍 · 贵宾卡申请': 'Six official programmes · VIP card application',
-    '200+ 项礼遇积分兑换': '200+ redeemable benefits',
+    'Local Account · 本地账号': 'Local account',
+    '入场须知': 'Before you sit down',
+    '存在哪': 'Where', '本机浏览器，不联网不上传': 'This browser only — nothing uploaded',
+    '管多久': 'How long', '记住我 30 天；不勾 12 小时': '30 days with "keep me", 12 hours without',
+    '想清档': 'Reset', '清除站点数据，连钱包一起重置': 'Clear site data and the wallet resets with it',
     '概率教学模拟 · 虚拟资金 · 未成年人禁止参与赌博': 'Educational simulation · virtual funds · no under-18s',
     '登录': 'Sign in', '注册': 'Sign up',
     '用户名': 'Username', '密码': 'Password', '确认密码': 'Confirm password',
@@ -243,8 +247,8 @@ if (window.I18N) I18N.extend({
     '操作失败，请重试': 'Something went wrong — please retry'
   },
   html: {
-    'login.h1': 'The night is young — <em>take a seat</em>.',
-    'login.lead': 'Sign in to enter the six-seat blackjack table and the rewards shop. Your account and progress stay in this browser — nothing is uploaded, nothing goes online.'
+    'login.h1': 'Sign in first, <em>then bet</em>.',
+    'login.lead': 'The table and the rewards shop open only after sign-in. There is no server — account, wallet and redemptions are written into this browser; another device starts a fresh save.'
   }
 });
 
