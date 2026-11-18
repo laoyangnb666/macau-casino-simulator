@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>登录 · 澳门娱乐场模拟器</title>
+<meta name="description" content="登录澳门娱乐场模拟器：本地账号进入六门 21 点台面与积分商城，账号与进度只保存在本机浏览器，不连接任何真实账户。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+:root{
+  --cream:#F3EEE4; --gold:#C9A227; --gold-lt:#EBD9A4;
+  --line:rgba(201,162,39,.16);
+  --txt:rgba(243,238,228,.66); --txt-2:rgba(243,238,228,.42); --txt-3:rgba(243,238,228,.30);
+  --serif:"Cormorant Garamond","Noto Serif SC",Georgia,"Songti SC",serif;
+  --sans:"Inter","Noto Serif SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+}
+body.loginpage{background:#08090A;color:var(--cream);font-family:var(--sans)}
+body.loginpage [hidden]{display:none!important}
+body.loginpage::before{background:none!important}
+body.loginpage::after{
+  content:"";position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.03;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='0.6'/></svg>")
+}
+
+/* 导航（与牌桌 / 商城同一暗金玻璃语言） */
+body.loginpage .nav-wrap{top:0;padding:16px 22px;z-index:90}
+body.loginpage .nav{
+  background:rgba(10,12,13,.80);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);
+  border:1px solid rgba(201,162,39,.18);border-radius:999px;max-width:1280px;
+  box-shadow:0 18px 48px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.05)
+}
+body.loginpage .brand{color:var(--cream)}
+body.loginpage .brand b{color:var(--cream);font-weight:500;letter-spacing:.02em}
+body.loginpage .brand small{color:var(--txt-2)}
+body.loginpage .nav-links a{color:rgba(243,238,228,.58)}
+body.loginpage .nav-links a:hover,body.loginpage .nav-links a.on{color:var(--gold-lt)}
+body.loginpage .btn-dark{
+  background:linear-gradient(135deg,#FFF6CE 0%,#E3C56A 34%,#C9A227 62%,#9A7415 100%);
+  border:1px solid rgba(255,246,206,.45);color:#1A1208;font-weight:600;
+  box-shadow:0 8px 22px rgba(201,162,39,.18)
+}
+body.loginpage .btn-dark:hover{box-shadow:0 14px 30px rgba(201,162,39,.3)}
+
+/* 左视觉 / 右表单 */
+.lg-split{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);min-height:100vh}
+.lg-visual{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 56px 40px}
+.lg-photo{position:absolute;inset:0;background:url("assets/img/login-hero.jpg") center/cover no-repeat;
+  transform:scale(1.03);animation:lgdrift 30s ease-in-out infinite alternate}
+@keyframes lgdrift{from{transform:scale(1.03)}to{transform:scale(1.1) translate3d(-1.2%,-1%,0)}}
+.lg-veil{position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(8,9,10,.30) 0%,rgba(8,9,10,0) 36%,rgba(8,9,10,.42) 76%,#08090A 100%),
+  linear-gradient(180deg,rgba(8,9,10,.52) 0%,rgba(8,9,10,0) 28%,rgba(8,9,10,0) 52%,rgba(8,9,10,.84) 100%)}
+.lg-copy{position:relative;z-index:1;max-width:540px}
+.lg-kicker{font-size:10px;letter-spacing:3.2px;color:rgba(201,162,39,.85);text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.lg-kicker:before{content:"";width:26px;height:1px;background:#C9A227}
+.lg-copy h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,3.8vw,54px);line-height:1.14;
+  letter-spacing:-.01em;margin:14px 0 12px;color:var(--cream)}
+.lg-copy h1 em{font-style:italic;color:var(--gold-lt)}
+.lg-copy > p{color:rgba(243,238,228,.62);font-size:13.5px;line-height:1.85;max-width:470px;margin:0}
+.lg-points{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:8px}
+.lg-points li{font-size:12px;color:rgba(243,238,228,.55);letter-spacing:.06em;display:flex;gap:9px;align-items:center}
+.lg-points li:before{content:"";width:4px;height:4px;background:#C9A227;transform:rotate(45deg);flex:none}
+.lg-foot{position:relative;z-index:1;margin-top:34px;font-size:10px;letter-spacing:.12em;color:var(--txt-3)}
+
+.lg-panel{position:relative;display:flex;align-items:center;justify-content:center;padding:120px 44px 60px;
+  background:linear-gradient(180deg,#0A0C0D,#08090A)}
+.lg-panel:before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(440px 360px at 50% 44%,rgba(201,162,39,.07),transparent 70%)}
+.lg-card{position:relative;width:min(100%,400px);
+  background:linear-gradient(168deg,rgba(27,31,32,.92) 0%,rgba(15,18,19,.94) 56%,rgba(9,11,12,.97) 100%);
+  border:1px solid var(--line);border-radius:18px;padding:30px 30px 24px;
+  box-shadow:0 30px 70px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.05)}
+.lg-card:after{content:"";position:absolute;left:24px;right:24px;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(235,217,164,.5),transparent)}
+
+.lg-tabs{display:flex;gap:24px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.lg-tabs button{background:none;border:0;font:inherit;font-size:13px;letter-spacing:.1em;color:var(--txt-2);
+  padding:0 2px 11px;cursor:pointer;position:relative;transition:color .2s}
+.lg-tabs button:hover{color:var(--txt)}
+.lg-tabs button.on{color:var(--gold-lt)}
+.lg-tabs button.on:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--gold)}
+
+.lg-field{display:block;margin-bottom:15px}
+.lg-field > span{display:block;font-size:10px;letter-spacing:1.8px;color:var(--txt-2);margin-bottom:7px;text-transform:uppercase}
+.lg-field input{width:100%;height:42px;padding:0 13px;border-radius:10px;border:1px solid rgba(201,162,39,.20);
+  background:rgba(255,255,255,.035);color:var(--cream);font:inherit;font-size:13.5px;outline:none;color-scheme:dark;
+  transition:border-color .2s,box-shadow .2s}
+.lg-field input::placeholder{color:rgba(243,238,228,.25)}
+.lg-field input:focus{border-color:rgba(201,162,39,.6);box-shadow:0 0 0 3px rgba(201,162,39,.12)}
+
+.lg-row{display:flex;justify-content:space-between;align-items:center;margin:2px 0 16px}
+.lg-check{position:relative;display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:11.5px;color:rgba(243,238,228,.55)}
+.lg-check input{position:absolute;opacity:0;pointer-events:none}
+.lg-check i{width:15px;height:15px;border-radius:4px;border:1px solid rgba(201,162,39,.4);background:rgba(255,255,255,.03);
+  display:grid;place-items:center;transition:.18s;flex:none}
+.lg-check i:after{content:"";width:7px;height:4px;border-left:1.5px solid #1A1208;border-bottom:1.5px solid #1A1208;
+  transform:rotate(-45deg) scale(0);transition:.15s;margin-top:-2px}
+.lg-check input:checked + i{background:linear-gradient(135deg,#EBD9A4,#C9A227);border-color:#C9A227}
+.lg-check input:checked + i:after{transform:rotate(-45deg) scale(1)}
+.lg-check input:focus-visible + i{box-shadow:0 0 0 3px rgba(201,162,39,.2)}
+
+.lg-err{margin:0 0 14px;padding:9px 12px;border-radius:9px;border:1px solid rgba(190,60,50,.45);
+  background:rgba(120,30,24,.18);color:#E8A79E;font-size:11.5px;line-height:1.6}
+.lg-err.shake{animation:lgshake .4s}
+@keyframes lgshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}55%{transform:translateX(4px)}80%{transform:translateX(-2px)}}
+
+.lg-submit{width:100%;height:44px;border-radius:11px;border:1px solid rgba(255,246,206,.45);cursor:pointer;
+  font:inherit;font-size:13px;font-weight:600;letter-spacing:.14em;color:#1A1208;
+  background:linear-gradient(135deg,#FFF6CE 0%,#E3C56A 34%,#C9A227 62%,#9A7415 100%);
+  box-shadow:0 8px 22px rgba(201,162,39,.18);transition:.2s}
+.lg-submit:hover:not(:disabled){box-shadow:0 14px 30px rgba(201,162,39,.32);transform:translateY(-1px)}
+.lg-submit:disabled{opacity:.6;cursor:wait;transform:none}
+
+.lg-note{margin:16px 0 0;font-size:10.5px;color:rgba(243,238,228,.35);line-height:1.75}
+.lg-alt{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;padding-top:14px;
+  border-top:1px solid rgba(201,162,39,.12);font-size:11px}
+.lg-alt a{color:var(--gold-lt);text-decoration:none;border-bottom:1px solid rgba(201,162,39,.4);padding-bottom:1px}
+.lg-alt a:hover{color:#fff}
+.lg-alt span{color:var(--txt-3);font-size:10px;letter-spacing:.08em}
+
+@media(max-width:960px){
+  .lg-split{grid-template-columns:1fr}
+  .lg-visual{min-height:320px;padding:110px 26px 26px}
+  .lg-veil{background:linear-gradient(180deg,rgba(8,9,10,.55) 0%,rgba(8,9,10,.12) 42%,#08090A 100%)}
+  .lg-panel{padding:36px 20px 56px}
+}
+@media(max-width:560px){
+  .lg-visual{min-height:250px;padding:100px 20px 22px}
+  .lg-points{display:none}
+  .lg-foot{margin-top:20px}
+  .lg-card{padding:24px 20px 20px}
+}
+@media(prefers-reduced-motion:reduce){
+  .lg-photo{animation:none}
+  .lg-err.shake{animation:none}
+}
+</style>
+<script src="assets/auth.js"></script>
+</head>
+<body class="loginpage">
+<script>document.documentElement.className += ' js';</script>
+
+<div class="nav-wrap">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <img class="logo-mark" src="assets/logo.png" alt="澳门娱乐场模拟器" width="32" height="32">
+      <span><b>澳门娱乐场模拟器</b><small>Macau Casino Simulator</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="blackjack.html">21 点</a>
+      <a href="blackjack-mall.html">积分商城</a>
+      <a href="https://github.com/laoyangnb666/macau-casino-simulator" target="_blank" rel="noopener">仓库</a>
+    </div>
+    <a class="btn btn-dark" href="https://github.com/laoyangnb666/macau-casino-simulator" target="_blank" rel="noopener">GitHub 仓库</a>
+  </nav>
+</div>
+
+<main class="lg-split">
+  <div class="lg-visual">
+    <div class="lg-photo" role="img" aria-label="私人会所里的绿绒长桌与黄铜台灯"></div>
+    <div class="lg-veil"></div>
+    <div class="lg-copy">
+      <div class="lg-kicker">Members Only · 会员入座</div>
+      <h1 data-i18n="login.h1">夜色正好，<em>请入座</em>。</h1>
+      <p data-i18n="login.lead">登录后进入六门 21 点台面与积分商城。账号与进度只保存在这台设备的浏览器里，不上传、不联网。</p>
+      <ul class="lg-points">
+        <li>六门台 · 七档厅房 · 21 家娱乐场</li>
+        <li>六套官方会籍 · 贵宾卡申请</li>
+        <li>200+ 项礼遇积分兑换</li>
+      </ul>
+    </div>
+    <div class="lg-foot">概率教学模拟 · 虚拟资金 · 未成年人禁止参与赌博</div>
+  </div>
+
+  <div class="lg-panel">
+    <div class="lg-card">
+      <div class="lg-tabs" role="tablist">
+        <button id="tabIn" class="on" type="button" role="tab" aria-selected="true">登录</button>
+        <button id="tabUp" type="button" role="tab" aria-selected="false">注册</button>
+      </div>
+      <form id="authForm" novalidate>
+        <label class="lg-field">
+          <span>用户名</span>
+          <input id="fUser" type="text" autocomplete="username" maxlength="20" placeholder="2–20 位中文 / 字母 / 数字">
+        </label>
+        <label class="lg-field">
+          <span>密码</span>
+          <input id="fPass" type="password" autocomplete="current-password" placeholder="至少 6 位">
+        </label>
+        <label class="lg-field" id="rowConfirm" hidden>
+          <span>确认密码</span>
+          <input id="fPass2" type="password" autocomplete="new-password" placeholder="再输入一次">
+        </label>
+        <div class="lg-row" id="rowRemember">
+          <label class="lg-check"><input id="fRemember" type="checkbox" checked><i></i><span>记住我（30 天免登录）</span></label>
+        </div>
+        <p class="lg-err" id="authErr" hidden></p>
+        <button class="lg-submit" id="authGo" type="submit">进入牌桌</button>
+      </form>
+      <p class="lg-note" id="authNote">首次使用请先注册账号；账号仅保存在本机浏览器，清除站点数据会同时清除账号与钱包进度。</p>
+      <div class="lg-alt"><a href="index.html">← 返回首页</a><span>不连接任何真实账户</span></div>
+    </div>
+  </div>
+</main>
+
+<script src="assets/i18n.js"></script>
+<script>
+/* 登录页词条（在 i18n 启动前注册） */
+if (window.I18N) I18N.extend({
+  dict: {
+    '登录 · 澳门娱乐场模拟器': 'Sign in · Macau Casino Simulator',
+    'Members Only · 会员入座': 'Members Only',
+    '六门台 · 七档厅房 · 21 家娱乐场': 'Six seats · seven room tiers · 21 casinos',
+    '六套官方会籍 · 贵宾卡申请': 'Six official programmes · VIP card application',
+    '200+ 项礼遇积分兑换': '200+ redeemable benefits',
+    '概率教学模拟 · 虚拟资金 · 未成年人禁止参与赌博': 'Educational simulation · virtual funds · no under-18s',
+    '登录': 'Sign in', '注册': 'Sign up',
+    '用户名': 'Username', '密码': 'Password', '确认密码': 'Confirm password',
+    '2–20 位中文 / 字母 / 数字': '2–20 chars: Chinese, letters, digits',
+    '至少 6 位': 'At least 6 characters', '再输入一次': 'Repeat the password',
+    '记住我（30 天免登录）': 'Keep me signed in (30 days)',
+    '进入牌桌': 'Enter the table', '创建账号并进入': 'Create account & enter',
+    '正在验证…': 'Verifying…', '正在创建账号…': 'Creating account…',
+    '首次使用请先注册账号；账号仅保存在本机浏览器，清除站点数据会同时清除账号与钱包进度。':
+      'First time? Create an account first. Accounts live only in this browser — clearing site data removes both the account and your wallet progress.',
+    '注册后自动登录，账号仅保存在本机浏览器，不上传任何服务器。':
+      'You are signed in automatically after registering. The account stays in this browser and is never uploaded.',
+    '← 返回首页': '← Back to home', '不连接任何真实账户': 'No real accounts involved',
+    '两次输入的密码不一致': 'Passwords do not match',
+    '用户名需 2–20 位，可用中文、字母、数字、下划线': 'Username must be 2–20 characters (Chinese, letters, digits, underscore)',
+    '密码至少 6 位': 'Password must be at least 6 characters',
+    '该用户名已被注册': 'That username is already taken',
+    '账号不存在，请先注册': 'No such account — please sign up first',
+    '密码不正确': 'Incorrect password',
+    '浏览器存储不可用，无法注册': 'Browser storage unavailable — cannot register',
+    '浏览器存储不可用，无法登录': 'Browser storage unavailable — cannot sign in',
+    '操作失败，请重试': 'Something went wrong — please retry'
+  },
+  html: {
+    'login.h1': 'The night is young — <em>take a seat</em>.',
+    'login.lead': 'Sign in to enter the six-seat blackjack table and the rewards shop. Your account and progress stay in this browser — nothing is uploaded, nothing goes online.'
+  }
+});
+
+(function () {
+  /* 已登录则直接去目标页 */
+  if (window.BJAuth && BJAuth.session()) { location.replace(BJAuth.safeNext()); return; }
+
+  var $ = function (id) { return document.getElementById(id); };
+  var tabIn = $('tabIn'), tabUp = $('tabUp'), form = $('authForm'),
+      fUser = $('fUser'), fPass = $('fPass'), fPass2 = $('fPass2'),
+      rowConfirm = $('rowConfirm'), rowRemember = $('rowRemember'), fRemember = $('fRemember'),
+      err = $('authErr'), btn = $('authGo'), note = $('authNote');
+  var mode = 'in';
+
+  function showErr(msg) {
+    err.textContent = msg;
+    err.hidden = false;
+    err.classList.remove('shake');
+    void err.offsetWidth;
+    err.classList.add('shake');
+  }
+  function setMode(m) {
+    mode = m;
+    tabIn.classList.toggle('on', m === 'in');
+    tabUp.classList.toggle('on', m === 'up');
+    tabIn.setAttribute('aria-selected', m === 'in');
+    tabUp.setAttribute('aria-selected', m === 'up');
+    rowConfirm.hidden = m !== 'up';
+    rowRemember.hidden = m !== 'in';
+    fPass.autocomplete = m === 'up' ? 'new-password' : 'current-password';
+    btn.textContent = m === 'up' ? '创建账号并进入' : '进入牌桌';
+    note.textContent = m === 'up'
+      ? '注册后自动登录，账号仅保存在本机浏览器，不上传任何服务器。'
+      : '首次使用请先注册账号；账号仅保存在本机浏览器，清除站点数据会同时清除账号与钱包进度。';
+    err.hidden = true;
+  }
+  tabIn.addEventListener('click', function () { setMode('in'); });
+  tabUp.addEventListener('click', function () { setMode('up'); });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    err.hidden = true;
+    if (mode === 'up' && fPass.value !== fPass2.value) { showErr('两次输入的密码不一致'); return; }
+    btn.disabled = true;
+    btn.textContent = mode === 'up' ? '正在创建账号…' : '正在验证…';
+    var p = mode === 'up'
+      ? BJAuth.register(fUser.value, fPass.value)
+      : BJAuth.login(fUser.value, fPass.value, fRemember.checked);
+    p.then(function () { location.replace(BJAuth.safeNext()); })
+     .catch(function (msg) {
+       showErr(typeof msg === 'string' ? msg : '操作失败，请重试');
+       btn.disabled = false;
+       btn.textContent = mode === 'up' ? '创建账号并进入' : '进入牌桌';
+     });
+  });
+})();
+</script>
+</body>
+</html>
