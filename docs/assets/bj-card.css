@@ -1,0 +1,109 @@
+/* ============================================================
+   bj-card.css — 会员卡卡面共用样式（21 点牌桌 / 会员中心）
+   自 blackjack.html 内联样式提取；页面级覆写仍留在各页
+   ============================================================ */
+/* 持卡闪金：卡面与贵宾卡条持续扫光 */
+.mcard .mc-shine{position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none;z-index:2}
+.mc-shine:after{content:"";position:absolute;top:-30%;left:-70%;width:36%;height:160%;
+  transform:skewX(-18deg);background:linear-gradient(100deg,transparent,rgba(255,246,206,.5),transparent);
+  animation:mcShine 4.4s ease-in-out infinite}
+body.lux-2 .mc-shine:after{animation-duration:2.8s}
+body.lux-3 .mc-shine:after{animation-duration:2.3s}
+body.lux-4 .mc-shine:after{animation-duration:1.9s}
+@keyframes mcShine{0%,55%{left:-70%}85%,100%{left:135%}}
+
+/* ---------- 会员卡卡面：按卡系与等级换肤 ---------- */
+.mcard{position:relative;border-radius:11px;padding:11px 12px;aspect-ratio:1.62/1;max-width:340px;display:flex;
+  flex-direction:column;justify-content:space-between;overflow:hidden;color:#F4EDDB;
+  background:linear-gradient(140deg,#7C8A80,#4A5650 62%,#2C3731);
+  box-shadow:0 12px 26px -18px rgba(10,20,16,.75),inset 0 1px 0 rgba(255,255,255,.18);
+  transition:background .25s}
+.mcard:before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 88% -12%,rgba(255,255,255,.3),transparent 58%),
+             repeating-linear-gradient(115deg,rgba(255,255,255,.055) 0 2px,transparent 2px 9px)}
+.mcard:after{content:"";position:absolute;right:-26px;bottom:-38px;width:124px;height:124px;
+  border-radius:50%;border:1px solid rgba(255,255,255,.16);pointer-events:none}
+.mcard>*{position:relative;z-index:1}
+.mc-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.mc-brand{font-size:8.5px;letter-spacing:1.3px;text-transform:uppercase;opacity:.82;line-height:1.5}
+.mc-type{flex:0 0 auto;font-size:7.5px;letter-spacing:.8px;padding:1px 6px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.4);opacity:.92;white-space:nowrap}
+.mc-chip{width:25px;height:18px;border-radius:3px;flex:0 0 auto;position:relative;
+  background:linear-gradient(135deg,#F7E9AE,#C9A227 52%,#8C6A12);
+  border:1px solid rgba(255,255,255,.45)}
+.mc-chip:before{content:"";position:absolute;inset:4px 6px;
+  border-left:1px solid rgba(0,0,0,.28);border-right:1px solid rgba(0,0,0,.28)}
+.mc-tier{font-family:"Noto Serif SC",serif;font-size:15px;font-weight:600;letter-spacing:.6px;line-height:1.25;
+  max-width:190px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mc-sub{font-size:7.5px;opacity:.75;letter-spacing:.6px;margin-top:2px}
+.mc-foot{display:flex;justify-content:space-between;align-items:flex-end;
+  font-family:"Inter",monospace;font-size:8px;opacity:.9;letter-spacing:.7px}
+.mc-pips{display:flex;gap:3px}
+.mc-pips i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.32)}
+.mc-pips i.on{background:currentColor;box-shadow:0 0 4px currentColor}
+.mc-note{font-size:9.5px;color:#8A8272;line-height:1.6;margin-top:8px}
+/* 中场卡皮肤：m1 金 · m2–m4 红宝三级 · m5–m7 钻石三级 · m8 白金 · m9 御匾钻石 · m10 御匾主席 · m11 翡翠 */
+.mcard.m0{background:linear-gradient(140deg,#7C8A80,#4A5650 62%,#2C3731)}
+.mcard.m1{background:linear-gradient(140deg,#D2A44E,#8A6320 58%,#4A3208)}
+.mcard.m2{background:linear-gradient(140deg,#C55A6A,#8A2B3B 58%,#4A111B)}
+.mcard.m3{background:linear-gradient(140deg,#A93C4E,#6E1B2B 58%,#3A0A14)}
+.mcard.m4{background:linear-gradient(140deg,#7E2230,#4E0F1B 58%,#2A060D)}
+.mcard.m5{background:linear-gradient(140deg,#7FC0DD,#3B7FA3 58%,#123449)}
+.mcard.m6{background:linear-gradient(140deg,#2E5C8A,#16344F 60%,#08192A)}
+.mcard.m7{background:linear-gradient(140deg,#1E4470,#0F2745 60%,#050F1F);color:#D9E4F2}
+.mcard.m8{background:linear-gradient(140deg,#E2E6EB,#A3ACB6 55%,#5A626B);color:#1C2228}
+.mcard.m9{color:#EBD98F;background:linear-gradient(140deg,#26365F,#0E1A3A 58%,#05080F);
+  box-shadow:0 12px 26px -16px rgba(6,10,20,.85),inset 0 0 0 1px rgba(201,162,39,.5)}
+.mcard.m10{color:#EBD98F;background:linear-gradient(140deg,#2C2822,#12100C 58%,#050403);
+  box-shadow:0 12px 26px -16px rgba(10,10,8,.85),inset 0 0 0 1px rgba(201,162,39,.55)}
+.mcard.m11{background:linear-gradient(140deg,#2F7A5A,#14503A 58%,#082A1D)}
+.mcard.m9 .mc-chip,.mcard.m10 .mc-chip{background:linear-gradient(135deg,#FFF6CE,#D9B84A 50%,#9A7415)}
+/* 贵宾卡：基础 / 私人 / 主席 / 超级 */
+.mcard.v1{background:linear-gradient(140deg,#2E7153,#12402F 60%,#072015)}
+.mcard.v2{background:linear-gradient(140deg,#36547F,#162A45 60%,#081120)}
+.mcard.v3{background:linear-gradient(140deg,#2C2822,#12100C 58%,#050403);color:#EBD98F;
+  box-shadow:0 12px 26px -16px rgba(10,10,8,.85),inset 0 0 0 1px rgba(201,162,39,.55)}
+.mcard.v4{color:#241A06;background:linear-gradient(130deg,#F8EBB2 0%,#DDBE55 26%,#A8811B 52%,#EFD98C 74%,#8B6410 100%);
+  box-shadow:0 12px 26px -14px rgba(120,90,10,.55),inset 0 0 0 1px rgba(255,255,255,.6)}
+.mcard.v3 .mc-chip,.mcard.v4 .mc-chip{background:linear-gradient(135deg,#FFF6CE,#D9B84A 50%,#9A7415)}
+/* 无官方卡图的贵宾卡：按公司 + 档位各做一套自绘品牌卡面 */
+/* 美高梅 · Privé / 狮王（玫瑰金/酒红） */
+.mcard.vipskin-mgm-1{color:#F6E2DE;background:linear-gradient(140deg,#B76E79,#5E2B35 58%,#2A0F16)}
+.mcard.vipskin-mgm-2{color:#F3D8D6;background:linear-gradient(140deg,#8E4050,#4A1622 58%,#1B070C)}
+.mcard.vipskin-mgm-3{color:#EBD98F;background:linear-gradient(140deg,#3A2430,#1A0E15 58%,#08040A);
+  box-shadow:0 12px 26px -16px rgba(8,4,6,.85),inset 0 0 0 1px rgba(201,162,39,.55)}
+.mcard.vipskin-mgm-4{color:#241A06;background:linear-gradient(135deg,#F5E3B0 0%,#D9B45A 32%,#A87A1C 62%,#EBD98F 82%,#8A5F14 100%);
+  box-shadow:0 12px 26px -14px rgba(120,90,10,.55),inset 0 0 0 1px rgba(255,255,255,.62)}
+.mcard.vipskin-mgm-1:before,.mcard.vipskin-mgm-2:before,.mcard.vipskin-mgm-3:before{background:
+  repeating-radial-gradient(circle at 15% 115%,rgba(255,230,210,.1) 0 1px,transparent 1px 11px),
+  radial-gradient(120% 90% at 88% -12%,rgba(255,255,255,.26),transparent 58%)}
+.mcard.vipskin-mgm-4:before{background:
+  repeating-radial-gradient(circle at 15% 115%,rgba(90,50,0,.12) 0 1px,transparent 1px 11px),
+  radial-gradient(120% 90% at 88% -12%,rgba(255,255,255,.5),transparent 58%)}
+/* 永利 · 红卡贵宾 / 主席（酒红/香槟金） */
+.mcard.vipskin-wynn-1{color:#F6E3D8;background:linear-gradient(140deg,#8E2430,#4A0E18 58%,#1E0509)}
+.mcard.vipskin-wynn-2{color:#F6DCD8;background:linear-gradient(140deg,#A82836,#5A0F1B 58%,#22060B)}
+.mcard.vipskin-wynn-3{color:#EBD98F;background:linear-gradient(140deg,#3A141A,#1A070A 58%,#070203);
+  box-shadow:0 12px 26px -16px rgba(8,3,3,.85),inset 0 0 0 1px rgba(201,162,39,.55)}
+.mcard.vipskin-wynn-4{color:#F4EDDB;background:linear-gradient(135deg,#2A1B08,#0C0703 55%,#1C1204);
+  box-shadow:0 12px 26px -16px rgba(6,4,2,.9),inset 0 0 0 1px rgba(235,217,143,.6)}
+.mcard.vipskin-wynn-1:before,.mcard.vipskin-wynn-2:before,.mcard.vipskin-wynn-3:before{background:
+  repeating-linear-gradient(112deg,rgba(255,240,200,.07) 0 2px,transparent 2px 12px),
+  radial-gradient(120% 90% at 88% -12%,rgba(255,255,255,.24),transparent 58%)}
+.mcard.vipskin-wynn-4:before{background:
+  repeating-linear-gradient(112deg,rgba(235,217,143,.1) 0 2px,transparent 2px 12px),
+  radial-gradient(120% 90% at 88% -12%,rgba(255,240,190,.2),transparent 58%)}
+.mcard.vipskin-mgm-1 .mc-chip,.mcard.vipskin-mgm-2 .mc-chip,.mcard.vipskin-mgm-3 .mc-chip,
+.mcard.vipskin-wynn-1 .mc-chip,.mcard.vipskin-wynn-2 .mc-chip,.mcard.vipskin-wynn-3 .mc-chip{background:linear-gradient(135deg,#FFF6CE,#D9B84A 50%,#9A7415)}
+/* 官方卡面（金沙会 / 新濠皇会 / 澳娱至尊卡）：直接展示官方图，下方补等级条 */
+.mcard.art{display:block;padding:0;aspect-ratio:auto;max-width:340px;background:none;box-shadow:none;
+  color:#1B221E;overflow:visible}
+.mcard.art .mc-art{display:block;width:100%;height:auto;border-radius:11px;background:#EDE6D4;
+  box-shadow:0 12px 26px -18px rgba(10,20,16,.72)}
+.mcard.art.portrait{display:flex;flex-direction:column;align-items:center}
+.mcard.art.portrait .mc-art{width:auto;height:240px}
+.mc-cap{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:7px;
+  font-size:9.5px;color:#6E6653}
+.mc-cap-t{letter-spacing:.2px}
+.mc-cap .mc-pips i{background:#DDD7C6}
+.mc-cap .mc-pips i.on{background:#C9A227;box-shadow:none}

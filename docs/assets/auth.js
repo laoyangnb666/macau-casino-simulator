@@ -85,7 +85,7 @@
   function safeNext() {
     var n = 'blackjack.html';
     try { n = new URLSearchParams(location.search).get('next') || n; } catch (e) {}
-    return /^(index|blackjack|blackjack-mall|baccarat|slots)\.html([?#].*)?$/.test(n) && n.indexOf('//') < 0 ? n : 'blackjack.html';
+    return /^(index|blackjack|blackjack-mall|baccarat|slots|member)\.html([?#].*)?$/.test(n) && n.indexOf('//') < 0 ? n : 'blackjack.html';
   }
 
   /* ---------- 门禁：在 <head> 同步执行，未登录直接跳走 ---------- */

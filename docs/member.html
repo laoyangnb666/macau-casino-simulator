@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-auth="required">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>会员中心 · 澳门娱乐场模拟器</title>
+<meta name="description" content="澳门娱乐场模拟器会员中心：六套娱乐场会员体系的持卡与礼遇总览、21 点 / 百家乐 / 老虎机分游戏累计数据、礼遇兑换凭证与核销记录。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/member.css?v=20261119d">
+<link rel="stylesheet" href="assets/bj-card.css?v=20261119d">
+<link rel="stylesheet" href="assets/bj-order.css?v=20261119d">
+<script src="assets/auth.js"></script>
+</head>
+<body class="mempage">
+<div class="mem-bg" aria-hidden="true"></div>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <img class="logo-mark" src="assets/logo.png" alt="澳门娱乐场模拟器" width="32" height="32">
+      <span><b>澳门娱乐场模拟器</b><small>Macau Casino Simulator</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="blackjack.html">21 点</a>
+      <a href="baccarat.html">百家乐</a>
+      <a href="slots.html">老虎机</a>
+      <a href="blackjack-mall.html">积分商城</a>
+      <a href="member.html" class="on">会员中心</a>
+      <a href="https://github.com/laoyangnb666/macau-casino-simulator" target="_blank" rel="noopener">仓库</a>
+    </div>
+    <a class="btn btn-dark" href="https://github.com/laoyangnb666/macau-casino-simulator" target="_blank" rel="noopener">GitHub 仓库</a>
+  </nav>
+</header>
+
+<main class="mem-main">
+  <div class="mem-head">
+    <div class="mem-kick">Member Center · 会籍与礼遇总览</div>
+    <h1>你的卡、你的局、<em>你的礼遇。</em></h1>
+    <p>
+      六套娱乐场会员体系各自累计：积分、有效投注、会员卡档位与贵宾卡审批进度都在这里汇总。
+      21 点、百家乐、老虎机的每一局结算都会写入终身统计；商城兑换的礼遇出票后凭凭证核销，记录长期保留。
+    </p>
+    <div class="mem-id">
+      <div class="who">
+        <b id="memName">—</b>
+        <small id="memSince">—</small>
+      </div>
+      <div class="mem-meta">
+        <span>六系总积分 <b id="sumPts">0</b></span>
+        <span>持贵宾卡 <b id="sumVip">0</b> 张</span>
+        <span>礼遇兑换 <b id="sumOrders">0</b> 笔</span>
+        <span>累计有效投注 <b id="sumTurn">0</b> MOP</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="mem-sec">
+    <h2>我的卡包 <em>MY CARDS</em><small>卡面与 21 点牌桌同源 · 官方图 / AI 图 / 自绘兜底</small></h2>
+    <div class="mem-cards" id="cardsGrid"></div>
+  </section>
+
+  <section class="mem-sec">
+    <h2>分游戏数据 <em>BY GAME</em><small>终身口径 · 自本版本起累计</small></h2>
+    <div class="mem-games" id="gamesGrid"></div>
+  </section>
+
+  <section class="mem-sec">
+    <h2>礼遇兑换记录 <em>REDEMPTIONS</em><small>凭证可查 · 待核销 / 已核销</small></h2>
+    <div class="ordlist" id="ordList"></div>
+  </section>
+
+  <div class="mem-foot">
+    <b>模拟说明</b> · 所有积分、卡级、礼遇与凭证均为概率教学模拟，不连接任何真实账户，不产生真实权益。
+    档位名称取自各集团官方公开资料，未公开门槛按模拟估算；真实赌博长期期望为负，未成年人禁止参与赌博。
+  </div>
+</main>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/bj-casinos.js"></script>
+<script src="assets/bj-wallet.js"></script>
+<script src="assets/bj-core.js"></script>
+<script src="assets/bj-mall.js?v=20261119d"></script>
+<script src="assets/bj-stats.js?v=20261119d"></script>
+<script src="assets/bj-card.js?v=20261119d"></script>
+<script src="assets/bj-order.js?v=20261119d"></script>
+<script src="assets/member.js?v=20261119d"></script>
+</body>
+</html>

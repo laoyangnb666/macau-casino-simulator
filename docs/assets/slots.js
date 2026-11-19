@@ -549,15 +549,24 @@
       msg(isFree ? `免费游戏剩余 ${state.free} 次` : '未中奖 · 再试一转');
     }
 
+    /* 终身统计：会员中心分游戏数据源（免费转不计投注） */
+    if (window.BJStats) {
+      window.BJStats.add('slot', {
+        spins: 1, wagered: isFree ? 0 : bet, won: win, hits: win > 0 ? 1 : 0
+      }, { biggest: win });
+    }
+
     /* 免费游戏：3 个以上 SCATTER */
     if (res.scatter >= 3) {
       if (isFree) {
         state.free += 5;
+        if (window.BJStats) window.BJStats.add('slot', { fs: 5 });
         msg(`<b>再触发 5 次免费游戏</b> · 剩余 ${state.free} 次`);
         showFsBanner();
       } else {
         state.free = 10;
         state.stats.fs += 10;
+        if (window.BJStats) window.BJStats.add('slot', { fs: 10 });
         msg('<b>FREE SPINS</b> · 10 次免费游戏，全奖 ×2');
         showFsBanner(true);
         await showFreeOverlay();
@@ -615,6 +624,7 @@
         localStorage.setItem(BANK_KEY, String(state.bank));
         state.stats.won += amount;
         state.stats.jp = (state.stats.jp || 0) + amount;
+        if (window.BJStats) window.BJStats.add('slot', { won: amount, jp: amount });
         state.jp[k] = JP_SEED[k];
         saveJSON(JP_KEY, state.jp);
         showJackpot(k, amount);

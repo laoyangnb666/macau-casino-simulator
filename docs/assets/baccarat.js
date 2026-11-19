@@ -538,6 +538,15 @@
     if (bp) s.bp++;
     if (l6) s.l6++;
 
+    /* 终身统计：会员中心分游戏数据源 */
+    if (window.BJStats) {
+      window.BJStats.add('bac', {
+        rounds: 1, wagered: stake, net: net, commission: comm,
+        p: result === 'P' ? 1 : 0, b: result === 'B' ? 1 : 0, t: result === 'T' ? 1 : 0,
+        pp: pp ? 1 : 0, bp: bp ? 1 : 0, l6: l6 ? 1 : 0
+      }, { biggest: net > 0 ? net : 0 });
+    }
+
     state.history.push({ result, pt, bt, pp, bp, l6, cards: state.banker.length });
     if (state.history.length > 300) state.history = state.history.slice(-300);
 

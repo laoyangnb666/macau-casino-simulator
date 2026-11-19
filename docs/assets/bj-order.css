@@ -1,0 +1,89 @@
+/* ============================================================
+   bj-order.css — 礼遇凭证票据 + 出票 / 核销仪式（商城 / 会员中心共用）
+   ============================================================ */
+.ord-veil{position:fixed;inset:0;z-index:400;display:flex;align-items:center;justify-content:center;
+  padding:18px;background:radial-gradient(120% 90% at 50% 0%,rgba(20,24,22,.9),rgba(4,6,5,.94));
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);overflow-y:auto}
+.ord-veil.thud{animation:ordThud .3s ease-out}
+@keyframes ordThud{0%{transform:translateY(0)}30%{transform:translateY(3px)}60%{transform:translateY(-1px)}100%{transform:translateY(0)}}
+.ord-box{position:relative;width:min(92vw,400px);display:flex;flex-direction:column;gap:14px;padding:8px 0 4px}
+
+/* 步骤清单 */
+.ord-steps{display:flex;flex-direction:column;gap:7px}
+.ord-steps>div{display:flex;align-items:center;gap:9px;font-size:11.5px;letter-spacing:.08em;
+  color:rgba(244,237,219,.4);transition:color .3s}
+.ord-steps i{flex:0 0 auto;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(201,162,39,.35);font-style:normal;font-size:10px;color:transparent;transform:scale(.6);transition:.3s}
+.ord-steps>div.ok{color:rgba(244,237,219,.88)}
+.ord-steps>div.ok i{color:#1A1306;background:linear-gradient(135deg,#F6E9B4,#C9A227);border-color:#C9A227;
+  transform:scale(1);animation:ordPop .35s cubic-bezier(.2,1.6,.4,1)}
+@keyframes ordPop{0%{transform:scale(.4)}100%{transform:scale(1)}}
+
+/* 票据打印：自遮罩上方滑入 */
+.ord-print{overflow:hidden;border-radius:12px}
+.ord-print .receipt{transform:translateY(-105%);transition:transform .6s cubic-bezier(.25,.9,.3,1)}
+.ord-print.print .receipt{transform:translateY(0)}
+
+/* 票据本体 */
+.receipt{position:relative;width:100%;padding:16px 18px 14px;border-radius:12px;
+  background:linear-gradient(180deg,#1B2023,#101416 70%,#0B0E10);
+  border:1px solid rgba(201,162,39,.3);color:#F4EDDB;
+  box-shadow:0 24px 50px -22px #000,inset 0 1px 0 rgba(255,255,255,.06)}
+/* 两侧撕票圆孔 */
+.receipt:before,.receipt:after{content:"";position:absolute;top:0;bottom:0;width:8px;pointer-events:none;
+  background:radial-gradient(circle at 50% 50%,rgba(4,6,5,.95) 0 3px,transparent 3.5px) repeat-y;
+  background-size:8px 14px}
+.receipt:before{left:-4px}
+.receipt:after{right:-4px}
+.rc-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;
+  padding-bottom:9px;border-bottom:1px dashed rgba(201,162,39,.35)}
+.rc-head b{font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#EBD98F}
+.rc-head span{font-size:8.5px;letter-spacing:1.2px;color:rgba(244,237,219,.5)}
+.rc-no{margin-top:9px;font-family:"Inter",monospace;font-size:9.5px;letter-spacing:.1em;color:rgba(244,237,219,.55)}
+.rc-no b{color:#EBD98F;letter-spacing:.14em}
+.rc-item{margin-top:7px}
+.rc-item b{display:block;font-family:"Noto Serif SC",serif;font-size:15px;font-weight:600;line-height:1.4}
+.rc-item small{display:block;margin-top:3px;font-size:9px;letter-spacing:.1em;color:rgba(244,237,219,.45)}
+.rc-rows{display:grid;grid-template-columns:1fr auto;gap:5px 12px;margin-top:11px;padding-top:10px;
+  border-top:1px dashed rgba(201,162,39,.25);font-size:10.5px}
+.rc-rows span{color:rgba(244,237,219,.55);letter-spacing:.05em}
+.rc-rows b{font-family:"Inter",monospace;font-weight:600;color:#F4EDDB;text-align:right}
+.rc-bar{height:30px;margin-top:12px;opacity:.75;
+  background:repeating-linear-gradient(90deg,#F4EDDB 0 2px,transparent 2px 4px,#F4EDDB 4px 5px,transparent 5px 9px,#F4EDDB 9px 12px,transparent 12px 14px,#F4EDDB 14px 15px,transparent 15px 19px)}
+.rc-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px}
+.rc-foot>span:first-child{font-size:8.5px;line-height:1.5;color:rgba(244,237,219,.4);max-width:60%}
+.rc-stamp{flex:0 0 auto;padding:4px 10px;border:2px solid;border-radius:6px;transform:rotate(-8deg);
+  font-size:11px;font-weight:700;letter-spacing:.18em}
+.rc-stamp.issued{color:#EBD98F;border-color:rgba(235,217,143,.8);box-shadow:0 0 14px rgba(201,162,39,.25)}
+.rc-stamp.used{color:#E4685F;border-color:rgba(228,104,95,.85);box-shadow:0 0 14px rgba(228,104,95,.22)}
+
+/* 大印章：砸下 + 落定微震 */
+.ord-seal{position:absolute;left:50%;top:52%;z-index:3;pointer-events:none;
+  padding:10px 22px;border:3px double rgba(235,217,143,.9);border-radius:10px;
+  color:#EBD98F;font-family:"Noto Serif SC",serif;font-size:22px;font-weight:700;letter-spacing:.3em;
+  background:rgba(10,12,11,.35);text-shadow:0 0 18px rgba(201,162,39,.5);
+  opacity:0;transform:translate(-50%,-50%) scale(2.4) rotate(-20deg);
+  transition:transform .45s cubic-bezier(.2,1.4,.4,1),opacity .3s}
+.ord-seal.hit{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-8deg)}
+.ord-seal.used{border-color:rgba(228,104,95,.9);color:#E4685F;text-shadow:0 0 18px rgba(228,104,95,.45)}
+
+/* 完成按钮 */
+.ord-done{align-self:center;height:40px;padding:0 34px;border-radius:999px;border:1px solid #C9A227;
+  background:linear-gradient(135deg,#F6E9B4,#D9B84A 55%,#C9A227);color:#221903;
+  font:inherit;font-size:12px;font-weight:700;letter-spacing:.2em;cursor:pointer;
+  opacity:0;transform:translateY(8px);pointer-events:none;transition:.35s;
+  box-shadow:0 12px 26px -12px rgba(201,162,39,.8)}
+.ord-done.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.ord-done:hover{filter:brightness(1.06)}
+
+/* 会员中心凭证弹层复用票据 */
+.mc-receipt-wrap{width:min(92vw,400px)}
+
+@media (prefers-reduced-motion: reduce){
+  .ord-print .receipt,.ord-seal,.ord-done,.ord-steps i{transition:none;animation:none}
+  .ord-veil.thud{animation:none}
+}
+@media(max-width:430px){
+  .ord-seal{font-size:18px;padding:8px 16px}
+  .rc-item b{font-size:13.5px}
+}

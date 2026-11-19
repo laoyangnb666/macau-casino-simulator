@@ -658,5 +658,15 @@
     return Math.max(1, Math.round(item.value / (per * RETURN_RATE)));
   }
 
-  window.BJ_MALL = { CATS, GROUPS, SOURCES, CATALOG, RETURN_RATE, itemsOf, priceOf };
+  /* 会员等级折扣：档位比例最高 12%，持贵宾卡再叠加 5%（商城 / 会员中心共用） */
+  function discountPct(prog, m) {
+    const n = ((prog && prog.tiers) || []).length;
+    const t = window.BJCore ? window.BJCore.tierOf((m && m.points) || 0, prog) : { idx: 0 };
+    const ratio = n > 1 ? t.idx / (n - 1) : 0;
+    let pct = Math.round(ratio * 12);
+    if (((m && m.card) || 0) >= 1) pct += 5;
+    return Math.min(20, pct);
+  }
+
+  window.BJ_MALL = { CATS, GROUPS, SOURCES, CATALOG, RETURN_RATE, itemsOf, priceOf, discountPct };
 })();

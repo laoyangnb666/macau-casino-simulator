@@ -280,7 +280,7 @@
     let best = 0;
     for (let i = 0; i + 7 <= arr.length; i++) {
       let s = 0;
-      for (let k = i; k < i + 7; k++) s += arr[k];
+      for (let k = i; k < i + 7; k++) s += (typeof arr[k] === 'object' ? (+arr[k].v || 0) : (+arr[k] || 0));
       if (s > best) best = s;
     }
     const share = turnover > 0 ? best / turnover : 0;

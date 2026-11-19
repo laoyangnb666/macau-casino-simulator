@@ -11,7 +11,8 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/site.css">
-<link rel="stylesheet" href="assets/bj-mall.css?v=20261118a">
+<link rel="stylesheet" href="assets/bj-mall.css?v=20261119d">
+<link rel="stylesheet" href="assets/bj-order.css?v=20261119d">
 <script src="assets/auth.js"></script>
 </head>
 <body class="mall-lux">
@@ -29,6 +30,7 @@
       <a href="baccarat.html">百家乐</a>
       <a href="slots.html">老虎机</a>
       <a href="blackjack-mall.html" class="on">积分商城</a>
+      <a href="member.html">会员中心</a>
       <a href="https://github.com/laoyangnb666/macau-casino-simulator" target="_blank" rel="noopener">仓库</a>
     </div>
     <a class="btn btn-dark" href="https://github.com/laoyangnb666/macau-casino-simulator" target="_blank" rel="noopener">GitHub 仓库</a>
@@ -87,7 +89,7 @@
     <div class="mallfoot">
       <div class="mallnote" id="mallNote"></div>
       <div class="mallorders">
-        <h4>兑换记录 <span>最近 8 笔</span><em id="mallOrderSum"></em></h4>
+        <h4>兑换记录 <span>最近 50 笔</span><em id="mallOrderSum"></em></h4>
         <div id="mallOrders"><p class="mo-empty">还没有兑换记录，先回牌桌打几局攒积分。</p></div>
       </div>
     </div>
@@ -117,8 +119,9 @@
 <script src="assets/i18n-bj.js"></script>
 <script src="assets/bj-casinos.js"></script>
 <script src="assets/bj-wallet.js?v=20261114d"></script>
-<script src="assets/bj-mall.js?v=20261114d"></script>
+<script src="assets/bj-mall.js?v=20261119d"></script>
 <script src="assets/bj-core.js"></script>
+<script src="assets/bj-order.js?v=20261119d"></script>
 <script>
 (function () {
   const EN = !!(window.I18N && window.I18N.lang === 'en');
@@ -157,7 +160,7 @@
     page.querySelector('.mallhead h2').textContent = 'What your points can buy';
     page.querySelector('.mallsub').textContent =
       'Each club prices the same benefit in its own points — the play behind it is identical. Member tier and the daily picks lower the price further.';
-    page.querySelector('.mallorders h4').innerHTML = 'Redemptions <span>last 8</span><em id="mallOrderSum"></em>';
+    page.querySelector('.mallorders h4').innerHTML = 'Redemptions <span>last 50</span><em id="mallOrderSum"></em>';
     el.mallOrderSum = $('mallOrderSum');
     el.mallSearch.placeholder = 'Search benefits, restaurants, hotels…';
     el.mallSort.options[0].text = 'Recommended';
@@ -168,7 +171,7 @@
     el.mallFav.innerHTML = 'Wishlist only <b>0</b>';
     el.mmFav.textContent = 'Add to wishlist';
     el.mmClose.textContent = 'Close';
-    el.mmBuy.textContent = 'Redeem';
+    el.mmBuy.textContent = 'Confirm redemption';
   }
 
   function mem() {
@@ -199,15 +202,8 @@
   };
   const tierOf = pts => (window.BJCore ? BJCore.tierOf(pts, PROGRAMS[progId]) : { idx: 0, tier: '—', next: null, need: null });
 
-  /* 会员等级折扣：档位比例最高 12%，持贵宾卡再叠加 5% */
-  function discountPct(prog, m){
-    const n = (prog.tiers || []).length;
-    const idx = tierOf(m.points).idx;
-    const ratio = n > 1 ? idx / (n - 1) : 0;
-    let pct = Math.round(ratio * 12);
-    if ((m.card || 0) >= 1) pct += 5;
-    return Math.min(20, pct);
-  }
+  /* 会员等级折扣：公式下沉 bj-mall.js，商城与会员中心共用 */
+  function discountPct(prog, m){ return MALL.discountPct(prog, m); }
   function basePrice(it, prog){ return MALL.priceOf(it, prog); }
   function finalPrice(it, prog, m){
     const p = basePrice(it, prog) * (1 - discountPct(prog, m) / 100);
@@ -275,6 +271,7 @@
     if (disc > 0) rows.push([EN ? 'Member discount' : '会员折扣', `−${disc}%`]);
     if (isDeal) rows.push([EN ? 'Daily pick' : '今日精选', '−15%']);
     rows.push([EN ? 'You pay' : '实付积分', `${fmtPts(fin)} ${EN ? 'pts' : '分'}`]);
+    rows.push([EN ? 'Balance after' : '兑换后余额', `${fmtPts(Math.max(0, m.points - fin))} ${EN ? 'pts' : '分'}`]);
     if (it.need > 0) rows.push([EN ? 'Requires' : '所需卡级', needName]);
     rows.push([EN ? 'Turnover behind it' : '对应流水', `≈ MOP ${fmtPts(Math.round(fin * (prog.mopPerPoint || 1000)))}`]);
     el.mmRows.innerHTML = rows.map(r => `<span>${r[0]}</span><b>${r[1]}</b>`).join('');
@@ -284,7 +281,7 @@
     el.mmBuy.disabled = locked || poor;
     el.mmBuy.textContent = locked ? (EN ? `Needs ${needName}` : `需 ${needName}`)
       : poor ? (EN ? `${Math.ceil(fin - m.points).toLocaleString()} more` : `还差 ${Math.ceil(fin - m.points).toLocaleString()} 分`)
-      : (EN ? 'Redeem' : '兑换');
+      : (EN ? 'Confirm redemption' : '确认兑换');
     el.mmFav.textContent = isFav(it) ? (EN ? 'Remove from wishlist' : '移出心愿单') : (EN ? 'Add to wishlist' : '加入心愿单');
     el.mallModal.hidden = false;
   }
@@ -486,33 +483,38 @@
       ? (EN ? `total ${fmtPts(totalSpent)} pts` : `合计 ${fmtPts(totalSpent)} 分`)
       : '';
     el.mallOrders.innerHTML = W.orders.length
-      ? W.orders.map(o => {
+      ? W.orders.map((o, i) => {
           const t = o.ts ? new Date(o.ts) : null;
           const stamp = t ? `${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')} ${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}` : '';
-          return `<div class="mo-row"${o.id ? ` data-order="${o.id}"` : ''}>
-            <span>${o.name}<i>${o.venue}</i>${stamp ? `<small class="mo-time">${stamp}</small>` : ''}</span>
-            <small>−${fmtPts(o.price)}${o.round ? ' · ' + (EN ? 'R' + o.round : '第 ' + o.round + ' 局') : ''}</small></div>`;
+          const used = o.status === 'used';
+          return `<div class="mo-row" data-oidx="${i}">
+            <span>${o.name}<i>${o.venue}</i><small class="mo-no">${o.no || (EN ? 'legacy' : '旧单')}</small>${stamp ? `<small class="mo-time">${stamp}</small>` : ''}</span>
+            <small>−${fmtPts(o.price)}${o.round ? ' · ' + (EN ? 'R' + o.round : '第 ' + o.round + ' 局') : ''}<b class="mo-st${used ? ' used' : ''}">${used ? (EN ? 'USED' : '已核销') : (EN ? 'ISSUED' : '已出票')}</b></small></div>`;
         }).join('')
       : `<p class="mo-empty">${EN ? 'No redemptions yet — go back and play a few rounds.' : '还没有兑换记录，先回牌桌打几局攒积分。'}</p>`;
   }
 
-  /* 点兑换记录可再打开该礼遇 */
+  /* 点兑换记录查看票据凭证 */
   el.mallOrders.addEventListener('click', ev => {
-    const row = ev.target.closest('[data-order]');
+    const row = ev.target.closest('[data-oidx]');
     if (!row) return;
-    const it = MALL.itemsOf(progId).find(x => x.id === row.dataset.order);
-    if (it) openModal(it);
+    const o = W.orders[+row.dataset.oidx];
+    if (o) window.BJOrder.view(o, { en: EN, prog: PROGRAMS[o.progId || progId] });
   });
 
+  let redeemBusy = false;
   function redeem(item){
+    if (redeemBusy) return;
     const prog = PROGRAMS[progId];
     const m = mem();
     const price = finalPrice(item, prog, m);
     const now = tierOf(m.points);
     if (m.points < price) return;
     if ((item.need || 0) > 0 && now.idx < tierIndex(prog, item.need)) return;
+    redeemBusy = true;
+    /* 先落库再演出：动画中途刷新也不会丢单或重复扣分 */
     m.points -= price;
-    W.orders.unshift({
+    const order = {
       id: item.id,
       name: EN ? item.en : item.zh,
       price,
@@ -520,13 +522,20 @@
       cat: item.cat,
       round: 0,
       ts: Date.now(),
-      venue: EN ? prog.brand : prog.name
-    });
-    if (W.orders.length > 8) W.orders.pop();
+      venue: EN ? prog.brand : prog.name,
+      no: window.BJOrder.makeNo(),
+      status: 'issued',
+      progId,
+      base: basePrice(item, prog),
+      disc: discountPct(prog, m)
+    };
+    W.orders.unshift(order);
+    if (W.orders.length > 50) W.orders.pop();
     window.BJWallet.trim(m);
     window.BJWallet.save(W);
     closeModal();
     render();
+    if (!window.BJOrder.ceremony(order, { en: EN, prog, onDone: () => { redeemBusy = false; } })) redeemBusy = false;
   }
 
   render();
