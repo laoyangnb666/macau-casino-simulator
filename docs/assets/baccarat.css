@@ -209,16 +209,20 @@ body.bacpage a{color:inherit}
 .bac-actions{position:relative;z-index:3;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
   padding-top:10px;border-top:1px solid rgba(235,217,143,.14)}
 .bac-chips{display:flex;gap:7px;flex-wrap:wrap}
-.bchip{width:42px;height:42px;border-radius:50%;cursor:pointer;border:none;position:relative;
-  display:grid;place-items:center;font-family:ui-monospace,monospace;font-size:9.5px;font-weight:700;color:#2A2008;
-  background:radial-gradient(circle at 35% 28%,#FFF8DB,#E9D28A 42%,#C9A227 70%,#8C6B12);
-  box-shadow:0 6px 14px rgba(0,0,0,.5),inset 0 0 0 3px rgba(255,255,255,.28),inset 0 0 0 5px rgba(0,0,0,.1);
-  transition:transform .16s,box-shadow .16s}
-.bchip:hover{transform:translateY(-3px);box-shadow:0 10px 18px rgba(0,0,0,.55),inset 0 0 0 3px rgba(255,255,255,.3)}
-.bchip.on{transform:translateY(-3px) scale(1.04);box-shadow:0 0 0 2px var(--gold-lt),0 10px 20px rgba(0,0,0,.6)}
-.bchip[data-v="10"]{background:radial-gradient(circle at 35% 28%,#F4F1E8,#D9D2C2 42%,#A9A08A 70%,#6E6754);color:#2B2820}
-.bchip[data-v="5000"]{background:radial-gradient(circle at 35% 28%,#FFE9E0,#E9A98F 42%,#C15335 70%,#7E2A16);color:#2A0D05}
-.bchip[data-v="1000"]{background:radial-gradient(circle at 35% 28%,#EAF4FF,#A9C9E8 42%,#3E79A8 70%,#204A70);color:#0B2238}
+.bchip{width:44px;height:44px;border-radius:50%;cursor:pointer;border:none;position:relative;
+  display:flex;align-items:center;justify-content:center;font-family:"Inter",monospace;font-size:10px;font-weight:700;color:#fff;
+  box-shadow:0 4px 12px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.08);
+  transition:.14s}
+.bchip:before{content:"";position:absolute;inset:4px;border-radius:50%;border:2px dashed rgba(255,255,255,.48);pointer-events:none}
+.bchip:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(0,0,0,.55),0 0 18px rgba(201,162,39,.28)}
+.bchip:active{transform:translateY(0) scale(.96)}
+.bchip.on{box-shadow:0 0 0 2.5px rgba(235,217,143,.95),0 0 0 5px rgba(201,162,39,.18),0 8px 20px rgba(0,0,0,.5)}
+.bchip[data-v="10"]{background:#0F5C9E}
+.bchip[data-v="50"]{background:#127A46}
+.bchip[data-v="100"]{background:#2B2F33}
+.bchip[data-v="500"]{background:#8E3A18}
+.bchip[data-v="1000"]{background:#6B2A86}
+.bchip[data-v="5000"]{background:#C9A227;color:#2B2820}
 .bac-actions .sp{flex:1 1 auto}
 .bac-actions .abtn{height:38px;padding:0 16px;border-radius:9px;border:1px solid rgba(231,212,154,.3);
   background:rgba(255,255,255,.04);color:rgba(244,237,219,.82);font:inherit;font-size:11.5px;letter-spacing:.06em;cursor:pointer;transition:.18s}
@@ -227,7 +231,7 @@ body.bacpage a{color:inherit}
   color:#221903;font-weight:700;letter-spacing:.14em;min-width:132px;box-shadow:0 10px 24px -12px rgba(201,162,39,.8)}
 .bac-actions .abtn.primary:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
 .bac-actions .abtn.ghost{background:transparent}
-@media(max-width:640px){.bchip{width:36px;height:36px;font-size:8.5px}.bac-actions{gap:7px}.bac-actions .abtn{padding:0 11px;font-size:10.5px}}
+@media(max-width:640px){.bac-actions{gap:7px}.bac-actions .abtn{padding:0 11px;font-size:10.5px}}
 
 /* 提示条 */
 .bac-msg{position:relative;z-index:3;min-height:20px;text-align:center;font-size:11px;letter-spacing:.04em;
@@ -597,17 +601,6 @@ body.bacpage::after{
   background:linear-gradient(180deg,rgba(22,25,27,.9),rgba(8,9,10,.94));
   box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 16px 30px -24px #000
 }
-.bchip{
-  width:46px;height:46px;font-size:10px;
-  box-shadow:0 8px 18px rgba(0,0,0,.55),inset 0 0 0 3px rgba(255,255,255,.26),inset 0 0 0 6px rgba(0,0,0,.08)
-}
-.bchip:before{
-  content:"";position:absolute;inset:5px;border-radius:50%;pointer-events:none;
-  background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.5) 0 12deg,transparent 12deg 45deg);
-  -webkit-mask-image:radial-gradient(circle,transparent 0 58%,#000 60% 100%);
-  mask-image:radial-gradient(circle,transparent 0 58%,#000 60% 100%);opacity:.5
-}
-.bchip.on{box-shadow:0 0 0 2px var(--gold-lt),0 0 22px rgba(201,162,39,.35),0 10px 20px rgba(0,0,0,.6)}
 .bac-actions .abtn{
   height:40px;padding:0 16px;border-radius:9px;border-color:rgba(201,162,39,.22);
   background:rgba(255,255,255,.03);color:rgba(243,238,228,.7);font-size:11px;letter-spacing:.08em
@@ -698,8 +691,6 @@ body.bacpage::after{
   .betspot b{font-size:16px}
   .bac-slabel{margin-top:6px}
   .bac-msg{font-size:10.5px}
-  .bac-chips{width:100%;justify-content:space-between;gap:5px}
-  .bchip{width:37px;height:37px;font-size:8.5px}
   .bac-actions .sp{display:none}
   .bac-actions .abtn{flex:1 1 auto;height:34px;padding:0 8px;font-size:10px}
   .bac-actions .abtn.primary{flex:1 1 100%;order:9;height:44px;margin-top:2px}
