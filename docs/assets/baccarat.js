@@ -50,12 +50,30 @@
     ponte16:      { min: 100, nocomm: false, note: '卫星场只开标准庄抽水台' }
   };
   const ROOMS = [
-    { id: 'general', name: '普通场', mul: 1,   vip: false },
-    { id: 'main',    name: '中场',   mul: 2,   vip: false },
-    { id: 'high',    name: '高额区', mul: 10,  vip: false },
-    { id: 'vip',     name: '贵宾厅', mul: 40,  vip: true  },
-    { id: 'private', name: '私人厅', mul: 100, vip: true  }
+    { id: 'general', name: '普通场', mul: 1,   vip: false, desc: '娱乐场楼层' },
+    { id: 'main',    name: '中场',   mul: 2,   vip: false, desc: '主赌厅' },
+    { id: 'high',    name: '高额区', mul: 10,  vip: false, desc: '高限红台' },
+    { id: 'vip',     name: '贵宾厅', mul: 40,  vip: true,  desc: '邀约制' },
+    { id: 'private', name: '私人厅', mul: 100, vip: true,  desc: '独立包房' }
   ];
+  /* 与 21 点目录一致的英文名 / 集团名，供双语下拉显示 */
+  const VENUE_EN = {
+    venetian: 'The Venetian Macao', parisian: 'The Parisian Macao', londoner: 'The Londoner Macao',
+    sands: 'Sands Macao', plaza: 'Plaza Macao', galaxy: 'Galaxy Macau', starworld: 'StarWorld Hotel',
+    broadway: 'Broadway Macau', wynn: 'Wynn Macau', 'wynn-palace': 'Wynn Palace',
+    mgm: 'MGM Macau', 'mgm-cotai': 'MGM Cotai', cod: 'City of Dreams', studio: 'Studio City',
+    altira: 'Altira Macau', 'grand-lisboa': 'Grand Lisboa', 'lisboa-palace': 'Grand Lisboa Palace',
+    lisboa: 'Hotel Lisboa', larc: "L'Arc Macau", oceanus: 'Oceanus', ponte16: 'Ponte 16'
+  };
+  const GROUP_EN = {
+    sands: 'Sands China', galaxy: 'Galaxy Entertainment', wynn: 'Wynn Macau',
+    mgm: 'MGM China', melco: 'Melco Resorts', sjm: 'SJM Holdings'
+  };
+  const GROUP_ORDER = ['sands', 'galaxy', 'wynn', 'mgm', 'melco', 'sjm'];
+  function groupLabel(prog) {
+    const c = CASINOS.find(x => x.prog === prog);
+    return (c ? c.op : prog) + ' ' + (GROUP_EN[prog] || '');
+  }
 
   /* ---------------- 本地状态 ---------------- */
   const BANK_KEY = 'bac.bank.v1';
@@ -75,6 +93,7 @@
 
   const state = {
     venue: Math.max(0, Math.min(CASINOS.length - 1, prefs.venue | 0)),
+    group: prefs.group || CASINOS[Math.max(0, Math.min(CASINOS.length - 1, prefs.venue | 0))].prog,
     room: Math.max(0, Math.min(ROOMS.length - 1, prefs.room | 0)),
     mode: prefs.mode === 'nocomm' ? 'nocomm' : 'comm',
     lucky6On: !!prefs.lucky6,
@@ -161,17 +180,25 @@
   }
 
   /* ---------------- 渲染 ---------------- */
+  function renderGroupSelect() {
+    const sel = $('#grpSel');
+    if (!sel) return;
+    sel.innerHTML = GROUP_ORDER.map(g =>
+      `<option value="${g}"${g === state.group ? ' selected' : ''}>${groupLabel(g)}</option>`).join('');
+  }
   function renderVenueSelect() {
     const sel = $('#venueSel');
     if (!sel) return;
-    sel.innerHTML = CASINOS.map((c, i) =>
-      `<option value="${i}"${i === state.venue ? ' selected' : ''}>${c.name} · ${c.op}</option>`).join('');
+    sel.innerHTML = CASINOS.map((c, i) => ({ c, i }))
+      .filter(x => x.c.prog === state.group)
+      .map(x => `<option value="${x.i}"${x.i === state.venue ? ' selected' : ''}>${x.c.name} ${VENUE_EN[x.c.id] || ''}</option>`)
+      .join('');
   }
   function renderRoomSelect() {
     const sel = $('#roomSel');
     if (!sel) return;
     sel.innerHTML = ROOMS.map((r, i) =>
-      `<option value="${i}"${i === state.room ? ' selected' : ''}>${r.name}${r.vip ? '（邀约制 · 模拟开放）' : ''}</option>`).join('');
+      `<option value="${i}"${i === state.room ? ' selected' : ''}>${r.name} · ${r.desc}${r.vip ? '（模拟开放）' : ''}</option>`).join('');
   }
   function renderModeSelect() {
     const cfg = tableCfg();
@@ -573,13 +600,31 @@
   }
 
   function bind() {
-    $('#venueSel').addEventListener('change', e => {
-      state.venue = +e.target.value;
+    $('#grpSel').addEventListener('change', e => {
+      state.group = e.target.value;
+      const first = CASINOS.findIndex(c => c.prog === state.group);
+      state.venue = first < 0 ? 0 : first;
+      prefs.group = state.group;
       prefs.venue = state.venue;
       prefs.mode = 'comm';
       state.mode = 'comm';
       saveJSON(PREF_KEY, prefs);
       state.shoe = [];
+      renderVenueSelect();
+      renderModeSelect();
+      ensureShoe(tableCfg());
+      renderSummary();
+    });
+    $('#venueSel').addEventListener('change', e => {
+      state.venue = +e.target.value;
+      state.group = venue().prog;
+      prefs.venue = state.venue;
+      prefs.group = state.group;
+      prefs.mode = 'comm';
+      state.mode = 'comm';
+      saveJSON(PREF_KEY, prefs);
+      state.shoe = [];
+      renderGroupSelect();
       renderModeSelect();
       ensureShoe(tableCfg());
       renderSummary();
@@ -662,6 +707,7 @@
   function boot() {
     if (!CASINOS.length) return;
     state.shoeNo = 1;
+    renderGroupSelect();
     renderVenueSelect();
     renderRoomSelect();
     renderModeSelect();

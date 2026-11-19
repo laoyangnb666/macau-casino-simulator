@@ -119,6 +119,24 @@
     'grand-lisboa': 0.1, 'lisboa-palace': 0.5, lisboa: 0.1, larc: 0.1, oceanus: 0.2, ponte16: 0.1
   };
   const LEVELS = [0.05, 0.1, 0.2, 0.5, 1, 2, 3, 5, 8, 10, 20, 30, 50, 80, 100, 200, 300, 500, 1000, 2000];
+  /* 与 21 点目录一致的英文名 / 集团名，供双语下拉显示 */
+  const VENUE_EN = {
+    venetian: 'The Venetian Macao', parisian: 'The Parisian Macao', londoner: 'The Londoner Macao',
+    sands: 'Sands Macao', plaza: 'Plaza Macao', galaxy: 'Galaxy Macau', starworld: 'StarWorld Hotel',
+    broadway: 'Broadway Macau', wynn: 'Wynn Macau', 'wynn-palace': 'Wynn Palace',
+    mgm: 'MGM Macau', 'mgm-cotai': 'MGM Cotai', cod: 'City of Dreams', studio: 'Studio City',
+    altira: 'Altira Macau', 'grand-lisboa': 'Grand Lisboa', 'lisboa-palace': 'Grand Lisboa Palace',
+    lisboa: 'Hotel Lisboa', larc: "L'Arc Macau", oceanus: 'Oceanus', ponte16: 'Ponte 16'
+  };
+  const GROUP_EN = {
+    sands: 'Sands China', galaxy: 'Galaxy Entertainment', wynn: 'Wynn Macau',
+    mgm: 'MGM China', melco: 'Melco Resorts', sjm: 'SJM Holdings'
+  };
+  const GROUP_ORDER = ['sands', 'galaxy', 'wynn', 'mgm', 'melco', 'sjm'];
+  function groupLabel(prog) {
+    const c = CASINOS.find(x => x.prog === prog);
+    return (c ? c.op : prog) + ' ' + (GROUP_EN[prog] || '');
+  }
 
   /* ---------------- 本地存储 ---------------- */
   const BANK_KEY = 'slot.bank.v1';
@@ -138,6 +156,7 @@
   const prefs = loadJSON(PREF_KEY) || {};
   const state = {
     venue: Math.max(0, Math.min(CASINOS.length - 1, prefs.venue | 0)),
+    group: prefs.group || CASINOS[Math.max(0, Math.min(CASINOS.length - 1, prefs.venue | 0))].prog,
     machineId: prefs.machineId || 'dragon',
     betIdx: prefs.betIdx || 4,
     bank: loadNum(BANK_KEY, 100000),
@@ -290,10 +309,19 @@
   }
 
   /* ---------------- 渲染 ---------------- */
+  function renderGroup() {
+    const sel = $('#grpSel');
+    if (!sel) return;
+    sel.innerHTML = GROUP_ORDER.map(g =>
+      `<option value="${g}"${g === state.group ? ' selected' : ''}>${groupLabel(g)}</option>`).join('');
+  }
   function renderVenue() {
     const sel = $('#venueSel');
     if (!sel) return;
-    sel.innerHTML = CASINOS.map((c, i) => `<option value="${i}"${i === state.venue ? ' selected' : ''}>${c.name} · ${c.op}</option>`).join('');
+    sel.innerHTML = CASINOS.map((c, i) => ({ c, i }))
+      .filter(x => x.c.prog === state.group)
+      .map(x => `<option value="${x.i}"${x.i === state.venue ? ' selected' : ''}>${x.c.name} ${VENUE_EN[x.c.id] || ''}</option>`)
+      .join('');
   }
   function renderMachines() {
     const host = $('#machList');
@@ -654,11 +682,26 @@
   }
 
   function bind() {
+    $('#grpSel').addEventListener('change', e => {
+      if (state.spinning) { e.target.value = state.group; return msg('转轮停止后再换集团'); }
+      state.group = e.target.value;
+      const first = CASINOS.findIndex(c => c.prog === state.group);
+      state.venue = first < 0 ? 0 : first;
+      prefs.group = state.group;
+      prefs.venue = state.venue;
+      saveJSON(PREF_KEY, prefs);
+      renderVenue();
+      renderMachine();
+      msg(`${venue().name} · 机台已切换`);
+    });
     $('#venueSel').addEventListener('change', e => {
       if (state.spinning) { e.target.value = state.venue; return msg('转轮停止后再换场馆'); }
       state.venue = +e.target.value;
+      state.group = venue().prog;
       prefs.venue = state.venue;
+      prefs.group = state.group;
       saveJSON(PREF_KEY, prefs);
+      renderGroup();
       renderVenue();
       renderMachine();
       msg(`${venue().name} · 机台已切换`);
@@ -766,6 +809,7 @@
   function boot() {
     if (!CASINOS.length) return;
     state.machineId = prefs.machineId || (PROG_MACHINES[venue().prog] || ['dragon'])[0];
+    renderGroup();
     renderVenue();
     $('#turboBtn').classList.toggle('on', state.turbo);
     $('#turboBtn').textContent = state.turbo ? '极速 · 开' : '极速';

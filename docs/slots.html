@@ -10,26 +10,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/slots.css?v=20261119b">
+<link rel="stylesheet" href="assets/slots.css?v=20261119c">
+<link rel="stylesheet" href="assets/bj-mall.css?v=20261119c">
 <script src="assets/auth.js"></script>
 </head>
 <body class="slotpage">
 <div class="slot-bg" aria-hidden="true"></div>
 
-<header class="slot-nav">
+<header class="nav-wrap">
   <nav class="nav">
-    <a class="slot-brand" href="index.html">
-      <img src="assets/logo.png" alt="澳门娱乐场模拟器">
+    <a class="brand" href="index.html">
+      <img class="logo-mark" src="assets/logo.png" alt="澳门娱乐场模拟器" width="32" height="32">
       <span><b>澳门娱乐场模拟器</b><small>Macau Casino Simulator</small></span>
     </a>
-    <div class="slot-links nav-links">
+    <div class="nav-links">
       <a href="index.html">首页</a>
       <a href="blackjack.html">21 点</a>
       <a href="baccarat.html">百家乐</a>
       <a href="slots.html" class="on">老虎机</a>
       <a href="blackjack-mall.html">积分商城</a>
+      <a href="https://github.com/laoyangnb666/macau-casino-simulator" target="_blank" rel="noopener">仓库</a>
     </div>
-    <a class="slot-out" href="https://github.com/laoyangnb666/macau-casino-simulator" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn btn-dark" href="https://github.com/laoyangnb666/macau-casino-simulator" target="_blank" rel="noopener">GitHub 仓库</a>
   </nav>
 </header>
 
@@ -135,11 +137,9 @@
     <!-- ============ 侧栏 ============ -->
     <aside class="slot-side">
       <section class="slot-card">
-        <h4>场馆与机台 <em>FLOOR</em></h4>
-        <div class="slot-field">
-          <label for="venueSel">娱乐场</label>
-          <select id="venueSel"></select>
-        </div>
+        <h4>机台设置 <em>Machine Settings</em></h4>
+        <div class="setrow col"><label>娱乐场集团 <i>Casino Group</i></label><select id="grpSel"></select></div>
+        <div class="setrow col"><label>娱乐场 <i>Casino</i></label><select id="venueSel"></select></div>
         <div class="mach-list" id="machList"></div>
       </section>
 
@@ -231,8 +231,10 @@
   </div>
 </div>
 
+<script src="assets/i18n.js"></script>
 <script src="assets/bj-casinos.js"></script>
 <script src="assets/bj-wallet.js"></script>
-<script src="assets/slots.js?v=20261119b"></script>
+<script src="assets/slots.js?v=20261119c"></script>
+<script src="assets/lux-select.js?v=20261119c"></script>
 </body>
 </html>
