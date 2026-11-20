@@ -534,8 +534,34 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
 @media (prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
   .hero-bg,.ribbon-track{animation:none}
+  .view.on{animation:none}
 }
+
+/* ============ 选项式视图切换 ============ */
+.view{display:none}
+.view.on{display:block;animation:viewIn .55s var(--ease)}
+@keyframes viewIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.view-head{padding:150px 0 0}
+.view-head .sec-head{margin-bottom:0}
+.view-head h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.4vw,54px);line-height:1.16;margin:14px 0 16px;color:var(--cream)}
+.view-head h1 em{font-style:normal;background:linear-gradient(100deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.view-head p{max-width:760px;font-size:13.5px;line-height:1.9;color:var(--txt-dim);font-weight:300}
+.entries.quad{grid-template-columns:1fr 1fr}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:34px}
+.step{position:relative;padding:22px 20px 20px;border:1px solid rgba(243,238,228,.14);border-radius:3px;background:var(--ink-2)}
+.step:before{content:attr(data-n);position:absolute;top:-14px;left:18px;width:28px;height:28px;border-radius:50%;
+  display:grid;place-items:center;background:linear-gradient(140deg,var(--gold-lt),var(--gold));color:#1A1306;
+  font-family:"Inter",monospace;font-size:12px;font-weight:700}
+.step h4{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--cream);margin:6px 0 8px}
+.step p{font-size:12px;line-height:1.85;color:var(--txt-dim);font-weight:300}
+.cream .step{background:#fff;border-color:rgba(27,30,28,.14)}
+.cream .step h4{color:var(--dark-txt)}
+.cream .step p{color:var(--dark-dim)}
+.mnav a.on{color:var(--gold-lt)}
+@media (max-width:900px){.entries.quad{grid-template-columns:1fr}}
+@media (max-width:760px){.steps{grid-template-columns:1fr}.view-head{padding:120px 0 0}}
 </style>
+<noscript><style>.view{display:block}</style></noscript>
 <script src="assets/auth.js"></script>
 </head>
 <body>
@@ -549,17 +575,16 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
       <span><b>澳门娱乐场模拟器</b><small>Macau Casino Simulator</small></span>
     </a>
     <div class="nav-links">
-      <a href="index.html" class="on">首页</a>
+      <a href="#/home" data-view="home" class="on">首页</a>
+      <a href="#/rules" data-view="rules">台规</a>
+      <a href="#/venues" data-view="venues">场馆</a>
+      <a href="#/member" data-view="member">会籍</a>
+      <a href="#/history" data-view="history">历史</a>
+      <a href="#/learn" data-view="learn">教学</a>
+      <a href="#/info" data-view="info">资讯</a>
       <a href="blackjack.html">21 点</a>
       <a href="baccarat.html">百家乐</a>
       <a href="slots.html">老虎机</a>
-      <a href="#rules">台面</a>
-      <a href="#strategy">策略</a>
-      <a href="#rooms">厅房</a>
-      <a href="#casinos">场馆</a>
-      <a href="#history">历史</a>
-      <a href="#member">会籍</a>
-      <a href="#vault">卡面</a>
       <a href="blackjack-mall.html">商城</a>
       <a href="member.html">会员中心</a>
     </div>
@@ -583,20 +608,22 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
 </nav>
 
 <div class="mnav" id="mnav">
+  <a href="#/home" data-view="home">首页总览</a>
+  <a href="#/rules" data-view="rules">台规 · 几何 · 策略</a>
+  <a href="#/venues" data-view="venues">七档厅房 · 二十一家场馆</a>
+  <a href="#/member" data-view="member">六套会籍 · 卡面墙</a>
+  <a href="#/history" data-view="history">赌权时间线</a>
+  <a href="#/learn" data-view="learn">教学中心 · 概率表 · 术语</a>
+  <a href="#/info" data-view="info">商城预览 · 问答 · 负责任赌博 · 更新日志</a>
   <a href="blackjack.html">21 点台面</a>
   <a href="baccarat.html">百家乐台面</a>
   <a href="slots.html">老虎机厅</a>
-  <a href="#rules">台规与附加注</a>
-  <a href="#strategy">基本策略</a>
-  <a href="#rooms">七档厅房</a>
-  <a href="#casinos">二十一家场馆</a>
-  <a href="#history">赌权时间线</a>
-  <a href="#member">六套会籍</a>
-  <a href="#vault">卡面墙</a>
-  <a href="#glossary">术语表</a>
   <a href="blackjack-mall.html">积分商城</a>
+  <a href="member.html">会员中心</a>
 </div>
 
+<main id="views">
+<div class="view on" data-view="home" id="view-home">
 <header class="hero" id="top">
   <div class="hero-bg" style="background-image:url('assets/img/hero.jpg')"></div>
   <div class="hero-spot" id="heroSpot" aria-hidden="true"></div>
@@ -653,11 +680,11 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
 <section class="sec cream">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="kicker">Two Entries</div>
-      <h2>两个入口，<em>一条完整的链路。</em></h2>
-      <p>在牌桌上积累有效投注，换成会员卡与贵宾卡；再用积分兑换餐饮、住宿、演出、水疗与交通 —— 全部按六家公司官网公布的物业与项目整理，不虚构项目、不虚构档位。</p>
+      <div class="kicker">Four Gates</div>
+      <h2>四个入口，<em>一条完整的链路。</em></h2>
+      <p>在牌桌上积累有效投注，换成会员卡与贵宾卡；再用积分兑换餐饮、住宿、演出、水疗与交通 —— 全部按六家公司官网公布的物业与项目整理，不虚构项目、不虚构档位。新手先从教学中心把规则与概率读明白。</p>
     </div>
-    <div class="entries">
+    <div class="entries quad">
       <a class="entry reveal" href="blackjack.html">
         <span class="bg" style="background-image:url('assets/img/table.jpg')"></span>
         <span class="veil"></span>
@@ -684,6 +711,32 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
           <span class="tag">心愿单</span>
         </div>
         <span class="go">进入商城 →</span>
+      </a>
+      <a class="entry reveal d1" href="#/learn">
+        <span class="bg" style="background-image:url('assets/img/hero.jpg')"></span>
+        <span class="veil"></span>
+        <span class="no">03 / THE GUIDE</span>
+        <h3>教学中心</h3>
+        <p>三张桌面的新手流程逐步拆解：下注、决策、结算各一步；配百家乐 8 副精确概率、21 点爆牌率与庄家明牌分布、老虎机 RTP 与波动对照，以及九个核心术语。</p>
+        <div class="tags">
+          <span class="tag">三步上手</span>
+          <span class="tag">概率表</span>
+          <span class="tag">术语表</span>
+        </div>
+        <span class="go">开始学习 →</span>
+      </a>
+      <a class="entry gold-card reveal d2" href="#/info">
+        <span class="bg" style="background-image:url('assets/img/dining.jpg')"></span>
+        <span class="veil"></span>
+        <span class="no">04 / THE DESK</span>
+        <h3>资讯与服务台</h3>
+        <p>商城六类礼遇预览、十二问 FAQ、负责任赌博自查与限额建议、版本更新日志与本站说明 —— 模拟的边界、数据的来源，一次讲清楚。</p>
+        <div class="tags">
+          <span class="tag">FAQ</span>
+          <span class="tag">负责任赌博</span>
+          <span class="tag">更新日志</span>
+        </div>
+        <span class="go">前往服务台 →</span>
       </a>
     </div>
   </div>
@@ -744,6 +797,28 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
     <p class="table-note reveal">以上为模拟口径：百家乐主注按 8 副牌精确值；老虎机 RTP 为机台标称值与场馆偏移后的校准目标。</p>
   </div>
 </section>
+
+<!-- ============ CTA（home 视图尾） ============ -->
+<section class="cta">
+  <h3>现在就可以坐下，<em>不用注册。</em></h3>
+  <p>全部数据只存在你自己的浏览器里，换页不丢，也不连接任何真实账户。虚拟资金、真实台规。</p>
+  <div class="hero-cta">
+    <a class="btn-pill btn-gold" href="blackjack.html">打开牌桌</a>
+    <a class="btn-pill btn-line" href="blackjack-mall.html">看看能换什么</a>
+  </div>
+</section>
+</div><!-- /view-home -->
+
+<div class="view" data-view="rules" id="view-rules">
+<div class="view-head">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">The Rules · 台规与策略</div>
+      <h1>规则、几何与<em>长期最优解。</em></h1>
+      <p>台面上真实存在的每一条规则、六门台面的几何与发牌顺序、硬手软手对子三张基本策略表 —— 先读规则，再谈决策。</p>
+    </div>
+  </div>
+</div>
 
 <!-- ============ 台规 ============ -->
 <section class="sec" id="rules">
@@ -956,6 +1031,19 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
   </div>
 </section>
 
+</div><!-- /view-rules -->
+
+<div class="view" data-view="venues" id="view-venues">
+<div class="view-head">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Rooms & Houses · 厅房与场馆</div>
+      <h1>七档厅房，<em>二十一家场馆。</em></h1>
+      <p>同一家公司，中场用洗牌机、贵宾厅换 8 副牌靴；二十一家场馆各有厅房开关与最低注。按集团筛选，逐家看差异。</p>
+    </div>
+  </div>
+</div>
+
 <!-- ============ 厅房 ============ -->
 <section class="sec alt" id="rooms">
   <div class="wrap">
@@ -1071,6 +1159,19 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
   </div>
 </section>
 
+</div><!-- /view-venues -->
+
+<div class="view" data-view="history" id="view-history">
+<div class="view-head">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">The City · 历史</div>
+      <h1>一座城，<em>一百七十年的赌权史。</em></h1>
+      <p>专营、开放、重新竞投 —— 每一次制度变化都直接改写了台规与价格。九个城市节点，看懂今天的六家承批。</p>
+    </div>
+  </div>
+</div>
+
 <!-- ============ 时间线 ============ -->
 <section class="sec alt" id="history">
   <div class="wrap">
@@ -1106,6 +1207,21 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
         <span class="tag">Liberalisation</span>
       </div>
       <div class="tl reveal">
+        <span class="y">2004</span>
+        <div><h4>金沙开业</h4><p>澳门金沙落成，美式度假村模式进入半岛：中场大厅、角子机区与会员体系一并落地，「以中场养贵宾」的结构开始成形。</p></div>
+        <span class="tag">Sands</span>
+      </div>
+      <div class="tl reveal">
+        <span class="y">2007</span>
+        <div><h4>威尼斯人登场</h4><p>路氹金光大道第一个超大型度假村开业，上千台角子机与电子桌把中场规模拉到半岛的数倍；路氹从此成为赌收主引擎。</p></div>
+        <span class="tag">Cotai</span>
+      </div>
+      <div class="tl reveal">
+        <span class="y">2018</span>
+        <div><h4>大桥通车</h4><p>港珠澳大桥开通，一小时生活圈把客流结构改写：当日往返的中场客占比上升，贵宾厅依赖度下降，非博彩投资被写进续牌条件。</p></div>
+        <span class="tag">Bridge</span>
+      </div>
+      <div class="tl reveal">
         <span class="y">2022</span>
         <div><h4>重新竞投</h4><p>新《博彩法》通过，六家承批公司获发十年期牌照（2023–2032）；卫星场与中介人制度同步收紧，非博彩投资成为续牌条件的一部分。</p></div>
         <span class="tag">Re-tender</span>
@@ -1119,6 +1235,19 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
     <p class="table-note reveal">注：时间线依据澳门公开史料与博彩监察协调局公开资料整理；牌照期限以 2022 年批给合同为准。</p>
   </div>
 </section>
+
+</div><!-- /view-history -->
+
+<div class="view" data-view="member" id="view-member">
+<div class="view-head">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Membership · 会籍与卡面</div>
+      <h1>六套官方会籍，<em>四十二张卡面。</em></h1>
+      <p>积分门槛、换算口径、贵宾准入三维表，以及按官方档位语义绘制的卡面墙 —— 点任意卡面可放大查看。</p>
+    </div>
+  </div>
+</div>
 
 <!-- ============ 会籍 ============ -->
 <section class="sec" id="member">
@@ -1341,34 +1470,107 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
   </div>
 </section>
 
-<!-- ============ 商城预览 ============ -->
-<section class="sec cream paper">
+</div><!-- /view-member -->
+
+<div class="view" data-view="learn" id="view-learn">
+<div class="view-head">
   <div class="wrap">
-    <div class="split" style="display:grid;grid-template-columns:.92fr 1.08fr;gap:64px;align-items:center">
-      <figure class="reveal" style="position:relative;overflow:hidden;border-radius:3px;aspect-ratio:4/3;background:var(--cream-2)">
-        <img src="assets/img/dining.jpg" alt="澳门娱乐场 · 餐饮与住宿礼遇" style="width:100%;height:100%;object-fit:cover" loading="lazy">
-        <figcaption style="position:absolute;left:22px;bottom:18px;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-lt);text-shadow:0 2px 12px rgba(0,0,0,.6)">Six Programmes · 200+ Benefits</figcaption>
-      </figure>
-      <div class="reveal d1">
-        <div class="sec-head" style="margin-bottom:0">
-          <div class="kicker">The Mall · 积分商城</div>
-          <h2>打出来的积分，<em>换得回的东西。</em></h2>
-          <p>会员档位按有效投注累计，贵宾卡需三维达标后申请获批。六家公司的礼遇目录按官网分册整理，每一类都能点到官网来源。</p>
-        </div>
-        <div class="mall-grid" style="margin-top:34px;grid-template-columns:repeat(2,1fr)">
-          <div class="mall-item"><span class="num">01</span><div class="ico">DINING</div><h4>餐饮</h4><p>米其林餐厅、自助餐与行政酒廊，按会员档位给到不同折扣。</p></div>
-          <div class="mall-item"><span class="num">02</span><div class="ico">STAY</div><h4>住宿</h4><p>六家酒店群的客房与套房，贵宾卡可换到私人管家与专属楼层。</p></div>
-          <div class="mall-item"><span class="num">03</span><div class="ico">SHOW</div><h4>演出</h4><p>驻场演出、演唱会与剧院包厢，热门场次需要提前预约。</p></div>
-          <div class="mall-item"><span class="num">04</span><div class="ico">SPA</div><h4>水疗</h4><p>各酒店水疗中心的护理套餐，白金卡以上通常附带升级。</p></div>
-          <div class="mall-item"><span class="num">05</span><div class="ico">PLAY</div><h4>玩乐</h4><p>观景、乐园、游船与体验类项目，适合把零散积分用小。</p></div>
-          <div class="mall-item"><span class="num">06</span><div class="ico">SHOP</div><h4>购物</h4><p>名店礼券与免税额度，按集团不同分册结算。</p></div>
-        </div>
-        <div class="hero-cta" style="margin-top:32px">
-          <a class="btn-pill" href="blackjack-mall.html" style="background:#0A0C0D;color:var(--cream)">浏览全部礼遇</a>
-          <a class="btn-pill" href="blackjack.html" style="border-color:rgba(27,30,28,.24);color:var(--dark-txt)">先打几局</a>
-        </div>
-      </div>
+    <div class="sec-head">
+      <div class="kicker">Learn · 教学中心</div>
+      <h1>先懂规则与概率，<em>再坐下。</em></h1>
+      <p>三张桌面各三步上手流程，配精确概率表与术语表。所有数字注明口径：精确值、近似值与模拟校准值分开标注。</p>
     </div>
+  </div>
+</div>
+
+<!-- ============ 教学 · 21 点 ============ -->
+<section class="sec cream" id="learn-bj">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Lesson 01 · Blackjack</div>
+      <h2>21 点：<em>三步坐下。</em></h2>
+      <p>21 点是唯一有决策空间的桌面游戏：你的每个选择都改变期望。基本策略表把长期最优解摊开，剩下的只是执行。</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step" data-n="1"><h4>下注</h4><p>选场馆与厅房 —— 最低注、牌副与洗牌方式逐档不同。筹码叠成主注与附加注；有效投注同步累积会员积分，与输赢无关。</p></div>
+      <div class="step" data-n="2"><h4>按表决策</h4><p>要牌 / 停牌 / 加倍 / 分门 / 投降，坐标只有两个：你的手牌与庄家明牌。硬手软手对子三张表见「台规」视图；桌面无底牌，庄家最后才补牌。</p></div>
+      <div class="step" data-n="3"><h4>结算与复盘</h4><p>Blackjack 赔 3:2（低额台 6:5 更贵），保险与附加注长期为负。每局结算写入终身统计，会员中心可查胜率和净输赢。</p></div>
+    </div>
+    <div class="table-wrap reveal" style="margin-top:30px">
+      <table class="data-table">
+        <thead><tr><th>庄家明牌</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>A</th></tr></thead>
+        <tbody>
+          <tr><td><b>爆牌率</b>（S17 近似）</td><td><span class="mono">35%</span></td><td><span class="mono">37%</span></td><td><span class="mono">40%</span></td><td><span class="mono">42%</span></td><td><span class="mono">42%</span></td><td><span class="mono">26%</span></td><td><span class="mono">24%</span></td><td><span class="mono">23%</span></td><td><span class="mono">21%</span></td><td><span class="mono">12%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-wrap reveal" style="margin-top:18px">
+      <table class="data-table">
+        <thead><tr><th>你的硬手</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th></tr></thead>
+        <tbody>
+          <tr><td><b>再要一张即爆</b></td><td><span class="mono">31%</span></td><td><span class="mono">39%</span></td><td><span class="mono">46%</span></td><td><span class="mono">54%</span></td><td><span class="mono">62%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note reveal">口径：庄家爆牌率为 S17 单副近似值（多副与 H17 略有差异）；硬手爆牌率为「再要一张立即超过 21」的单张概率，不是整手最终爆牌率。庄家明牌 2–6 时停牌让庄家自爆，是基本策略的核心直觉。</p>
+  </div>
+</section>
+
+<!-- ============ 教学 · 百家乐 ============ -->
+<section class="sec alt" id="learn-bac">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Lesson 02 · Baccarat</div>
+      <h2>百家乐：<em>没有决策，只有选择。</em></h2>
+      <p>补牌表固定，玩家不做任何决定 —— 比的是下注选择与注码管理。庄略优于闲，所以庄赢抽水 5%。</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step" data-n="1"><h4>选注</h4><p>庄 / 闲 / 和 / 闲对 / 庄对 / 幸运 6。抽水台庄赢扣 5%；免佣台改为庄以 6 点胜出只赔一半，优势约 1.46%。</p></div>
+      <div class="step" data-n="2"><h4>等补牌</h4><p>8 副牌靴、销牌、固定补牌表逐张执行；贵宾厅可咪牌放慢节奏。路单（珠盘路 / 大路）只记录历史，不改变下一局概率。</p></div>
+      <div class="step" data-n="3"><h4>读优势</h4><p>庄 1.06% 是桌面最便宜的一注；和 14.36%、对子 10.36% 都是昂贵的错觉。免佣与抽水按场馆切换，台面限红随厅房放大。</p></div>
+    </div>
+    <div class="table-wrap reveal" style="margin-top:30px">
+      <table class="data-table">
+        <thead><tr><th>注项</th><th>8 副精确概率</th><th>赔率</th><th>庄家优势</th></tr></thead>
+        <tbody>
+          <tr><td><b>庄</b>（抽水 5%）</td><td><span class="mono">45.86%</span></td><td><span class="mono">0.95 : 1</span></td><td><span class="mono">1.06%</span></td></tr>
+          <tr><td><b>闲</b></td><td><span class="mono">44.62%</span></td><td><span class="mono">1 : 1</span></td><td><span class="mono">1.24%</span></td></tr>
+          <tr><td><b>和</b></td><td><span class="mono">9.52%</span></td><td><span class="mono">8 : 1</span></td><td><span class="mono">14.36%</span></td></tr>
+          <tr><td><b>闲对 / 庄对</b></td><td><span class="mono">各 7.47%</span></td><td><span class="mono">11 : 1</span></td><td><span class="mono">10.36%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note reveal">口径：8 副牌精确组合值；免佣台（庄 6 赔半）庄优势约 1.46%。幸运 6 按庄两张 / 三张 6 点分赔 12 / 20 : 1，仅部分场馆开放。</p>
+  </div>
+</section>
+
+<!-- ============ 教学 · 老虎机 ============ -->
+<section class="sec cream" id="learn-slots">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Lesson 03 · Slots</div>
+      <h2>老虎机：<em>RTP 会说话。</em></h2>
+      <p>机台不说话，但长期回报率会。单次结果与 RTP 无关 —— 连输二十转仍然完全正常；波动决定派彩分布的形状。</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step" data-n="1"><h4>选机与注额</h4><p>243 ways 与 20–30 线两种结构；注码 0.05–2,000 MOP。同一款机在不同场馆 RTP 可差 ±1.6 个百分点。</p></div>
+      <div class="step" data-n="2"><h4>转轮与触发</h4><p>3 个以上彩金触发 10 次免费游戏、全奖 ×2，免费内再触发加 5 次；四层累积奖池按注额 2% 独立累积，触发概率极低。</p></div>
+      <div class="step" data-n="3"><h4>读实测 RTP</h4><p>会员中心对照「理论 RTP」与「实测 RTP」：短期偏差是波动，长期收敛于标称值。低波动小奖多，高波动空转多但大奖重。</p></div>
+    </div>
+    <div class="table-wrap reveal" style="margin-top:30px">
+      <table class="data-table">
+        <thead><tr><th>机台</th><th>结构</th><th>波动</th><th>标称 RTP</th></tr></thead>
+        <tbody>
+          <tr><td><b>盛世金莲</b>（永利）</td><td><span class="mono">20 线</span></td><td>低中</td><td><span class="mono">94.0%</span></td></tr>
+          <tr><td><b>钻石人生</b>（永利）</td><td><span class="mono">243 ways</span></td><td>高</td><td><span class="mono">93.0%</span></td></tr>
+          <tr><td><b>金龙献瑞</b>（金沙）</td><td><span class="mono">243 ways</span></td><td>中</td><td><span class="mono">92.5%</span></td></tr>
+          <tr><td><b>金狮传奇</b>（美高梅）</td><td><span class="mono">243 ways</span></td><td>高</td><td><span class="mono">92.0%</span></td></tr>
+          <tr><td><b>摩卡财富</b>（新濠）</td><td><span class="mono">30 线</span></td><td>中</td><td><span class="mono">91.8%</span></td></tr>
+          <tr><td><b>葡京金彩</b>（澳娱）</td><td><span class="mono">25 线</span></td><td>中</td><td><span class="mono">89.8%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note reveal">口径：标称 RTP 为机台基础值，载入时按场馆 ±1.6 个百分点偏移自动校准赔付表；与老虎机厅「理论 RTP」一致。</p>
   </div>
 </section>
 
@@ -1394,13 +1596,25 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
     </div>
   </div>
 </section>
+</div><!-- /view-learn -->
+
+<div class="view" data-view="info" id="view-info">
+<div class="view-head">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Service Desk · 资讯与服务台</div>
+      <h1>问答、边界与<em>更新日志。</em></h1>
+      <p>商城礼遇预览、十二问 FAQ、负责任赌博自查、版本更新日志与本站说明 —— 模拟能做什么、不能做什么，一次讲清楚。</p>
+    </div>
+  </div>
+</div>
 
 <!-- ============ FAQ ============ -->
 <section class="sec" id="faq">
   <div class="wrap">
     <div class="sec-head reveal" style="max-width:700px;margin-left:auto;margin-right:auto;text-align:center">
       <div class="kicker" style="justify-content:center">Questions · 问答</div>
-      <h2>关于台规与积分，<em>常被问到的八件事。</em></h2>
+      <h2>关于台规与积分，<em>常被问到的十二件事。</em></h2>
     </div>
     <div class="faq reveal">
       <div class="faq-item">
@@ -1435,19 +1649,130 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
         <button class="faq-q"><b>模拟器的数据存在哪？会同步到真实账户吗？</b><i></i></button>
         <div class="faq-a"><p>全部数据只存在<b>你自己的浏览器本地</b>，换页不丢、清除缓存即重置；不连接任何真实博彩账户，也不产生任何真实权益。本项目为概率教学模拟，<b>真实赌场禁止算牌，长期期望为负</b>。</p></div>
       </div>
+      <div class="faq-item">
+        <button class="faq-q"><b>三个游戏的积分是同一份吗？口径怎么算？</b><i></i></button>
+        <div class="faq-a"><p>是同一份钱包、六套卡系各自累计。21 点、百家乐、老虎机的<b>有效投注</b>都按当前场馆所属卡系的换算率计分（如金沙约 5,000 MOP = 1 分、美高梅 25 MOP = 1 分）；换馆打牌积分记到对应卡系，会员中心六卡并列展示。</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><b>会员中心为什么注明「自本版本起累计」？</b><i></i></button>
+        <div class="faq-a"><p>分游戏终身统计层是 2026-11-19 版本新增的：此前各游戏只保留<b>当场会话统计</b>，刷新即清零，没有可追溯的历史。新版本起每局结算自动写入本地终身统计；旧局无法回填，故如实注明口径起点。</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><b>手机上能玩吗？操作会不会缩水？</b><i></i></button>
+        <div class="faq-a"><p>能。三张桌面与会员中心均做了移动适配：筹码与注码控件触控尺寸放大、台面全屏模式保留、设置面板改堆叠双语标签 + 自绘下拉；导航收进汉堡菜单。<b>功能与桌面版一致</b>，仅布局重排。</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><b>这是真实赌博吗？积分能提现吗？</b><i></i></button>
+        <div class="faq-a"><p>不是，也不能。全部资金与积分为<b>虚拟模拟</b>，不连接任何真实账户、不支持充值提现、不产生真实权益；礼遇凭证仅供教学演示。真实赌博长期期望为负，<b>未成年人禁止参与赌博</b>；若你或家人受赌博困扰，请参阅「负责任赌博」板块的求助渠道。</p></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ CTA ============ -->
-<section class="cta">
-  <h3>现在就可以坐下，<em>不用注册。</em></h3>
-  <p>全部数据只存在你自己的浏览器里，换页不丢，也不连接任何真实账户。虚拟资金、真实台规。</p>
-  <div class="hero-cta">
-    <a class="btn-pill btn-gold" href="blackjack.html">打开牌桌</a>
-    <a class="btn-pill btn-line" href="blackjack-mall.html">看看能换什么</a>
+<!-- ============ 商城预览 ============ -->
+<section class="sec cream paper">
+  <div class="wrap">
+    <div class="split" style="display:grid;grid-template-columns:.92fr 1.08fr;gap:64px;align-items:center">
+      <figure class="reveal" style="position:relative;overflow:hidden;border-radius:3px;aspect-ratio:4/3;background:var(--cream-2)">
+        <img src="assets/img/dining.jpg" alt="澳门娱乐场 · 餐饮与住宿礼遇" style="width:100%;height:100%;object-fit:cover" loading="lazy">
+        <figcaption style="position:absolute;left:22px;bottom:18px;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-lt);text-shadow:0 2px 12px rgba(0,0,0,.6)">Six Programmes · 200+ Benefits</figcaption>
+      </figure>
+      <div class="reveal d1">
+        <div class="sec-head" style="margin-bottom:0">
+          <div class="kicker">The Mall · 积分商城</div>
+          <h2>打出来的积分，<em>换得回的东西。</em></h2>
+          <p>会员档位按有效投注累计，贵宾卡需三维达标后申请获批。六家公司的礼遇目录按官网分册整理，每一类都能点到官网来源。兑换走「确认 → 出票仪式 → 凭证 → 核销」闭环，记录长期保留。</p>
+        </div>
+        <div class="mall-grid" style="margin-top:34px;grid-template-columns:repeat(2,1fr)">
+          <div class="mall-item"><span class="num">01</span><div class="ico">DINING</div><h4>餐饮</h4><p>米其林餐厅、自助餐与行政酒廊，按会员档位给到不同折扣。</p></div>
+          <div class="mall-item"><span class="num">02</span><div class="ico">STAY</div><h4>住宿</h4><p>六家酒店群的客房与套房，贵宾卡可换到私人管家与专属楼层。</p></div>
+          <div class="mall-item"><span class="num">03</span><div class="ico">SHOW</div><h4>演出</h4><p>驻场演出、演唱会与剧院包厢，热门场次需要提前预约。</p></div>
+          <div class="mall-item"><span class="num">04</span><div class="ico">SPA</div><h4>水疗</h4><p>各酒店水疗中心的护理套餐，白金卡以上通常附带升级。</p></div>
+          <div class="mall-item"><span class="num">05</span><div class="ico">PLAY</div><h4>玩乐</h4><p>观景、乐园、游船与体验类项目，适合把零散积分用小。</p></div>
+          <div class="mall-item"><span class="num">06</span><div class="ico">SHOP</div><h4>购物</h4><p>名店礼券与免税额度，按集团不同分册结算。</p></div>
+        </div>
+        <div class="hero-cta" style="margin-top:32px">
+          <a class="btn-pill" href="blackjack-mall.html" style="background:#0A0C0D;color:var(--cream)">浏览全部礼遇</a>
+          <a class="btn-pill" href="member.html" style="border-color:rgba(27,30,28,.24);color:var(--dark-txt)">我的凭证与核销</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<!-- ============ 负责任赌博 ============ -->
+<section class="sec alt" id="responsible">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Play Safe · 负责任赌博</div>
+      <h2>模拟的目的，<em>是让你看清概率。</em></h2>
+      <p>这个模拟器把庄家优势、抽水与赔付逐条摊开，正是为了说明一件事：长期期望为负，没有任何策略能把它翻正。以下四条请当作使用前提。</p>
+    </div>
+    <div class="rules reveal">
+      <div class="rule"><span class="idx">01</span><h4>认识负期望</h4><p>21 点基本策略约 0.5%、百家乐庄 1.06%、老虎机 6%–10.2% —— 这些都是<em>每 100 元长期损失</em>。附加注与「差一点就中」的错觉是成本最高的部分。</p></div>
+      <div class="rule"><span class="idx">02</span><h4>设定限额</h4><p>真实场景里先定<em>时间限额与资金限额</em>，输到限额即离场，不追损、不借钱、不用生活必需资金。模拟器的「重置本金」按钮在现实里不存在。</p></div>
+      <div class="rule"><span class="idx">03</span><h4>自我检查</h4><p>是否越赌越大才能兴奋？是否因赌博误过工作与家人？是否想过「赢回来就收手」？<em>任何一条为是</em>，都建议暂停并寻求专业支持。</p></div>
+      <div class="rule"><span class="idx">04</span><h4>求助渠道</h4><p>澳门社会工作局防治赌瘾辅导服务、明爱「展晴轩」赌博辅导、各地心理援助热线均可求助；<em>未成年人禁止参与赌博</em>，家人发现异常应尽早干预。</p></div>
+    </div>
+    <p class="table-note reveal">本板块为公益提示，不构成医疗或法律建议；求助渠道名称以当地机构公开信息为准。</p>
+  </div>
+</section>
+
+<!-- ============ 更新日志 ============ -->
+<section class="sec" id="changelog">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Changelog · 更新日志</div>
+      <h2>每个版本，<em>都留痕。</em></h2>
+      <p>站点为纯静态项目，全部变更可在 GitHub 仓库逐 commit 追溯；以下按发布日期摘记面向玩家的改动。</p>
+    </div>
+    <div class="timeline">
+      <div class="tl reveal">
+        <span class="y">11-19</span>
+        <div><h4>会员中心与兑换仪式</h4><p>新增会员中心：六卡卡包、分游戏终身统计、礼遇凭证与核销；商城兑换改「确认 → 出票仪式 → 凭证 → 核销」闭环；百家乐筹码对齐 21 点款式；官网改选项式视图切换并扩充教学与资讯。</p></div>
+        <span class="tag">Member</span>
+      </div>
+      <div class="tl reveal">
+        <span class="y">11-18</span>
+        <div><h4>百家乐与老虎机上线</h4><p>8 副牌靴百家乐（抽水 / 免佣 / 幸运 6 / 路单）与 5×3 老虎机（243 ways / 多线 / 免费游戏 / 四层奖池）；全站统一暗金奢华视觉与共用导航组件。</p></div>
+        <span class="tag">Tables</span>
+      </div>
+      <div class="tl reveal">
+        <span class="y">11-17</span>
+        <div><h4>拆站与奢华改版</h4><p>21 点与积分商城自足彩仓库剥离为独立仓库；首页重写为暗调赌场夜景 + 衬线大标题 + 金色点缀；登录页改版为参考站样式。</p></div>
+        <span class="tag">Split</span>
+      </div>
+      <div class="tl reveal">
+        <span class="y">11-14</span>
+        <div><h4>钱包 v2 自愈</h4><p>共享钱包升级版本 2：脏数据自动归零、积分不超流水可换上限、万亿级硬截断；六套卡系独立累计，牌桌与商城即时同步。</p></div>
+        <span class="tag">Wallet</span>
+      </div>
+      <div class="tl reveal">
+        <span class="y">11-04</span>
+        <div><h4>站点初版</h4><p>21 点台面与会员体系首版上线：法定规章复刻、七档厅房、Hi-Lo 计数与基本策略表；GitHub Pages 以 docs/ 为根发布。</p></div>
+        <span class="tag">Genesis</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 关于本站 ============ -->
+<section class="sec cream" id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">About · 关于本站</div>
+      <h2>一间纯静态的<em>概率教室。</em></h2>
+      <p>没有后端、没有账户服务器、没有埋点：所有状态只存在你的浏览器 localStorage 里。以下三条是本站的边界声明。</p>
+    </div>
+    <div class="gloss reveal">
+      <div><b>模拟边界</b><i>Simulation Only</i><p>虚拟资金、虚拟积分、虚拟礼遇凭证；不连接真实博彩账户，不支持充值提现，不产生任何真实权益。档位与台规以官方公开资料为准，未公开门槛按模拟估算并逐处标注。</p></div>
+      <div><b>数据来源</b><i>Sources</i><p>台规依据澳门第 57/2009 号批示等法定规章；会籍档位与礼遇目录取自六家集团官网公开页；概率为组合数学精确值或注明口径的近似值；历史节点依据公开史料与博监局资料。</p></div>
+      <div><b>技术栈</b><i>Static Stack</i><p>纯 HTML / CSS / 原生 JS，无框架无构建；GitHub Pages 以 docs/ 目录发布；共享钱包、统计、卡面与票据模块跨页复用；支持 prefers-reduced-motion 与无 JS 降级阅读。</p></div>
+    </div>
+  </div>
+</section>
+</div><!-- /view-info -->
+</main>
 
 <footer>
   <div class="wrap">
@@ -1585,22 +1910,26 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
     });
   }
 
-  /* 数字滚动 */
+  /* 数字滚动：视图首次激活时才跑，避免隐藏视图白跑 */
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll('[data-count]').forEach(function(b){
-    var target = parseInt(b.getAttribute('data-count'), 10);
-    if (isNaN(target) || reduceMotion) return;
-    var start = null, dur = 1500;
-    function step(ts){
-      if (!start) start = ts;
-      var p = Math.min((ts - start) / dur, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      if (b.firstChild && b.firstChild.nodeType === 3) b.firstChild.nodeValue = String(Math.round(target * eased));
-      if (p < 1) requestAnimationFrame(step);
-    }
-    if (b.firstChild && b.firstChild.nodeType === 3) b.firstChild.nodeValue = '0';
-    requestAnimationFrame(step);
-  });
+  function runCounters(scope){
+    (scope || document).querySelectorAll('[data-count]').forEach(function(b){
+      if (b.getAttribute('data-counted')) return;
+      b.setAttribute('data-counted', '1');
+      var target = parseInt(b.getAttribute('data-count'), 10);
+      if (isNaN(target) || reduceMotion) return;
+      var start = null, dur = 1500;
+      function step(ts){
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        if (b.firstChild && b.firstChild.nodeType === 3) b.firstChild.nodeValue = String(Math.round(target * eased));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      if (b.firstChild && b.firstChild.nodeType === 3) b.firstChild.nodeValue = '0';
+      requestAnimationFrame(step);
+    });
+  }
 
   /* 电影感插页视差 */
   var plx = [].slice.call(document.querySelectorAll('[data-parallax]'));
@@ -1610,6 +1939,7 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
     plx.forEach(function(el){
       var host = el.parentNode;
       if (!host) return;
+      if (!el.offsetParent) return;   /* 隐藏视图内不算视差 */
       var r = host.getBoundingClientRect();
       if (r.bottom < -240 || r.top > vh + 240) return;
       var offset = (r.top + r.height / 2 - vh / 2) * 0.06;
@@ -1650,20 +1980,96 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLb(); });
   }
 
-  /* 右侧章节指示 */
-  var railLinks = [].slice.call(document.querySelectorAll('.rail-nav a'));
-  var railSecs = railLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); });
-  if (railLinks.length && 'IntersectionObserver' in window){
-    var ioRail = new IntersectionObserver(function(es){
+  /* 右侧章节指示：按当前视图重建 */
+  var railNav = document.getElementById('railNav');
+  var ioRail = null;
+  function buildRail(view){
+    if (!railNav) return;
+    var secs = [].slice.call(document.querySelectorAll('#view-' + view + ' section[id], #view-' + view + ' header[id]'));
+    railNav.innerHTML = secs.map(function(s){
+      var label = s.id === 'top' ? 'Top' : (((s.querySelector('.kicker') || {}).textContent || s.id).split('·').pop().trim());
+      return '<a href="#' + s.id + '" data-l="' + label + '"></a>';
+    }).join('');
+    if (ioRail) ioRail.disconnect();
+    var links = [].slice.call(railNav.querySelectorAll('a'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    ioRail = new IntersectionObserver(function(es){
       es.forEach(function(e){
         if (!e.isIntersecting) return;
-        var i = railSecs.indexOf(e.target);
+        var i = secs.indexOf(e.target);
         if (i < 0) return;
-        railLinks.forEach(function(a, j){ a.classList.toggle('on', j === i); });
+        links.forEach(function(a, j){ a.classList.toggle('on', j === i); });
       });
     }, { rootMargin: '-45% 0px -45% 0px' });
-    railSecs.forEach(function(s){ if (s) ioRail.observe(s); });
+    secs.forEach(function(s){ ioRail.observe(s); });
   }
+
+  /* ---------- 选项式视图路由 ---------- */
+  var VIEW_SECS = {
+    home: ['top', 'more'],
+    rules: ['rules', 'geometry', 'strategy'],
+    venues: ['rooms', 'casinos'],
+    history: ['history'],
+    member: ['member', 'vault'],
+    learn: ['learn-bj', 'learn-bac', 'learn-slots', 'glossary'],
+    info: ['faq', 'responsible', 'changelog', 'about']
+  };
+  var SEC2VIEW = {};
+  Object.keys(VIEW_SECS).forEach(function(v){
+    VIEW_SECS[v].forEach(function(id){ SEC2VIEW[id] = v; });
+  });
+  var curView = null;
+  function activate(v, anchorId){
+    if (!VIEW_SECS[v]) v = 'home';
+    var html = document.documentElement;
+    html.style.scrollBehavior = 'auto';   /* 切视图回顶不走长平滑动画 */
+    if (v !== curView){
+      curView = v;
+      document.querySelectorAll('.view').forEach(function(el){
+        el.classList.toggle('on', el.getAttribute('data-view') === v);
+      });
+      document.querySelectorAll('a[data-view]').forEach(function(a){
+        a.classList.toggle('on', a.getAttribute('data-view') === v);
+      });
+      window.scrollTo(0, 0);
+      runCounters(document.getElementById('view-' + v));
+      buildRail(v);
+      var mn = document.getElementById('mnav'), tg = document.getElementById('navToggle');
+      if (mn && mn.classList.contains('open')){
+        mn.classList.remove('open');
+        if (tg){ tg.classList.remove('on'); tg.setAttribute('aria-expanded', 'false'); }
+        document.body.style.overflow = '';
+      }
+    }
+    if (anchorId){
+      var target = document.getElementById(anchorId);
+      if (target) target.scrollIntoView();
+    }
+    requestAnimationFrame(function(){
+      html.style.scrollBehavior = '';
+      onScroll(); paintProgress();
+      /* reveal 兜底：首屏可见元素立即入场，其余交给 IO */
+      document.querySelectorAll('#view-' + v + ' .reveal').forEach(function(el){
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
+      });
+    });
+  }
+  function route(){
+    var h = location.hash || '';
+    if (h.indexOf('#/') === 0){ activate(h.slice(2), null); return; }
+    var id = h.slice(1);
+    if (id && SEC2VIEW[id]) activate(SEC2VIEW[id], id);
+    else activate('home', null);
+  }
+  window.addEventListener('hashchange', route);
+  /* 同 hash 重复点击不触发 hashchange：手动回顶 */
+  document.querySelectorAll('a[data-view]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if (location.hash === a.getAttribute('href')) activate(a.getAttribute('data-view'), null);
+    });
+  });
+  route();
 })();
 </script>
 </body>
