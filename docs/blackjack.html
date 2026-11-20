@@ -1194,7 +1194,7 @@ body:is(.lux-2,.lux-3,.lux-4) footer{color:rgba(243,238,228,.50)!important;borde
   .sec-rule span{letter-spacing:2px}
 }
 </style>
-<script src="assets/auth.js"></script>
+<script src="assets/auth.js?v=20261121e"></script>
 </head>
 <body class="luxpage">
 <script>document.documentElement.className += ' js';</script>
@@ -1615,6 +1615,8 @@ body:is(.lux-2,.lux-3,.lux-4) footer{color:rgba(243,238,228,.50)!important;borde
 <script src="assets/bj-wallet.js?v=20261114d"></script>
 <script src="assets/bj-core.js"></script>
 <script src="assets/bj-stats.js?v=20261119d"></script>
+<script src="assets/life-core.js?v=20261121b"></script>
+<script src="assets/life-bridge.js?v=20261121b"></script>
 <script src="assets/bj-card.js?v=20261119d"></script>
 <script>
 /* ============================================================
@@ -1624,6 +1626,8 @@ body:is(.lux-2,.lux-3,.lux-4) footer{color:rgba(243,238,228,.50)!important;borde
    ============================================================ */
 const BJ = (() => {
   const EN = !!(window.I18N && window.I18N.lang === 'en');
+  /* 人生模式：本金 = 人生现金，每局净输赢实时回写 */
+  const LIFE = !!(window.BJLifeBridge && window.BJLifeBridge.active);
   const SUITS = ['♠','♥','♦','♣'];
   const RANKS = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
 
@@ -1668,7 +1672,9 @@ const BJ = (() => {
     return Math.max(150000, r.max * 8);
   };
 
-  const cfg = { venue: 0, room: 0, seats: 6, mySeat: 2, emptySeats: 0, bank: 200000, noCap: true, unlock: false };
+  const cfg = { venue: 0, room: 0, seats: 6, mySeat: 2, emptySeats: 0,
+    bank: LIFE ? Math.max(0, window.BJLifeBridge.bank()) : 200000,
+    noCap: true, unlock: false };
   let HUMAN = 2;
   let seatNames = [];
 
@@ -2965,6 +2971,8 @@ const BJ = (() => {
             bj: st.bj - bj0, bust: kind === 'bust' ? 1 : 0, side: st.side - side0
           });
         }
+        /* 人生模式：台面余额与净输赢实时回写人生现金 */
+        if (LIFE) window.BJLifeBridge.sync('bj', seats[HUMAN].bank, realPL, stakedTotal);
         lastRound = {
           net: realPL, stake: stakedTotal, ret: payout,
           start: s.roundStartBank, end: s.bank,
@@ -3581,7 +3589,25 @@ Scope: side bets excluded; splits and doubles settled OBBO.`
     const v = curVenue();
     cfg.seats = Math.max(4, Math.min(8, +el.cfgSeats.value || v.seats));
     cfg.emptySeats = Math.max(0, Math.min(cfg.seats - 1, +el.cfgEmpty.value || 0));
-    cfg.bank = Math.max(1000, Math.min(1e9, Math.floor(+el.cfgBank.value || v.bank)));   // 本金上限 10 亿，避免误输入把流水推到天文数字
+    cfg.bank = LIFE
+      ? Math.max(0, window.BJLifeBridge.bank())
+      : Math.max(1000, Math.min(1e9, Math.floor(+el.cfgBank.value || v.bank)));   // 本金上限 10 亿，避免误输入把流水推到天文数字
+    if (LIFE){
+      const cashNow = Math.max(0, window.BJLifeBridge.bank());
+      const wanted = Math.max(0, Math.floor(+el.cfgBank.value || 0));
+      if (wanted > cashNow + 0.5){
+        const need = wanted - cashNow;
+        if (!confirm('向叠码仔借 ' + fmt(need) + ' MOP 筹码？人生负债将增加 ' + fmt(Math.round(need * 1.25)) + ' MOP。')){
+          el.cfgBank.value = cashNow;
+          return;
+        }
+        window.BJLifeBridge.borrow(need, '21 点补码');
+        cfg.bank = Math.max(0, window.BJLifeBridge.bank());
+      } else if (wanted < cashNow - 0.5){
+        flash('人生模式下本金始终等于随身现金，不能把台面本金改小。');
+        el.cfgBank.value = cashNow;
+      }
+    }
     cfg.noCap = el.cfgCap.value === '1';
     cfg.mySeat = Math.max(0, Math.min(+el.cfgMySeat.value || 0, cfg.seats - 1));
     humanBet = Math.max(v.min, Math.min(humanBet, cfg.bank));

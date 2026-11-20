@@ -1,14 +1,13 @@
-﻿<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>澳门娱乐场模拟器 · 21 点台面 · 六套会籍 · 二十一家场馆</title>
 <meta name="description" content="澳门娱乐场模拟器：按澳门现行《二十一点法定规章》复刻的六门台，二十一家娱乐场、七档厅房、六套官方会籍与五十余张会员卡面。台规、台面几何、基本策略表、赌权时间线、积分换算与庄家优势全部可查。">
 <meta name="theme-color" content="#0A0C0D">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Inter:wght@300;400;500;600&amp;family=Noto+Serif+SC:wght@300;400;600&amp;display=swap" rel="stylesheet">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <style>
@@ -24,7 +23,7 @@
   --ease:cubic-bezier(.2,.7,.2,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-anchor:none}
 body{background:var(--ink);color:var(--txt);font-family:var(--sans);font-size:16px;line-height:1.7;
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
@@ -47,10 +46,11 @@ img{display:block;max-width:100%}
   box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 6px 18px -12px rgba(201,162,39,.8)}
 .brand b{display:block;font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:.03em;line-height:1.1}
 .brand small{display:block;font-size:8.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--txt-dim2);margin-top:3px}
-.nav-links{display:flex;gap:24px;flex:1;justify-content:center}
-.nav-links a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt-dim);transition:color .25s;position:relative;padding:4px 0;white-space:nowrap}
-.nav-links a:hover,.nav-links a.on{color:var(--gold-lt)}
-.nav-links a.on::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--gold)}
+.nav-links{display:flex;gap:6px;flex:1;justify-content:center;flex-wrap:wrap}
+.nav-links a{font-size:12.5px;letter-spacing:.08em;color:var(--txt-dim);transition:.25s;position:relative;padding:7px 13px;border-radius:999px;white-space:nowrap;border:1px solid transparent}
+.nav-links a:hover{color:var(--gold-lt);background:rgba(231,212,154,.07)}
+.nav-links a.on{color:var(--gold-lt);background:rgba(201,162,39,.16);border-color:rgba(201,162,39,.42);font-weight:500}
+.nav-links a.on::after{content:none}
 .btn-pill{display:inline-flex;align-items:center;gap:9px;border-radius:999px;padding:11px 22px;cursor:pointer;
   font-size:11px;letter-spacing:.18em;text-transform:uppercase;transition:.28s var(--ease);white-space:nowrap;border:1px solid transparent}
 .btn-gold{background:linear-gradient(135deg,var(--gold-lt),var(--gold));color:#14110A;font-weight:600;
@@ -138,7 +138,7 @@ section[id],header[id]{scroll-margin-top:92px}
 .sec-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(31px,4.1vw,58px);line-height:1.12;letter-spacing:-.015em;margin:20px 0 18px}
 .sec-head h2 em{font-style:italic;display:inline-block;
   background:linear-gradient(100deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
-.sec-head p{font-size:14.5px;line-height:1.95;color:var(--txt-dim);font-weight:300}
+.sec-head p{font-size:15.5px;line-height:1.95;color:var(--txt-dim);font-weight:300}
 .cream{background:var(--cream);color:var(--dark-txt)}
 .cream .sec-head .kicker{color:var(--gold-dp)}
 .cream .sec-head .kicker::after{background:linear-gradient(90deg,var(--gold-dp),transparent)}
@@ -161,18 +161,21 @@ section[id],header[id]{scroll-margin-top:92px}
 .entry:hover{transform:translateY(-4px);box-shadow:0 34px 60px -40px rgba(10,12,13,.56)}
 .entry .bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform 1.2s var(--ease)}
 .entry .veil{position:absolute;inset:0;z-index:-1;background:
-  linear-gradient(180deg,rgba(7,9,9,.50) 0%,rgba(7,9,9,.72) 40%,rgba(7,9,9,.96) 100%),
-  radial-gradient(105% 72% at 16% 100%,rgba(7,9,9,.90),transparent 62%)}
+  linear-gradient(180deg,rgba(7,9,9,.62) 0%,rgba(7,9,9,.82) 40%,rgba(7,9,9,.97) 100%),
+  radial-gradient(105% 72% at 16% 100%,rgba(7,9,9,.94),transparent 62%)}
 .entry:hover .bg{transform:scale(1.06)}
-.entry .no{font-size:10px;letter-spacing:.30em;color:var(--gold-lt);opacity:.92}
-.entry h3{font-family:var(--serif);font-weight:300;font-size:clamp(28px,3vw,44px);margin:14px 0 12px;letter-spacing:-.01em;color:var(--txt)}
-.entry p{font-size:13.5px;line-height:1.9;color:var(--txt-dim);max-width:46ch;font-weight:300}
+.entry .no{font-size:10px;letter-spacing:.30em;color:#fff;opacity:1;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+.entry h3{font-family:var(--serif);font-weight:300;font-size:clamp(28px,3vw,44px);margin:14px 0 12px;letter-spacing:-.01em;color:#fff;
+  text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.entry p{font-size:14.5px;line-height:1.9;color:#fff;max-width:46ch;font-weight:400;
+  text-shadow:0 1px 10px rgba(0,0,0,.78)}
 .entry .go{display:inline-flex;align-items:center;gap:12px;margin-top:24px;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;
-  color:var(--gold-lt);border-bottom:1px solid rgba(231,212,154,.42);padding-bottom:7px;transition:.28s}
-.entry:hover .go{border-color:var(--gold-lt);gap:20px}
+  color:#fff;border-bottom:1px solid rgba(255,255,255,.55);padding-bottom:7px;transition:.28s;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+.entry:hover .go{border-color:#fff;gap:20px}
 .entry .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.entry .tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,238,228,.72);
-  border:1px solid rgba(231,212,154,.28);border-radius:999px;padding:5px 12px;background:rgba(10,12,13,.34)}
+.entry .tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#fff;
+  border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:5px 12px;background:rgba(10,12,13,.6);
+  text-shadow:0 1px 6px rgba(0,0,0,.7)}
 .entry.gold-card{border:1px solid rgba(201,162,39,.46);box-shadow:0 30px 60px -44px rgba(201,162,39,.7)}
 
 /* ============ 规则卡 ============ */
@@ -182,14 +185,14 @@ section[id],header[id]{scroll-margin-top:92px}
 .rule{background:var(--ink-2);padding:42px 34px;transition:background .4s}
 .rule:hover{background:var(--ink-3)}
 .rule .idx{font-family:var(--serif);font-size:13px;letter-spacing:.24em;color:var(--gold)}
-.rule h4{font-family:var(--serif);font-weight:400;font-size:23px;margin:16px 0 11px;letter-spacing:.01em}
-.rule p{font-size:13px;line-height:1.9;color:var(--txt-dim);font-weight:300}
+.rule h4{font-family:var(--serif);font-weight:400;font-size:23px;margin:16px 0 11px;letter-spacing:.01em;color:#fff}
+.rule p{font-size:14px;line-height:1.9;color:var(--txt-dim);font-weight:300}
 .rule p em{font-style:normal;color:var(--gold-lt);border-bottom:1px dotted rgba(231,212,154,.4)}
 
 /* ============ 数据表 ============ */
 .table-wrap{overflow-x:auto;border:1px solid rgba(231,212,154,.16);background:rgba(255,255,255,.015)}
-.data-table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
-.data-table thead th{font-family:var(--serif);font-weight:500;font-size:11.5px;letter-spacing:.20em;text-transform:uppercase;
+.data-table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:640px}
+.data-table thead th{font-family:var(--serif);font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--gold-lt);text-align:left;padding:18px 20px;border-bottom:1px solid rgba(231,212,154,.2);
   background:rgba(201,162,39,.05);white-space:nowrap}
 .data-table tbody td{padding:16px 20px;border-bottom:1px solid rgba(231,212,154,.08);color:var(--txt-dim);vertical-align:middle}
@@ -197,10 +200,10 @@ section[id],header[id]{scroll-margin-top:92px}
 .data-table tbody tr{transition:background .3s}
 .data-table tbody tr:hover{background:rgba(231,212,154,.05)}
 .data-table td b{color:var(--txt);font-weight:500}
-.data-table td .mono{font-family:var(--serif);font-size:15px;color:var(--gold-lt);letter-spacing:.02em}
+.data-table td .mono{font-family:var(--serif);font-size:16px;color:var(--gold-lt);letter-spacing:.02em}
 .data-table .neg{color:#D98873}
 .data-table .pos{color:#8FBF94}
-.table-note{font-size:11.5px;color:var(--txt-dim2);margin-top:14px;line-height:1.9;letter-spacing:.02em}
+.table-note{font-size:12.5px;color:var(--txt-dim2);margin-top:14px;line-height:1.9;letter-spacing:.02em}
 .cream .table-wrap{border-color:rgba(27,30,28,.12);background:rgba(255,255,255,.5)}
 .cream .data-table thead th{color:var(--gold-dp);border-bottom-color:rgba(27,30,28,.16);background:rgba(201,162,39,.07)}
 .cream .data-table tbody td{color:var(--dark-dim);border-bottom-color:rgba(27,30,28,.07)}
@@ -224,7 +227,7 @@ section[id],header[id]{scroll-margin-top:92px}
 .room-card h4{font-family:var(--serif);font-weight:400;font-size:26px;margin:10px 0 6px}
 .room-card .sub{font-size:11.5px;letter-spacing:.05em;color:var(--txt-dim2)}
 .room-card ul{list-style:none;margin-top:18px;display:grid;gap:9px}
-.room-card li{display:flex;justify-content:space-between;gap:14px;font-size:12px;color:var(--txt-dim);
+.room-card li{display:flex;justify-content:space-between;gap:14px;font-size:13px;color:var(--txt-dim);
   padding-bottom:9px;border-bottom:1px dashed rgba(231,212,154,.1)}
 .room-card li:last-child{border-bottom:none;padding-bottom:0}
 .room-card li b{color:var(--txt);font-weight:500;letter-spacing:.02em}
@@ -247,7 +250,7 @@ section[id],header[id]{scroll-margin-top:92px}
 .casino:hover{background:#fff;box-shadow:inset 3px 0 0 var(--gold)}
 .casino .op{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dp)}
 .casino h4{font-family:var(--serif);font-size:26px;font-weight:500;margin:9px 0 8px;color:var(--dark-txt)}
-.casino .note{font-size:12px;line-height:1.85;color:var(--dark-dim);margin-bottom:16px}
+.casino .note{font-size:13px;line-height:1.85;color:var(--dark-dim);margin-bottom:16px}
 .casino .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
 .casino .chips span{font-size:9.5px;letter-spacing:.06em;padding:4px 9px;border:1px solid rgba(27,30,28,.14);
   border-radius:2px;color:var(--dark-dim);background:#fff}
@@ -262,7 +265,7 @@ section[id],header[id]{scroll-margin-top:92px}
 .prog-card .k{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dp)}
 .prog-card h4{font-family:var(--serif);font-size:29px;font-weight:500;margin:8px 0 4px;color:var(--dark-txt)}
 .prog-card .en{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dark-dim2)}
-.prog-card .conv{font-size:12px;line-height:1.85;color:var(--dark-dim);margin:16px 0 4px;
+.prog-card .conv{font-size:13px;line-height:1.85;color:var(--dark-dim);margin:16px 0 4px;
   padding-top:14px;border-top:1px solid rgba(27,30,28,.09)}
 .tierline{display:flex;flex-wrap:wrap;gap:1px;margin-top:16px;background:rgba(27,30,28,.1);border:1px solid rgba(27,30,28,.1)}
 .tierline span{flex:1 1 auto;background:var(--paper);padding:10px 12px;text-align:center;min-width:78px}
@@ -328,7 +331,7 @@ section[id],header[id]{scroll-margin-top:92px}
 .faq-item.open .faq-q i{transform:rotate(180deg);border-color:var(--gold)}
 .faq-item.open .faq-q i::after{opacity:0}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
-.faq-a p{font-size:13px;line-height:1.95;color:var(--txt-dim);padding:0 4px 26px;max-width:74ch;font-weight:300}
+.faq-a p{font-size:14px;line-height:1.95;color:var(--txt-dim);padding:0 4px 26px;max-width:74ch;font-weight:300}
 .faq-a p b{color:var(--gold-lt);font-weight:500}
 
 /* ============ CTA ============ */
@@ -470,7 +473,7 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
 .tl:hover{background:rgba(231,212,154,.035)}
 .tl .y{font-family:var(--serif);font-size:clamp(26px,3vw,40px);font-weight:400;color:var(--gold-lt);line-height:1}
 .tl h4{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--cream);margin-bottom:6px;letter-spacing:.01em}
-.tl p{font-size:12.6px;line-height:1.92;color:var(--txt-dim);max-width:66ch;font-weight:300}
+.tl p{font-size:13.5px;line-height:1.92;color:var(--txt-dim);max-width:66ch;font-weight:300}
 .tl .tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,162,39,.32);
   padding:5px 11px;border-radius:999px;white-space:nowrap}
 @media(max-width:760px){.tl{grid-template-columns:1fr;gap:10px}.tl .tag{justify-self:start}}
@@ -525,7 +528,7 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
 .gloss div:hover{background:var(--ink-3)}
 .gloss b{display:block;font-family:var(--serif);font-size:21px;font-weight:400;color:var(--cream)}
 .gloss i{display:block;font-style:normal;font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-top:7px}
-.gloss p{font-size:12.2px;line-height:1.88;color:var(--txt-dim);margin-top:12px;font-weight:300}
+.gloss p{font-size:13.5px;line-height:1.88;color:var(--txt-dim);margin-top:12px;font-weight:300}
 
 /* ============ 滚动入场 ============ */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
@@ -545,7 +548,7 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
 .view-head .sec-head{margin-bottom:0}
 .view-head h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.4vw,54px);line-height:1.16;margin:14px 0 16px;color:var(--cream)}
 .view-head h1 em{font-style:normal;background:linear-gradient(100deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
-.view-head p{max-width:760px;font-size:13.5px;line-height:1.9;color:var(--txt-dim);font-weight:300}
+.view-head p{max-width:760px;font-size:15px;line-height:1.9;color:var(--txt-dim);font-weight:300}
 .entries.quad{grid-template-columns:1fr 1fr}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:34px}
 .step{position:relative;padding:22px 20px 20px;border:1px solid rgba(243,238,228,.14);border-radius:3px;background:var(--ink-2)}
@@ -553,7 +556,7 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
   display:grid;place-items:center;background:linear-gradient(140deg,var(--gold-lt),var(--gold));color:#1A1306;
   font-family:"Inter",monospace;font-size:12px;font-weight:700}
 .step h4{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--cream);margin:6px 0 8px}
-.step p{font-size:12px;line-height:1.85;color:var(--txt-dim);font-weight:300}
+.step p{font-size:13.5px;line-height:1.85;color:var(--txt-dim);font-weight:300}
 .cream .step{background:#fff;border-color:rgba(27,30,28,.14)}
 .cream .step h4{color:var(--dark-txt)}
 .cream .step p{color:var(--dark-dim)}
@@ -562,53 +565,46 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
 @media (max-width:760px){.steps{grid-template-columns:1fr}.view-head{padding:120px 0 0}}
 </style>
 <noscript><style>.view{display:block}</style></noscript>
-<script src="assets/auth.js"></script>
-</head>
+<script src="assets/auth.js?v=20261121e"></script>
+<style id="auth-style">.auth-chip{display:inline-flex;align-items:center;gap:6px;flex:0 1 auto;min-width:0;max-width:120px;font-size:11.5px;letter-spacing:.04em;color:rgba(243,238,228,.72);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.auth-chip:before{content:"";width:5px;height:5px;border-radius:50%;background:#C9A227;flex:none}.auth-out{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;height:30px;margin-left:10px;padding:0 13px;border-radius:999px;border:1px solid rgba(201,162,39,.32);background:transparent;color:rgba(243,238,228,.72);font:inherit;font-size:11.5px;font-weight:500;letter-spacing:.08em;cursor:pointer;transition:background .18s,border-color .18s,color .18s;line-height:1}.auth-out:hover{background:rgba(201,162,39,.12);border-color:rgba(201,162,39,.65);color:#EBD9A4}.auth-in{color:#EBD9A4!important}.auth-in:hover{color:#fff!important}.auth-life{font-weight:500}@media(max-width:760px){.auth-chip{max-width:64px}.auth-out{margin-left:6px;padding:0 10px;height:28px;font-size:11px}}</style></head>
 <body>
-<div class="progress" id="prog" aria-hidden="true"></div>
+<div class="progress" id="prog" aria-hidden="true" style="width: 26.46%;"></div>
 <div class="grain" aria-hidden="true"></div>
 
-<div class="nav-wrap" id="navWrap">
+<div class="nav-wrap solid" id="navWrap">
   <nav class="nav">
     <a class="brand" href="index.html">
       <span class="mark">澳</span>
       <span><b>澳门娱乐场模拟器</b><small>Macau Casino Simulator</small></span>
     </a>
     <div class="nav-links">
-      <a href="#/home" data-view="home" class="on">首页</a>
+      <a href="#/home" data-view="home" class="">首页</a>
+      <a href="#/bj" data-view="bj" class="on">21 点</a>
+      <a href="#/bac" data-view="bac">百家乐</a>
+      <a href="#/slots" data-view="slots">老虎机</a>
       <a href="#/rules" data-view="rules">台规</a>
       <a href="#/venues" data-view="venues">场馆</a>
       <a href="#/member" data-view="member">会籍</a>
       <a href="#/history" data-view="history">历史</a>
       <a href="#/learn" data-view="learn">教学</a>
       <a href="#/info" data-view="info">资讯</a>
-      <a href="blackjack.html">21 点</a>
-      <a href="baccarat.html">百家乐</a>
-      <a href="slots.html">老虎机</a>
       <a href="blackjack-mall.html">商城</a>
       <a href="member.html">会员中心</a>
-    </div>
+      <a href="life.html" class="auth-life">人生模式</a>
+    <a class="auth-in" href="login.html">登录</a></div>
     <a class="btn-pill" href="https://github.com/laoyangnb666/macau-casino-simulator" target="_blank" rel="noopener">GitHub</a>
     <a class="btn-pill" href="blackjack.html">进入牌桌</a>
     <button class="nav-toggle" id="navToggle" aria-label="菜单" aria-expanded="false"><i></i><i></i><i></i></button>
   </nav>
 </div>
 
-<nav class="rail-nav" id="railNav" aria-label="章节导航">
-  <a href="#top" data-l="Top"></a>
-  <a href="#rules" data-l="台规"></a>
-  <a href="#strategy" data-l="策略"></a>
-  <a href="#rooms" data-l="厅房"></a>
-  <a href="#casinos" data-l="场馆"></a>
-  <a href="#history" data-l="历史"></a>
-  <a href="#member" data-l="会籍"></a>
-  <a href="#vault" data-l="卡面"></a>
-  <a href="#more" data-l="更多台面"></a>
-  <a href="#glossary" data-l="术语"></a>
-</nav>
+<nav class="rail-nav" id="railNav" aria-label="章节导航"><a href="#bj-intro" data-l="唯一有决策的桌面" class="on"></a></nav>
 
 <div class="mnav" id="mnav">
-  <a href="#/home" data-view="home">首页总览</a>
+  <a href="#/home" data-view="home" class="">首页总览</a>
+  <a href="#/bj" data-view="bj" class="on">21 点介绍 · 规则与厅房速览</a>
+  <a href="#/bac" data-view="bac">百家乐介绍 · 补牌表与场馆差异</a>
+  <a href="#/slots" data-view="slots">老虎机介绍 · 机台目录与奖池</a>
   <a href="#/rules" data-view="rules">台规 · 几何 · 策略</a>
   <a href="#/venues" data-view="venues">七档厅房 · 二十一家场馆</a>
   <a href="#/member" data-view="member">六套会籍 · 卡面墙</a>
@@ -620,13 +616,14 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
   <a href="slots.html">老虎机厅</a>
   <a href="blackjack-mall.html">积分商城</a>
   <a href="member.html">会员中心</a>
+  <a href="life.html">人生模式 · 八种身世开局</a>
 </div>
 
 <main id="views">
-<div class="view on" data-view="home" id="view-home">
+<div class="view" data-view="home" id="view-home">
 <header class="hero" id="top">
   <div class="hero-bg" style="background-image:url('assets/img/hero.jpg')"></div>
-  <div class="hero-spot" id="heroSpot" aria-hidden="true"></div>
+  <div class="hero-spot" id="heroSpot" aria-hidden="true" style="--mx: 20.4%; --my: 94.4%;"></div>
   <div class="hero-veil"></div>
   <div class="hero-frame" aria-hidden="true"></div>
   <span class="hero-meta" aria-hidden="true">Macao · 22°11′N 113°32′E · Est. 1847</span>
@@ -643,11 +640,11 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
       <a class="btn-pill btn-line" href="blackjack-mall.html">看看积分能换什么</a>
     </div>
     <div class="hero-stats">
-      <div><b data-count="21">21</b><span>家娱乐场</span></div>
-      <div><b data-count="7">7</b><span>档厅房</span></div>
-      <div><b data-count="6">6</b><span>套会籍体系</span></div>
-      <div><b data-count="52">52</b><span>张会员卡面</span></div>
-      <div><b data-count="200">200<sup>+</sup></b><span>项官网礼遇</span></div>
+      <div><b data-count="21" data-counted="1">21</b><span>家娱乐场</span></div>
+      <div><b data-count="7" data-counted="1">7</b><span>档厅房</span></div>
+      <div><b data-count="6" data-counted="1">6</b><span>套会籍体系</span></div>
+      <div><b data-count="52" data-counted="1">52</b><span>张会员卡面</span></div>
+      <div><b data-count="200" data-counted="1">200<sup>+</sup></b><span>项官网礼遇</span></div>
     </div>
   </div>
   <span class="scroll-hint" aria-hidden="true"></span>
@@ -667,7 +664,7 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
 
 <!-- ============ 电影感插页 ============ -->
 <section class="interlude" aria-label="庄家优势">
-  <div class="bg" data-parallax style="background-image:url('assets/img/skyline.jpg')"></div>
+  <div class="bg" data-parallax="" style="background-image: url(&quot;assets/img/skyline.jpg&quot;); transform: translate3d(0px, -40.5px, 0px);"></div>
   <div class="veil"></div>
   <div class="q">
     <span class="eyebrow"><i></i>The House Edge · 期望值</span>
@@ -679,13 +676,13 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
 <!-- ============ 入口 ============ -->
 <section class="sec cream">
   <div class="wrap">
-    <div class="sec-head reveal">
+    <div class="sec-head reveal in">
       <div class="kicker">Four Gates</div>
       <h2>四个入口，<em>一条完整的链路。</em></h2>
       <p>在牌桌上积累有效投注，换成会员卡与贵宾卡；再用积分兑换餐饮、住宿、演出、水疗与交通 —— 全部按六家公司官网公布的物业与项目整理，不虚构项目、不虚构档位。新手先从教学中心把规则与概率读明白。</p>
     </div>
     <div class="entries quad">
-      <a class="entry reveal" href="blackjack.html">
+      <a class="entry reveal in" href="blackjack.html">
         <span class="bg" style="background-image:url('assets/img/table.jpg')"></span>
         <span class="veil"></span>
         <span class="no">01 / THE TABLE</span>
@@ -699,7 +696,7 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
         </div>
         <span class="go">进入牌桌 →</span>
       </a>
-      <a class="entry gold-card reveal d1" href="blackjack-mall.html">
+      <a class="entry gold-card reveal d1 in" href="blackjack-mall.html">
         <span class="bg" style="background-image:url('assets/img/skyline.jpg')"></span>
         <span class="veil"></span>
         <span class="no">02 / THE REWARDS</span>
@@ -712,7 +709,7 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
         </div>
         <span class="go">进入商城 →</span>
       </a>
-      <a class="entry reveal d1" href="#/learn">
+      <a class="entry reveal d1 in" href="#/learn">
         <span class="bg" style="background-image:url('assets/img/hero.jpg')"></span>
         <span class="veil"></span>
         <span class="no">03 / THE GUIDE</span>
@@ -809,6 +806,292 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
 </section>
 </div><!-- /view-home -->
 
+<div class="view on" data-view="bj" id="view-bj">
+<div class="view-head">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Blackjack · 游戏介绍</div>
+      <h1>一张六门的台，<em>你只坐第三门。</em></h1>
+      <p>无底牌制、软 17 停牌、早投降、五张牌与三种附加注 —— 每一项都能在澳门现行法定规章里找到出处。本页是 21 点的总览：流程、规则性格、附加注价格与七档厅房速览；逐条参数与三张基本策略表见「台规」视图。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 21 点详解 ============ -->
+<section class="sec cream" id="bj-intro">
+  <div class="wrap">
+    <div class="sec-head reveal in">
+      <div class="kicker">Blackjack · 唯一有决策的桌面</div>
+      <h2>21 点：<em>每个选择都改变期望。</em></h2>
+      <p>百家乐与老虎机没有决策权，21 点有：要牌、停牌、加倍、分门、投降，每一步都对应一个长期期望差。基本策略把最优解摊开，算牌工具把剩余牌信息实时给你 —— 但洗牌机台会让计数失效。</p>
+    </div>
+    <div class="steps reveal in">
+      <div class="step" data-n="1"><h4>下注</h4><p>选场馆与厅房：最低注、牌副、洗牌方式逐档不同。筹码叠成主注与附加注；有效投注同步累积会员积分，与输赢无关。</p></div>
+      <div class="step" data-n="2"><h4>按表决策</h4><p>坐标只有两个：你的手牌与庄家明牌。硬手 / 软手 / 对子三张表给出长期最优；厅房不允许加倍时改要牌、不允许投降时按要牌处理。</p></div>
+      <div class="step" data-n="3"><h4>结算与复盘</h4><p>Blackjack 赔 3:2（澳娱低额台 6:5 更贵）；保险与附加注长期为负。每局写入终身统计，会员中心可查胜率、爆牌与净输赢。</p></div>
+    </div>
+    <div class="rules reveal in" style="margin-top:40px">
+      <div class="rule"><span class="idx">01</span><h4 style="position: relative;">无底牌制</h4><p>庄家只先开一张明牌，全部闲家行动完才补第二张。分门与加注遇庄家 Blackjack <em>只失原注</em>，不额外吞掉加注部分。</p></div>
+      <div class="rule"><span class="idx">02</span><h4>六门独立结算</h4><p>每门单独下注、单独要牌与结算；同桌闲家一律<em>明牌</em>，所有人的牌你都看得见 —— 这也是算牌能成立的前提。</p></div>
+      <div class="rule"><span class="idx">03</span><h4>加倍 / 分门 / 投降</h4><p>加倍限首两张；分门最多 4 手、分 A 只补一张（贵宾厅起可再分）；早投降仅高额区以上开放，<em>庄家 BJ 也不吞全注</em>。</p></div>
+      <div class="rule"><span class="idx">04</span><h4>三种附加注</h4><p>任何对子、幸运 7、13 以上／以下，按场馆与厅房逐项开关。<em>赔率高不等于期望高</em>：优势 6.6%–31.25%，远高于主游戏约 0.5%。</p></div>
+      <div class="rule"><span class="idx">05</span><h4>算牌工具</h4><p>Hi-Lo 流水数、真数、剩余牌与切牌位置实时显示；CSM 台会直接说明<em>为什么计数在这里失效</em>。</p></div>
+      <div class="rule"><span class="idx">06</span><h4>七档厅房</h4><p>中场洗牌机 6 副、贵宾厅 8 副牌靴；穿透率 72%–88%、销牌与发牌顺序逐档不同。<em>同一款游戏，七种价格</em>。</p></div>
+    </div>
+    <div class="orn reveal" aria-hidden="true"><i></i></div>
+    <div class="sec-head reveal" style="margin-bottom:30px">
+      <div class="kicker">Side Bets · 附加注价格</div>
+      <h2 style="font-size:clamp(24px,3vw,36px);margin-bottom:12px" 附加注看起来赔率高，<em="">其实最贵。</h2>
+      <p>6 副牌精确组合值。完整八行表与判定细则见「台规」视图。</p>
+    </div>
+    <div class="table-wrap reveal">
+      <table class="data-table">
+        <thead><tr><th>玩法</th><th>赔率</th><th>庄家优势</th><th>一句话判定</th></tr></thead>
+        <tbody>
+          <tr><td><b>主游戏</b>（基本策略）</td><td><span class="mono">—</span></td><td><span class="pos">约 0.5%</span></td><td>规则越接近 3:2、S17、早投降，越靠近 0</td></tr>
+          <tr><td><b>任何对子</b></td><td><span class="mono">1 : 11</span></td><td><span class="neg">11.25%</span></td><td>首两张点数相同即中，J 与 Q 不算对子</td></tr>
+          <tr><td><b>幸运 7</b></td><td><span class="mono">50 – 5000 : 1</span></td><td><span class="neg">31.25%</span></td><td>两张 / 三张 7，同花赔率翻十倍</td></tr>
+          <tr><td><b>13 以上 / 以下</b></td><td><span class="mono">1 : 1</span></td><td><span class="neg">6.6% / 10.1%</span></td><td>A 计 1 点，正好 13 点通吃</td></tr>
+          <tr><td><b>保险</b></td><td><span class="mono">2 : 1</span></td><td><span class="neg">约 5.9%</span></td><td>庄家明牌 A 时可买，上限原注一半</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sec-head reveal" style="margin:44px 0 30px">
+      <div class="kicker">Seven Rooms · 厅房速览</div>
+      <h2 style="font-size:clamp(24px,3vw,36px);margin-bottom:12px">进门之前，<em>先看这张表。</em></h2>
+      <p>牌副、洗牌方式、穿透率与最低注倍率逐档不同；完整九列对照见「场馆」视图。</p>
+    </div>
+    <div class="table-wrap reveal">
+      <table class="data-table">
+        <thead><tr><th>厅房</th><th>牌副</th><th>洗牌</th><th>穿透率</th><th>最低注倍率</th><th>特殊规则</th></tr></thead>
+        <tbody>
+          <tr><td><b>普通场</b></td><td><span class="mono">6</span></td><td>牌靴</td><td><span class="mono">72%</span></td><td><span class="mono">×1</span></td><td>—</td></tr>
+          <tr><td><b>中场</b></td><td><span class="mono">6</span></td><td>CSM</td><td><span class="mono">75%</span></td><td><span class="mono">×3</span></td><td>计数失效</td></tr>
+          <tr><td><b>高额区</b></td><td><span class="mono">8</span></td><td>牌靴</td><td><span class="mono">78%</span></td><td><span class="mono">×10</span></td><td>早投降</td></tr>
+          <tr><td><b>贵宾厅</b></td><td><span class="mono">8</span></td><td>牌靴</td><td><span class="mono">80%</span></td><td><span class="mono">×20</span></td><td>五张牌 / 分 A 可再分</td></tr>
+          <tr><td><b>私人厅</b></td><td><span class="mono">8</span></td><td>牌靴</td><td><span class="mono">82%</span></td><td><span class="mono">×100</span></td><td>逐门发牌</td></tr>
+          <tr><td><b>主席厅</b></td><td><span class="mono">8</span></td><td>牌靴</td><td><span class="mono">85%</span></td><td><span class="mono">×200</span></td><td>分 A 可要牌</td></tr>
+          <tr><td><b>超级贵宾厅</b></td><td><span class="mono">8</span></td><td>牌靴</td><td><span class="mono">88%</span></td><td><span class="mono">×500</span></td><td>4 门</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note reveal">口径：穿透率与倍率为模拟基准，场馆可覆盖；澳娱低额台另按 BJ 6:5、庄家软 17 要牌执行，劣势明显更高。</p>
+    <div class="hero-cta reveal" style="margin-top:26px">
+      <a class="btn-pill btn-gold" href="blackjack.html">进入 21 点台面</a>
+      <a class="btn-pill btn-line" href="#/rules">看完整台规与策略表</a>
+    </div>
+  </div>
+</section>
+</div><!-- /view-bj -->
+
+<div class="view" data-view="bac" id="view-bac">
+<div class="view-head">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Baccarat · 游戏介绍</div>
+      <h1>庄闲对决，<em>零决策、全选择。</em></h1>
+      <p>补牌表固定、玩家不做任何决定 —— 比的是注项选择与场馆差异。本页收录规则性格、六集团价格差、注项概率与完整补牌表；三步上手与概率详解另见「教学」视图。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 百家乐详解 ============ -->
+<section class="sec cream" id="bac-intro">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Baccarat · 庄闲对决</div>
+      <h2>百家乐：<em>澳门流水的主引擎。</em></h2>
+      <p>澳门赌收的大头从来不是 21 点。百家乐占绝大多数桌面流水：8 副牌靴、固定补牌表、玩家零决策 —— 比的是注项选择与场馆差异。模拟器按六家集团逐馆还原最低注、抽水方式、幸运 6 与咪牌习惯。</p>
+    </div>
+    <div class="rules reveal">
+      <div class="rule"><span class="idx">01</span><h4>8 副牌靴与销牌</h4><p>每靴 416 张、切牌卡约 82% 穿透；开局销牌按首张点数执行。牌靴发完自动换靴，<em>靴号与废牌数实时显示</em>。</p></div>
+      <div class="rule"><span class="idx">02</span><h4>固定补牌表</h4><p>闲家 0–5 补、6–7 停；庄家按闲家第三张逐格查表。双方都无决策权，<em>「自然赢」8/9 点直接定局</em>。</p></div>
+      <div class="rule"><span class="idx">03</span><h4>抽水与免佣</h4><p>标准台庄赢抽 5%；免佣台改为<em>庄以 6 点胜出只赔一半</em>（优势约 1.46%）。新濠与澳娱免佣台比例高，金沙高额区偶有免佣。</p></div>
+      <div class="rule"><span class="idx">04</span><h4>幸运 6 附加注</h4><p>押庄以 6 点胜出：两张 6 赔 <em>12 : 1</em>、三张 6 赔 <em>20 : 1</em>。永利、美高梅、新濠常开，其余场馆按台开关。</p></div>
+      <div class="rule"><span class="idx">05</span><h4>咪牌与路单</h4><p>贵宾厅可咪牌（逐张翻牌放慢节奏）；珠盘路与大路按真实开牌顺序生成 —— <em>路单只记录历史，不改变下一局概率</em>。</p></div>
+      <div class="rule"><span class="idx">06</span><h4>六注项全结算</h4><p>庄 / 闲 / 和 / 闲对 / 庄对 / 幸运 6 独立结算：和局主注退回、对子赔 11 : 1、和赔 8 : 1。<em>每种注项的庄家优势逐条标注</em>。</p></div>
+    </div>
+    <div class="orn reveal" aria-hidden="true"><i></i></div>
+    <div class="sec-head reveal" style="margin-bottom:30px">
+      <div class="kicker">By House · 场馆差异</div>
+      <h2 style="font-size:clamp(24px,3vw,36px);margin-bottom:12px">同一款百家乐，<em>六种价格。</em></h2>
+      <p>最低注、抽水方式与咪牌习惯按集团与厅房差异化：半岛老场门槛低、免佣多；路氹贵宾厅限红高、可咪牌。切换场馆与厅房即可看到差别。</p>
+    </div>
+    <div class="table-wrap reveal">
+      <table class="data-table">
+        <thead><tr><th>集团</th><th>中场最低注</th><th>抽水方式</th><th>幸运 6</th><th>贵宾咪牌</th></tr></thead>
+        <tbody>
+          <tr><td><b>金沙中国</b></td><td><span class="mono">500</span></td><td>庄赢抽 5%（高额区偶有免佣）</td><td>—</td><td>部分场馆</td></tr>
+          <tr><td><b>银河娱乐</b></td><td><span class="mono">500</span></td><td>庄赢抽 5%</td><td>—</td><td>星际等部分场馆</td></tr>
+          <tr><td><b>永利澳门</b></td><td><span class="mono">1,000</span></td><td>庄赢抽 5%</td><td>常开</td><td>贵宾厅可咪牌</td></tr>
+          <tr><td><b>美高梅</b></td><td><span class="mono">500</span></td><td>庄赢抽 5%</td><td>常开</td><td>—</td></tr>
+          <tr><td><b>新濠博亚</b></td><td><span class="mono">500</span></td><td>免佣台多：庄 6 赔半</td><td>常开</td><td>贵宾厅可咪牌</td></tr>
+          <tr><td><b>澳娱综合</b></td><td><span class="mono">100</span></td><td>免佣台多：庄 6 赔半</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-wrap reveal" style="margin-top:18px">
+      <table class="data-table">
+        <thead><tr><th>注项</th><th>赔率</th><th>8 副概率</th><th>庄家优势</th></tr></thead>
+        <tbody>
+          <tr><td><b>庄</b>（抽水台）</td><td><span class="mono">0.95 : 1</span></td><td><span class="mono">45.86%</span></td><td><span class="mono">1.06%</span></td></tr>
+          <tr><td><b>闲</b></td><td><span class="mono">1 : 1</span></td><td><span class="mono">44.62%</span></td><td><span class="mono">1.24%</span></td></tr>
+          <tr><td><b>和</b></td><td><span class="mono">8 : 1</span></td><td><span class="mono">9.52%</span></td><td><span class="mono">14.36%</span></td></tr>
+          <tr><td><b>闲对 / 庄对</b></td><td><span class="mono">11 : 1</span></td><td><span class="mono">各 7.47%</span></td><td><span class="mono">10.36%</span></td></tr>
+          <tr><td><b>幸运 6</b>（两张 / 三张）</td><td><span class="mono">12 / 20 : 1</span></td><td><span class="mono">低频</span></td><td><span class="mono">高优势附加注</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note reveal">口径：概率为 8 副精确组合值；免佣台庄优势约 1.46%。厅房倍率：中场 ×2、高额区 ×10、贵宾厅 ×40、私人厅 ×100 起，限红随档放大。</p>
+    <div class="hero-cta reveal" style="margin-top:26px">
+      <a class="btn-pill btn-gold" href="baccarat.html">进入百家乐台面</a>
+      <a class="btn-pill btn-line" href="#/learn">看三步教学与概率详解</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 百家乐补牌表 ============ -->
+<section class="sec alt" id="bac-draw">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Third Card · 补牌规则</div>
+      <h2>补牌表：<em>唯一的「策略」。</em></h2>
+      <p>百家乐没有决策权：第三张补不补，完全由下表决定。把它读熟，你就知道每一局为什么这样开 —— 以及为什么路单预测不了下一局。</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step" data-n="1"><h4>选注</h4><p>庄 / 闲 / 和 / 闲对 / 庄对 / 幸运 6。抽水台庄赢扣 5%；免佣台庄以 6 点胜出只赔一半。庄 1.06% 是桌面最便宜的一注。</p></div>
+      <div class="step" data-n="2"><h4>等补牌</h4><p>闲家先按 0–5 补、6–7 停执行；庄家再按闲家第三张逐格查表。8/9 点「自然赢」直接定局，双方都不补。</p></div>
+      <div class="step" data-n="3"><h4>读路单</h4><p>珠盘路记录每局结果、大路记录连走；它们只是历史的可视化。<em>下一局概率与路单形状无关</em>。</p></div>
+    </div>
+    <div class="table-wrap reveal" style="margin-top:36px">
+      <table class="data-table">
+        <thead><tr><th>闲家首两张</th><th>动作</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><b>0 – 5</b></td><td>补第三张</td><td>补牌后庄家按下方表查格</td></tr>
+          <tr><td><b>6 – 7</b></td><td>停牌</td><td>庄家按「闲家未补」列执行</td></tr>
+          <tr><td><b>8 – 9</b></td><td>自然赢</td><td>直接定局，双方不补</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-wrap reveal" style="margin-top:18px">
+      <table class="data-table">
+        <thead><tr><th>庄家首两张</th><th>闲家补了第三张时</th><th>闲家停牌时</th></tr></thead>
+        <tbody>
+          <tr><td><b>0 – 2</b></td><td>总是补</td><td>补</td></tr>
+          <tr><td><b>3</b></td><td>补，除非闲家第三张是 8</td><td>补</td></tr>
+          <tr><td><b>4</b></td><td>闲家第三张 2 – 7 时补</td><td>补</td></tr>
+          <tr><td><b>5</b></td><td>闲家第三张 4 – 7 时补</td><td>补</td></tr>
+          <tr><td><b>6</b></td><td>闲家第三张 6 – 7 时补</td><td>停</td></tr>
+          <tr><td><b>7</b></td><td>停</td><td>停</td></tr>
+          <tr><td><b>8 – 9</b></td><td>自然赢</td><td>自然赢</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note reveal">口径：标准 8 副百家乐补牌表；咪牌只改变翻牌节奏，不改变补牌判定。幸运 6 判定以庄家最终点数是否为 6 且胜出为准。</p>
+    <div class="hero-cta reveal" style="margin-top:26px">
+      <a class="btn-pill btn-gold" href="baccarat.html">进入百家乐台面</a>
+      <a class="btn-pill btn-line" href="#/learn">看三步教学与概率详解</a>
+    </div>
+  </div>
+</section>
+</div><!-- /view-bac -->
+
+<div class="view" data-view="slots" id="view-slots">
+<div class="view-head">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Slots · 游戏介绍</div>
+      <h1>十一台机，<em>四种性格。</em></h1>
+      <p>243 ways 与固定线两种结构、低中到高四档波动、0.05–2,000 MOP 注码区间；免费游戏与四层累积奖池独立运转，RTP 按场馆逐台校准。本页是机台目录与奖池公示；转轮流程见下方。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 老虎机详解 ============ -->
+<section class="sec alt" id="slots-intro">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Slots · 转轮与奖池</div>
+      <h2>老虎机：<em>十一台机，四种性格。</em></h2>
+      <p>中场与角子机区的角落属于转轮。模拟器收录 11 台机：243 ways 与 20–30 固定线两种结构、低中到高四档波动、0.05–2,000 MOP 注码区间；免费游戏与四层累积奖池独立运转，RTP 按场馆逐台校准。</p>
+    </div>
+    <div class="rules reveal">
+      <div class="rule"><span class="idx">01</span><h4>243 ways 与固定线</h4><p>ways 机按相邻列符号连续计数（3×3×3×3×3），线机按 20 / 25 / 30 条赔付线判定。<em>结构决定命中形状</em>，不是赔率高低。</p></div>
+      <div class="rule"><span class="idx">02</span><h4>免费游戏 ×2</h4><p>3 个以上 SCATTER 触发 10 次免费游戏、全奖 ×2；免费期内再触发<em>加 5 次</em>。免费转不计投注，但派彩照算。</p></div>
+      <div class="rule"><span class="idx">03</span><h4>四层累积奖池</h4><p>迷你 / 次要 / 主要 / 超级四池独立累积，每转按注额 0.5% 注入各池；种子 6,000 / 48,000 / 420,000 / 3,200,000 MOP，<em>触发概率极低且逐池公示</em>。</p></div>
+      <div class="rule"><span class="idx">04</span><h4>场馆 RTP 偏移</h4><p>同一台机在不同集团 RTP 不同：永利 +1.0、新濠 +0.2、金沙 ±0、美高梅 −0.4、银河 −0.8、澳娱 −1.6 个百分点。<em>载入时自动校准赔付表</em>。</p></div>
+      <div class="rule"><span class="idx">05</span><h4>注码与节奏</h4><p>最低 0.05（摩卡财富）到最高 2,000 MOP（钻石人生）； turbo 加速与自动转可开关，<em>本金不足自动停</em>，不诱导追损。</p></div>
+      <div class="rule"><span class="idx">06</span><h4>实测 RTP 对照</h4><p>台面实时显示理论 RTP 与实测 RTP、命中率、最大单转；会员中心留存终身口径。<em>短期偏差是波动，长期收敛于标称</em>。</p></div>
+    </div>
+    <div class="orn reveal" aria-hidden="true"><i></i></div>
+    <div class="sec-head reveal" style="margin-bottom:30px">
+      <div class="kicker">The Machines · 机台目录</div>
+      <h2 style="font-size:clamp(24px,3vw,36px);margin-bottom:12px">十一台机，<em>逐台标称。</em></h2>
+      <p>结构、波动、注码区间与标称 RTP 全部公示；场馆偏移后的实际 RTP 以台面「理论 RTP」为准。</p>
+    </div>
+    <div class="table-wrap reveal">
+      <table class="data-table">
+        <thead><tr><th>机台</th><th>结构</th><th>波动</th><th>标称 RTP</th><th>注码区间 MOP</th></tr></thead>
+        <tbody>
+          <tr><td><b>金龙献瑞</b></td><td><span class="mono">243 ways</span></td><td>中</td><td><span class="mono">92.5%</span></td><td><span class="mono">0.1 – 500</span></td></tr>
+          <tr><td><b>财神到</b></td><td><span class="mono">25 线</span></td><td>中</td><td><span class="mono">90.5%</span></td><td><span class="mono">0.1 – 300</span></td></tr>
+          <tr><td><b>富贵 88</b></td><td><span class="mono">25 线</span></td><td>中高</td><td><span class="mono">91.5%</span></td><td><span class="mono">0.2 – 300</span></td></tr>
+          <tr><td><b>发发发</b></td><td><span class="mono">243 ways</span></td><td>中</td><td><span class="mono">91.0%</span></td><td><span class="mono">0.2 – 500</span></td></tr>
+          <tr><td><b>盛世金莲</b></td><td><span class="mono">20 线</span></td><td>低中</td><td><span class="mono">94.0%</span></td><td><span class="mono">0.5 – 1,000</span></td></tr>
+          <tr><td><b>钻石人生</b></td><td><span class="mono">243 ways</span></td><td>高</td><td><span class="mono">93.0%</span></td><td><span class="mono">1 – 2,000</span></td></tr>
+          <tr><td><b>金狮传奇</b></td><td><span class="mono">243 ways</span></td><td>高</td><td><span class="mono">92.0%</span></td><td><span class="mono">0.1 – 500</span></td></tr>
+          <tr><td><b>狮王宝库</b></td><td><span class="mono">30 线</span></td><td>中高</td><td><span class="mono">92.5%</span></td><td><span class="mono">0.5 – 1,000</span></td></tr>
+          <tr><td><b>摩卡财富</b></td><td><span class="mono">30 线</span></td><td>中</td><td><span class="mono">91.8%</span></td><td><span class="mono">0.05 – 200</span></td></tr>
+          <tr><td><b>幸运龙</b></td><td><span class="mono">243 ways</span></td><td>中</td><td><span class="mono">90.8%</span></td><td><span class="mono">0.1 – 300</span></td></tr>
+          <tr><td><b>葡京金彩</b></td><td><span class="mono">25 线</span></td><td>中</td><td><span class="mono">89.8%</span></td><td><span class="mono">0.1 – 300</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-wrap reveal" style="margin-top:18px">
+      <table class="data-table">
+        <thead><tr><th>奖池</th><th>种子 MOP</th><th>每转触发概率</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><b>迷你奖池</b></td><td><span class="mono">6,000</span></td><td><span class="mono">1 / 900,000</span></td><td>每转注额 0.5% 注入</td></tr>
+          <tr><td><b>次要奖池</b></td><td><span class="mono">48,000</span></td><td><span class="mono">1 / 9,000,000</span></td><td>同上，独立累积</td></tr>
+          <tr><td><b>主要奖池</b></td><td><span class="mono">420,000</span></td><td><span class="mono">1 / 90,000,000</span></td><td>同上，独立累积</td></tr>
+          <tr><td><b>超级大奖</b></td><td><span class="mono">3,200,000</span></td><td><span class="mono">1 / 900,000,000</span></td><td>命中后重置回种子</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note reveal">口径：标称 RTP 为机台基础值，按集团偏移（永利 +1.0 … 澳娱 −1.6）校准；奖池概率为每转独立判定，与历史转数无关。</p>
+    <div class="hero-cta reveal" style="margin-top:26px">
+      <a class="btn-pill btn-gold" href="slots.html">进入老虎机厅</a>
+      <a class="btn-pill btn-line" href="#/learn">看三步教学与 RTP 详解</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 老虎机转轮流程 ============ -->
+<section class="sec cream" id="slots-flow">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Spin Flow · 从下注到派彩</div>
+      <h2>一转之内，<em>三层判定。</em></h2>
+      <p>每次转轮独立判定：先算线 / ways 命中，再算 SCATTER 免费游戏，最后独立摇奖池。三层互不影响 —— 没有「快出了」这回事。</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step" data-n="1"><h4>选机与注额</h4><p>11 台机按集团分布：金沙 4 台，其余五集团各 3 台（部分机台跨集团共用）。注额决定奖池注入与派彩绝对值，不改变命中率。</p></div>
+      <div class="step" data-n="2"><h4>转轮与触发</h4><p>3 个以上 SCATTER 触发 10 次免费游戏、全奖 ×2；免费内再触发加 5 次。turbo 与自动转可开关，本金不足自动停。</p></div>
+      <div class="step" data-n="3"><h4>读实测 RTP</h4><p>台面实时显示理论 RTP 与实测 RTP、命中率、最大单转；会员中心留存终身口径。短期偏差是波动，长期收敛于标称。</p></div>
+    </div>
+    <div class="gloss reveal" style="margin-top:40px">
+      <div><b>免费游戏</b><i>Free Spins</i><p>触发后 10 转不计投注、派彩 ×2；再触发加 5 次可叠加。免费转的派彩计入总派彩与实测 RTP，但不计入有效投注。</p></div>
+      <div><b>累积奖池</b><i>Progressive</i><p>四池各自按每转注额 0.5% 累积，命中概率逐池公示（1/90 万 至 1/9 亿）。命中后该池重置回种子，其余池继续累积。</p></div>
+      <div><b>场馆偏移</b><i>House Adjust</i><p>同一台机在永利 +1.0、澳娱 −1.6 个百分点等偏移下校准赔付表；「理论 RTP」显示的是偏移后的值，不是机台基础值。</p></div>
+    </div>
+    <div class="hero-cta reveal" style="margin-top:30px">
+      <a class="btn-pill btn-gold" href="slots.html">进入老虎机厅</a>
+      <a class="btn-pill btn-line" href="#/learn">看三步教学与 RTP 详解</a>
+    </div>
+  </div>
+</section>
+</div><!-- /view-slots -->
+
 <div class="view" data-view="rules" id="view-rules">
 <div class="view-head">
   <div class="wrap">
@@ -901,34 +1184,34 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
     <div class="geo">
       <figure class="geo-figure reveal">
         <svg class="geo-svg" viewBox="0 0 760 470" role="img" aria-label="六门 21 点台面俯视示意">
-          <ellipse cx="380" cy="232" rx="326" ry="178" fill="#0E2A22" stroke="rgba(201,162,39,.45)" stroke-width="1.2"/>
-          <ellipse cx="380" cy="232" rx="300" ry="155" fill="none" stroke="rgba(201,162,39,.16)" stroke-width="1"/>
-          <path d="M96 232h568" stroke="rgba(231,212,154,.10)" stroke-width="1" stroke-dasharray="4 6"/>
+          <ellipse cx="380" cy="232" rx="326" ry="178" fill="#0E2A22" stroke="rgba(201,162,39,.45)" stroke-width="1.2"></ellipse>
+          <ellipse cx="380" cy="232" rx="300" ry="155" fill="none" stroke="rgba(201,162,39,.16)" stroke-width="1"></ellipse>
+          <path d="M96 232h568" stroke="rgba(231,212,154,.10)" stroke-width="1" stroke-dasharray="4 6"></path>
 
           <text x="380" y="64" text-anchor="middle" font-size="15" letter-spacing="4" fill="rgba(243,238,228,.62)">DEALER · 庄家</text>
-          <rect x="356" y="80" width="36" height="50" rx="3" fill="#F3EEE4" stroke="rgba(27,30,28,.25)"/>
-          <rect x="362" y="86" width="24" height="3" rx="1.5" fill="rgba(159,29,29,.7)"/>
-          <rect x="400" y="80" width="36" height="50" rx="3" fill="none" stroke="rgba(231,212,154,.4)" stroke-dasharray="4 4"/>
+          <rect x="356" y="80" width="36" height="50" rx="3" fill="#F3EEE4" stroke="rgba(27,30,28,.25)"></rect>
+          <rect x="362" y="86" width="24" height="3" rx="1.5" fill="rgba(159,29,29,.7)"></rect>
+          <rect x="400" y="80" width="36" height="50" rx="3" fill="none" stroke="rgba(231,212,154,.4)" stroke-dasharray="4 4"></rect>
           <text x="418" y="114" text-anchor="middle" font-size="11" fill="rgba(243,238,228,.5)">未发</text>
-          <path d="M444 96h40" stroke="rgba(201,162,39,.5)" stroke-width="1"/>
+          <path d="M444 96h40" stroke="rgba(201,162,39,.5)" stroke-width="1"></path>
           <text x="492" y="99" font-size="14" fill="rgba(243,238,228,.82)">庄家只开一张明牌</text>
           <text x="492" y="118" font-size="12" fill="rgba(243,238,228,.5)">另一张在所有闲家行动后补发</text>
 
-          <rect x="70" y="52" width="54" height="46" rx="3" fill="#14181A" stroke="rgba(231,212,154,.3)"/>
+          <rect x="70" y="52" width="54" height="46" rx="3" fill="#14181A" stroke="rgba(231,212,154,.3)"></rect>
           <text x="97" y="113" text-anchor="middle" font-size="12" fill="rgba(243,238,228,.55)">弃牌盘</text>
-          <rect x="636" y="48" width="50" height="66" rx="4" fill="#14181A" stroke="rgba(231,212,154,.3)"/>
-          <path d="M644 58h34M644 70h34M644 82h34" stroke="rgba(231,212,154,.28)" stroke-width="1"/>
+          <rect x="636" y="48" width="50" height="66" rx="4" fill="#14181A" stroke="rgba(231,212,154,.3)"></rect>
+          <path d="M644 58h34M644 70h34M644 82h34" stroke="rgba(231,212,154,.28)" stroke-width="1"></path>
           <text x="661" y="129" text-anchor="middle" font-size="12" fill="rgba(243,238,228,.55)">牌靴 · 4–8 副</text>
 
           <text x="380" y="198" text-anchor="middle" font-size="11" letter-spacing="4" fill="rgba(231,212,154,.38)">BLACKJACK · SIX SEATS</text>
-          <path d="M330 208h100" stroke="rgba(201,162,39,.4)" stroke-width="1"/>
+          <path d="M330 208h100" stroke="rgba(201,162,39,.4)" stroke-width="1"></path>
 
-          <g class="seat"><circle cx="112" cy="286" r="24" fill="rgba(201,162,39,.06)" stroke="rgba(201,162,39,.5)"/><text x="112" y="291" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#EBD9A4">1</text><text x="112" y="326" text-anchor="middle" font-size="13" fill="rgba(243,238,228,.55)">第一门</text></g>
-          <g class="seat"><circle cx="190" cy="346" r="24" fill="rgba(201,162,39,.06)" stroke="rgba(201,162,39,.5)"/><text x="190" y="351" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#EBD9A4">2</text><text x="190" y="386" text-anchor="middle" font-size="13" fill="rgba(243,238,228,.55)">第二门</text></g>
-          <g class="seat"><circle cx="311" cy="381" r="25" fill="rgba(201,162,39,.30)" stroke="#EBD9A4" stroke-width="1.6"/><text x="311" y="386" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#FFF8E4">3</text><text x="311" y="424" text-anchor="middle" font-size="13" fill="#EBD9A4">第三门 · 你</text><text x="311" y="345" text-anchor="middle" font-size="10" letter-spacing="3" fill="#C9A227">DEFAULT</text></g>
-          <g class="seat"><circle cx="449" cy="381" r="24" fill="rgba(201,162,39,.06)" stroke="rgba(201,162,39,.5)"/><text x="449" y="386" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#EBD9A4">4</text><text x="449" y="420" text-anchor="middle" font-size="13" fill="rgba(243,238,228,.55)">第四门</text></g>
-          <g class="seat"><circle cx="571" cy="346" r="24" fill="rgba(201,162,39,.06)" stroke="rgba(201,162,39,.5)"/><text x="571" y="351" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#EBD9A4">5</text><text x="571" y="386" text-anchor="middle" font-size="13" fill="rgba(243,238,228,.55)">第五门</text></g>
-          <g class="seat"><circle cx="648" cy="286" r="24" fill="rgba(201,162,39,.06)" stroke="rgba(201,162,39,.5)"/><text x="648" y="291" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#EBD9A4">6</text><text x="648" y="326" text-anchor="middle" font-size="13" fill="rgba(243,238,228,.55)">第六门</text></g>
+          <g class="seat"><circle cx="112" cy="286" r="24" fill="rgba(201,162,39,.06)" stroke="rgba(201,162,39,.5)"></circle><text x="112" y="291" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#EBD9A4">1</text><text x="112" y="326" text-anchor="middle" font-size="13" fill="rgba(243,238,228,.55)">第一门</text></g>
+          <g class="seat"><circle cx="190" cy="346" r="24" fill="rgba(201,162,39,.06)" stroke="rgba(201,162,39,.5)"></circle><text x="190" y="351" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#EBD9A4">2</text><text x="190" y="386" text-anchor="middle" font-size="13" fill="rgba(243,238,228,.55)">第二门</text></g>
+          <g class="seat"><circle cx="311" cy="381" r="25" fill="rgba(201,162,39,.30)" stroke="#EBD9A4" stroke-width="1.6"></circle><text x="311" y="386" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#FFF8E4">3</text><text x="311" y="424" text-anchor="middle" font-size="13" fill="#EBD9A4">第三门 · 你</text><text x="311" y="345" text-anchor="middle" font-size="10" letter-spacing="3" fill="#C9A227">DEFAULT</text></g>
+          <g class="seat"><circle cx="449" cy="381" r="24" fill="rgba(201,162,39,.06)" stroke="rgba(201,162,39,.5)"></circle><text x="449" y="386" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#EBD9A4">4</text><text x="449" y="420" text-anchor="middle" font-size="13" fill="rgba(243,238,228,.55)">第四门</text></g>
+          <g class="seat"><circle cx="571" cy="346" r="24" fill="rgba(201,162,39,.06)" stroke="rgba(201,162,39,.5)"></circle><text x="571" y="351" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#EBD9A4">5</text><text x="571" y="386" text-anchor="middle" font-size="13" fill="rgba(243,238,228,.55)">第五门</text></g>
+          <g class="seat"><circle cx="648" cy="286" r="24" fill="rgba(201,162,39,.06)" stroke="rgba(201,162,39,.5)"></circle><text x="648" y="291" text-anchor="middle" font-size="17" font-family="Cormorant Garamond,serif" fill="#EBD9A4">6</text><text x="648" y="326" text-anchor="middle" font-size="13" fill="rgba(243,238,228,.55)">第六门</text></g>
         </svg>
         <figcaption class="cap">Table Layout · 6 Seats · No Hole Card</figcaption>
       </figure>
@@ -1037,7 +1320,7 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
 <div class="view-head">
   <div class="wrap">
     <div class="sec-head">
-      <div class="kicker">Rooms & Houses · 厅房与场馆</div>
+      <div class="kicker">Rooms &amp; Houses · 厅房与场馆</div>
       <h1>七档厅房，<em>二十一家场馆。</em></h1>
       <p>同一家公司，中场用洗牌机、贵宾厅换 8 副牌靴；二十一家场馆各有厅房开关与最低注。按集团筛选，逐家看差异。</p>
     </div>
@@ -1561,11 +1844,16 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
       <table class="data-table">
         <thead><tr><th>机台</th><th>结构</th><th>波动</th><th>标称 RTP</th></tr></thead>
         <tbody>
+          <tr><td><b>金龙献瑞</b>（金沙）</td><td><span class="mono">243 ways</span></td><td>中</td><td><span class="mono">92.5%</span></td></tr>
+          <tr><td><b>财神到</b>（低额台）</td><td><span class="mono">25 线</span></td><td>中</td><td><span class="mono">90.5%</span></td></tr>
+          <tr><td><b>富贵 88</b>（低额台）</td><td><span class="mono">25 线</span></td><td>中高</td><td><span class="mono">91.5%</span></td></tr>
+          <tr><td><b>发发发</b>（银河）</td><td><span class="mono">243 ways</span></td><td>中</td><td><span class="mono">91.0%</span></td></tr>
           <tr><td><b>盛世金莲</b>（永利）</td><td><span class="mono">20 线</span></td><td>低中</td><td><span class="mono">94.0%</span></td></tr>
           <tr><td><b>钻石人生</b>（永利）</td><td><span class="mono">243 ways</span></td><td>高</td><td><span class="mono">93.0%</span></td></tr>
-          <tr><td><b>金龙献瑞</b>（金沙）</td><td><span class="mono">243 ways</span></td><td>中</td><td><span class="mono">92.5%</span></td></tr>
           <tr><td><b>金狮传奇</b>（美高梅）</td><td><span class="mono">243 ways</span></td><td>高</td><td><span class="mono">92.0%</span></td></tr>
+          <tr><td><b>狮王宝库</b>（美高梅）</td><td><span class="mono">30 线</span></td><td>中高</td><td><span class="mono">92.5%</span></td></tr>
           <tr><td><b>摩卡财富</b>（新濠）</td><td><span class="mono">30 线</span></td><td>中</td><td><span class="mono">91.8%</span></td></tr>
+          <tr><td><b>幸运龙</b>（新濠）</td><td><span class="mono">243 ways</span></td><td>中</td><td><span class="mono">90.8%</span></td></tr>
           <tr><td><b>葡京金彩</b>（澳娱）</td><td><span class="mono">25 线</span></td><td>中</td><td><span class="mono">89.8%</span></td></tr>
         </tbody>
       </table>
@@ -2007,6 +2295,9 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
   /* ---------- 选项式视图路由 ---------- */
   var VIEW_SECS = {
     home: ['top', 'more'],
+    bj: ['bj-intro'],
+    bac: ['bac-intro', 'bac-draw'],
+    slots: ['slots-intro', 'slots-flow'],
     rules: ['rules', 'geometry', 'strategy'],
     venues: ['rooms', 'casinos'],
     history: ['history'],
@@ -2031,7 +2322,7 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
       document.querySelectorAll('a[data-view]').forEach(function(a){
         a.classList.toggle('on', a.getAttribute('data-view') === v);
       });
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       runCounters(document.getElementById('view-' + v));
       buildRail(v);
       var mn = document.getElementById('mnav'), tg = document.getElementById('navToggle');
@@ -2043,7 +2334,7 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
     }
     if (anchorId){
       var target = document.getElementById(anchorId);
-      if (target) target.scrollIntoView();
+      if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
     }
     requestAnimationFrame(function(){
       html.style.scrollBehavior = '';
@@ -2072,5 +2363,6 @@ footer{background:var(--ink);border-top:1px solid rgba(231,212,154,.13);padding:
   route();
 })();
 </script>
-</body>
-</html>
+
+
+</body></html>

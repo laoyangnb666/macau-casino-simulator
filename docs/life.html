@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-auth="required">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>模拟人生 · 澳门娱乐场模拟器</title>
+<meta name="description" content="澳门娱乐场模拟器的模拟人生模式：选择身世开局，用工作、投资、社交与真实赌桌改变人生轨迹。赌桌规则、赔率与厅房准入完全沿用游戏本体。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/life.css?v=20261121b">
+<script src="assets/auth.js?v=20261121e"></script>
+</head>
+<body class="lifepage">
+<div class="life-bg" aria-hidden="true"></div>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <img class="logo-mark" src="assets/logo.png" alt="澳门娱乐场模拟器" width="32" height="32">
+      <span><b>澳门娱乐场模拟器</b><small>Macau Casino Simulator</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="life.html" class="on auth-life">人生模式</a>
+      <a href="blackjack.html">21 点</a>
+      <a href="baccarat.html">百家乐</a>
+      <a href="slots.html">老虎机</a>
+      <a href="blackjack-mall.html">积分商城</a>
+      <a href="member.html">会员中心</a>
+    </div>
+    <a class="btn btn-dark" href="blackjack.html">进入牌桌</a>
+  </nav>
+</header>
+
+<main class="life-main">
+  <!-- ================= 身世选择 ================= -->
+  <section id="choose" hidden>
+    <div class="choose-head">
+      <div class="life-kick">Life Simulation · 第二人生</div>
+      <h1>这一世，<em>从哪张牌开始？</em></h1>
+      <p>
+        八种身世，八套起点。现金、收入、债务、健康、声望与赌瘾各不相同。
+        每个月有 3 个行动点：工作、投资、进修、社交、休养、还债，或者走进真正的赌桌。
+        赌桌规则、赔率、限红与厅房准入全部沿用游戏本体，人生模式只决定你带多少钱进去、输赢之后怎么活。
+      </p>
+    </div>
+    <div class="orig-grid" id="origGrid"></div>
+    <div class="choose-foot">
+      <span class="choose-note" id="chooseNote">选择一张身世卡，开始你的人生</span>
+      <button class="btn btn-dark choose-go" id="chooseGo" disabled>以此身世开局</button>
+    </div>
+  </section>
+
+  <!-- ================= 人生面板 ================= -->
+  <section id="lifeApp" hidden>
+    <div class="life-head">
+      <div class="life-kick">Life Simulation · 当前人生</div>
+      <h1 id="lifeTitle">—</h1>
+      <p id="lifeIntro">—</p>
+      <div class="life-meta" id="lifeMeta"></div>
+    </div>
+
+    <div class="ltabs" id="ltabs" role="tablist">
+      <button data-tab="overview" class="on" role="tab">总览</button>
+      <button data-tab="actions" role="tab">行动</button>
+      <button data-tab="casino" role="tab">赌场</button>
+      <button data-tab="assets" role="tab">资产</button>
+      <button data-tab="dex" role="tab">图鉴</button>
+    </div>
+
+    <!-- 总览 -->
+    <div class="lpane on" id="pane-overview">
+      <div class="ov-grid">
+        <div>
+          <div class="fin-cards" id="finCards"></div>
+          <div class="ov-foot">
+            <div class="apbar">
+              <b id="apNum">3</b>
+              <span>本月行动点</span>
+              <div class="dots" id="apDots"></div>
+            </div>
+          </div>
+          <div class="goalbox" id="goalBox" style="margin-top:12px"></div>
+        </div>
+        <div class="attrs" id="attrBox"></div>
+      </div>
+      <div class="logbox">
+        <h3>人生记录 <small>LIFE LOG</small></h3>
+        <ul class="loglist" id="logList"></ul>
+      </div>
+    </div>
+
+    <!-- 行动 -->
+    <div class="lpane" id="pane-actions">
+      <div class="act-note">
+        本月剩余行动点 <b id="actAp">3</b> · 每个行动消耗 1 点 · 用完后结束本月进入结算
+      </div>
+      <div class="act-grid">
+        <div class="act">
+          <h4>打工 / 经营 <span>WORK</span></h4>
+          <p>用一个月里剩下的时间加班或接活，拿到固定收入之外的一笔现金；消耗健康与心情。</p>
+          <button class="btn btn-act" data-act="work">去做</button>
+        </div>
+        <div class="act">
+          <h4>投资 <span>INVEST</span></h4>
+          <p>投入一笔现金。保守档胜率更高，激进档波动更大；投资能力随经验提升。</p>
+          <div class="row">
+            <input id="invAmount" type="number" min="10000" step="10000" placeholder="金额 MOP">
+            <select id="invRisk">
+              <option value="low">保守</option>
+              <option value="high">激进</option>
+            </select>
+          </div>
+          <button class="btn btn-act" data-act="invest">投入</button>
+        </div>
+        <div class="act">
+          <h4>进修 <span>STUDY</span></h4>
+          <p>花钱上课，随机提升经营、投资或社交能力，让后续收益更高。</p>
+          <button class="btn btn-act" data-act="learn">进修</button>
+        </div>
+        <div class="act">
+          <h4>社交 <span>SOCIAL</span></h4>
+          <p>请客、赴局、混圈子。提升人脉与声望，某些身世有额外加成。</p>
+          <button class="btn btn-act" data-act="social">去社交</button>
+        </div>
+        <div class="act">
+          <h4>休养 <span>REST</span></h4>
+          <p>停一段时间不进赌场。恢复健康与心情，并降低赌瘾。</p>
+          <button class="btn btn-act" data-act="rest">休息一个月</button>
+        </div>
+        <div class="act">
+          <h4>还债 <span>REPAY</span></h4>
+          <p>用现金偿还债务，减少每月利息。还清后心情与声望都会回升。</p>
+          <div class="row"><input id="repayAmount" type="number" min="1" step="10000" placeholder="还款金额 MOP"></div>
+          <button class="btn btn-act" data-act="repay">还款</button>
+        </div>
+        <div class="act">
+          <h4>购置资产 <span>BUY</span></h4>
+          <p>公寓、商铺、跑车或创业股份。首付 30% 即可按揭，租金与分红按月计入。</p>
+          <button class="btn btn-act" data-goto="assets">去资产页</button>
+        </div>
+        <div class="act">
+          <h4>去赌场 <span>CASINO</span></h4>
+          <p>带上全部随身现金进入真实盘面。每一局净输赢都会实时写回人生现金。</p>
+          <button class="btn btn-act" data-goto="casino">选择赌桌</button>
+        </div>
+        <div class="act">
+          <h4>结束本月 <span>END MONTH</span></h4>
+          <p>结算工资、开销、利息与健康，推进到下一个月。每月最多做 3 件事。</p>
+          <button class="btn btn-dark" id="endMonthBtn">结束本月</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 赌场 -->
+    <div class="lpane" id="pane-casino">
+      <div class="casino-note">
+        <b>资金完全联动，规则完全不变。</b>
+        进入赌桌时，你随身携带的人生现金就是台面本金；每局结算的净输赢实时写回现金，输光后只能借款补码（高利贷会进负债）。
+        台规、赔率、限红、牌靴、厅房准入没有任何改动——贵宾厅仍然需要游戏内会员卡级达标。
+      </div>
+      <div class="cas-grid" id="casGrid"></div>
+      <div class="sessionbox" id="sessionBox" hidden></div>
+    </div>
+
+    <!-- 资产 -->
+    <div class="lpane" id="pane-assets">
+      <div class="asset-grid">
+        <div class="panel">
+          <h3>资产与负债 <small>BALANCE SHEET</small></h3>
+          <div class="rows" id="assetRows"></div>
+          <h3 style="margin-top:16px">负债 <small>DEBTS</small></h3>
+          <div class="rows" id="debtRows"></div>
+          <div class="repayrow">
+            <input id="assetRepay" type="number" min="1" step="10000" placeholder="还款金额 MOP">
+            <button class="btn btn-ghost btn-sm" id="assetRepayBtn">还款</button>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>可购置 <small>ACQUIRE</small></h3>
+          <div id="buyList"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 图鉴 -->
+    <div class="lpane" id="pane-dex">
+      <div class="end-grid" id="endGrid"></div>
+      <div class="dexfoot">
+        <div class="note">结局达成后自动记入图鉴，跨周目保留。重开人生会清空当前存档，但不会清空图鉴。</div>
+        <button class="btn btn-ghost" id="quitBtn">主动收手 · 结束这一世</button>
+        <button class="btn btn-dark" id="restartBtn">重开人生</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="lifemodal" id="modal" hidden><div class="box" id="modalBox"></div></div>
+<div class="lifetoast" id="toast"></div>
+
+<script src="assets/life-core.js?v=20261121e"></script>
+<script src="assets/life.js?v=20261121e"></script>
+</body>
+</html>

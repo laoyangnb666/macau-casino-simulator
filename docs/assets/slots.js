@@ -12,6 +12,8 @@
   const CASINOS = BJ.casinos || [];
   const PROGRAMS = BJ.programs || {};
   const Wallet = window.BJWallet;
+  /* 人生模式：本金来自人生现金，每转净输赢实时回写人生存档 */
+  const LIFE = !!(window.BJLifeBridge && window.BJLifeBridge.active);
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   const fmt = n => Math.round(n).toLocaleString('zh-CN');
@@ -153,13 +155,18 @@
     return isFinite(n) && n >= 0 ? n : d;
   }
 
+  function saveBank() {
+    if (LIFE) return;   // 人生模式余额属于人生存档，不写普通模式本金键
+    localStorage.setItem(BANK_KEY, String(state.bank));
+  }
+
   const prefs = loadJSON(PREF_KEY) || {};
   const state = {
     venue: Math.max(0, Math.min(CASINOS.length - 1, prefs.venue | 0)),
     group: prefs.group || CASINOS[Math.max(0, Math.min(CASINOS.length - 1, prefs.venue | 0))].prog,
     machineId: prefs.machineId || 'dragon',
     betIdx: prefs.betIdx || 4,
-    bank: loadNum(BANK_KEY, 100000),
+    bank: LIFE ? Math.max(0, window.BJLifeBridge.bank()) : loadNum(BANK_KEY, 100000),
     turbo: !!prefs.turbo,
     auto: 0,
     free: 0,
@@ -508,7 +515,7 @@
     }
     if (!isFree) {
       state.bank -= bet;
-      localStorage.setItem(BANK_KEY, String(state.bank));
+      saveBank();
       state.stats.spins++;
       state.stats.wagered += bet;
       addTurnover(bet);
@@ -534,7 +541,9 @@
 
     if (win > 0) {
       state.bank += win;
-      localStorage.setItem(BANK_KEY, String(state.bank));
+      saveBank();
+      /* 人生模式：每转净输赢（免费转不计投注）实时回写人生现金 */
+      if (LIFE) window.BJLifeBridge.sync('slot', state.bank, win - (isFree ? 0 : bet), isFree ? 0 : bet);
       state.stats.won += win;
       state.stats.hits++;
       state.stats.biggest = Math.max(state.stats.biggest, win);
@@ -547,6 +556,7 @@
       setTimeout(clearHighlights, 2200);
     } else {
       msg(isFree ? `免费游戏剩余 ${state.free} 次` : '未中奖 · 再试一转');
+      if (LIFE) window.BJLifeBridge.sync('slot', state.bank, isFree ? 0 : -bet, isFree ? 0 : bet);
     }
 
     /* 终身统计：会员中心分游戏数据源（免费转不计投注） */
@@ -621,7 +631,9 @@
       if (Math.random() < JP_META[k].p) {
         const amount = state.jp[k] || JP_SEED[k];
         state.bank += amount;
-        localStorage.setItem(BANK_KEY, String(state.bank));
+        saveBank();
+        /* 人生模式：奖池命中按净赢回写 */
+        if (LIFE) window.BJLifeBridge.sync('slot', state.bank, amount, 0);
         state.stats.won += amount;
         state.stats.jp = (state.stats.jp || 0) + amount;
         if (window.BJStats) window.BJStats.add('slot', { won: amount, jp: amount });
@@ -762,6 +774,14 @@
       if (e.target === $('#payModal')) $('#payModal').classList.remove('show');
     });
     $('#addBank').addEventListener('click', () => {
+      if (LIFE) {
+        if (!confirm('向叠码仔借 50,000 MOP 筹码？人生负债将增加 62,500 MOP。')) return;
+        state.bank += 50000;
+        window.BJLifeBridge.borrow(50000, '老虎机补码');
+        renderBank();
+        msg('借入 50,000 MOP 筹码 · 人生负债 +62,500 MOP');
+        return;
+      }
       if (!confirm('补充 50,000 MOP 模拟筹码？')) return;
       state.bank += 50000;
       localStorage.setItem(BANK_KEY, String(state.bank));
@@ -769,6 +789,7 @@
       msg('已补充 50,000 MOP 模拟筹码');
     });
     $('#resetBank').addEventListener('click', () => {
+      if (LIFE) return msg('人生模式下本金由人生现金决定，不能重置；请回人生页结算');
       if (!confirm('重置本金为 100,000 MOP？')) return;
       state.bank = 100000;
       localStorage.setItem(BANK_KEY, String(state.bank));

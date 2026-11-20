@@ -12,6 +12,8 @@
   const CASINOS = BJ.casinos || [];
   const PROGRAMS = BJ.programs || {};
   const Wallet = window.BJWallet;
+  /* 人生模式：本金来自人生现金，每局净输赢实时回写人生存档 */
+  const LIFE = !!(window.BJLifeBridge && window.BJLifeBridge.active);
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   const fmt = n => Math.round(n).toLocaleString('zh-CN');
@@ -78,7 +80,7 @@
   /* ---------------- 本地状态 ---------------- */
   const BANK_KEY = 'bac.bank.v1';
   const PREF_KEY = 'bac.pref.v1';
-  const bank = loadNum(BANK_KEY, 200000);
+  const bank = LIFE ? Math.max(0, window.BJLifeBridge.bank()) : loadNum(BANK_KEY, 200000);
   let prefs = loadJSON(PREF_KEY) || { venue: 0, room: 0, mode: 'comm', lucky6: false, last: null };
 
   function loadNum(k, d) {
@@ -88,7 +90,11 @@
     return isFinite(n) && n > 0 ? n : d;
   }
   function loadJSON(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }
-  function saveNum(k, v) { try { localStorage.setItem(k, String(Math.round(v))); } catch (e) {} }
+  function saveNum(k, v) {
+    /* 人生模式的台面余额属于人生存档，不写普通模式的本金键 */
+    if (LIFE && k === BANK_KEY) return;
+    try { localStorage.setItem(k, String(Math.round(v))); } catch (e) {}
+  }
   function saveJSON(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 
   const state = {
@@ -529,6 +535,8 @@
 
     state.bank += ret;
     saveNum(BANK_KEY, state.bank);
+    /* 人生模式：台面余额与净输赢实时回写人生现金 */
+    if (LIFE) window.BJLifeBridge.sync('bac', state.bank, net, stake);
 
     const s = state.stats;
     s.rounds++; s.wagered += stake; s.commission += comm; s.net += net;
@@ -681,10 +689,18 @@
     $('#repeatBtn').addEventListener('click', repeatBets);
     $('#undoBtn').addEventListener('click', undoBet);
     $('#addBank').addEventListener('click', () => {
+      if (LIFE) {
+        if (!confirm('向叠码仔借 100,000 MOP 筹码？人生负债将增加 125,000 MOP。')) return;
+        state.bank += 100000;
+        window.BJLifeBridge.borrow(100000, '百家乐补码');
+        renderBank(); msg('借入 100,000 MOP 筹码 · 人生负债 +125,000 MOP');
+        return;
+      }
       if (!confirm('补充 100,000 MOP 模拟筹码？')) return;
       state.bank += 100000; saveNum(BANK_KEY, state.bank); renderBank(); msg('已补充 100,000 MOP 模拟筹码');
     });
     $('#resetBank').addEventListener('click', () => {
+      if (LIFE) return msg('人生模式下本金由人生现金决定，不能重置；请回人生页结算');
       if (!confirm('重置本金为 200,000 MOP？')) return;
       state.bank = 200000; saveNum(BANK_KEY, state.bank); renderBank(); msg('本金已重置为 200,000 MOP');
     });

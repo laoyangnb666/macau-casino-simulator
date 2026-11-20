@@ -85,7 +85,7 @@
   function safeNext() {
     var n = 'blackjack.html';
     try { n = new URLSearchParams(location.search).get('next') || n; } catch (e) {}
-    return /^(index|blackjack|blackjack-mall|baccarat|slots|member)\.html([?#].*)?$/.test(n) && n.indexOf('//') < 0 ? n : 'blackjack.html';
+    return /^(index|blackjack|blackjack-mall|baccarat|slots|member|life)\.html([?#].*)?$/.test(n) && n.indexOf('//') < 0 ? n : 'blackjack.html';
   }
 
   /* ---------- 门禁：在 <head> 同步执行，未登录直接跳走 ---------- */
@@ -112,6 +112,7 @@
       '.auth-out:hover{background:rgba(201,162,39,.12);border-color:rgba(201,162,39,.65);color:#EBD9A4}',
       '.auth-in{color:#EBD9A4!important}',
       '.auth-in:hover{color:#fff!important}',
+      '.auth-life{font-weight:500}',
       '@media(max-width:760px){.auth-chip{max-width:64px}.auth-out{margin-left:6px;padding:0 10px;height:28px;font-size:11px}}'
     ].join('');
     document.head.appendChild(s);
@@ -123,6 +124,14 @@
     injectStyle();
     var s = session();
     if (s) {
+      /* 登录后导航出现「人生模式」选项卡 */
+      if (!host.querySelector('.auth-life')) {
+        var life = document.createElement('a');
+        life.className = 'auth-life';
+        life.href = 'life.html';
+        life.textContent = '人生模式';
+        host.appendChild(life);
+      }
       var chip = document.createElement('span');
       chip.className = 'auth-chip';
       chip.textContent = s.name;
